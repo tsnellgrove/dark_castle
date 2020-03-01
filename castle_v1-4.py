@@ -1,4 +1,4 @@
-"""Castle Adventure 1.43
+"""Castle Adventure 1.50
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.

@@ -7,25 +7,25 @@ Simple Castle Adventure Overview
 	4. Throne Room (treasure chest; open chest to get gold); scroll in chest to open (Gideon)
 	5. Upon victory Burt becomes known as 'Burt the Bold'
 
-# Next Actions
-#   DONE Change examine of non available item to "Burt, you can't examine that!"
-#   DONE Change & universalize the response to one-word "examine" => "examine what Burt?" (works for taake & attack & drop too)
-#   DONE Consider eliminating "store" and implementing "drop" instead
-#   DONE Optimize unknonwn word: list with randint index
-#   DONE Create Path Dictionary ("entranc-south": "..") "you apprach the mighty gate"; Path_Action Dict; 
-#   DONE Take Key
-#	DONE Drop Key
-#   DONE dictionary of functions to replace long interpreter elif 
-#	DONE Clear up comments
-#	DONE Test drop / inv / take with multiple objects
-#	DONE paths in dictionary of dictionaries	
-#	DONE Door / container State dictionary of dictionaries
-#	DONE Bundle vital info into state_dict 
-#	DONE Return to elif word routine to handle variable passing
-#	DONE Add room description and feaature text to room_dict`
-#	DONE Check for room_feature on "look" text
-#   DONE Unlock Door & Open Door;
-#	DONE room feature text in look: for i in [lst] Print("there is an " + i + " here\n")  
+Next Actions
+	DONE Change examine of non available item to "Burt, you can't examine that!"
+	DONE Change & universalize the response to one-word "examine" => "examine what Burt?" (works for taake & attack & drop too)
+	DONE Consider eliminating "store" and implementing "drop" instead
+	DONE Optimize unknonwn word: list with randint index
+	DONE Create Path Dictionary ("entranc-south": "..") "you apprach the mighty gate"; Path_Action Dict; 
+	DONE Take Key
+	DONE Drop Key
+	DONE dictionary of functions to replace long interpreter elif 
+	DONE Clear up comments
+	DONE Test drop / inv / take with multiple objects
+	DONE paths in dictionary of dictionaries	
+	DONE Door / container State dictionary of dictionaries
+	DONE Bundle vital info into state_dict 
+	DONE Return to elif word routine to handle variable passing
+	DONE Add room description and feaature text to room_dict`
+	DONE Check for room_feature on "look" text
+	DONE Unlock Door & Open Door;
+	DONE room feature text in look: for i in [lst] Print("there is an " + i + " here\n")  
 
 #	main_hall
 #		DONE Describe paths
@@ -375,4 +375,7 @@ Updates for v 1.4
 	DONE: Inhibit return of shiny_sword response (silver_key) while hedgehog is eating
 	DONE: Full writing review
 	DONE: Re-Run Style Check
+
+Updates for v1.5
+	Add to Working Copy
 

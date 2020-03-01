@@ -1,8 +1,5 @@
 +++ To Dos +++
 
-Updatess for v1.5
-	Add to Working Copy
-
 Updates for v1.6
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	document the terms of art (e.g. items vs. features vs. view_only)
@@ -13,16 +10,16 @@ Updates for v 1.7
 	Post to GitHub using working Copy
 
 
-# 	Maintenance and clean-up I should do someday
-#		Fix trigger so that it no longer sometimes returns a value and sometimes doesn't
-#		use '.lower().strip() on input'
-#		consider using 'import textwrap'
-#		repeat option like 'again' / 'g' in Zork (JE request)
-# 		Future deployment options: Cloud web, instance, container, Lambda / serverless, mobile, text, echo
-#		create a "generalized" verb block with trigger & score for every verb
-# 		shorter variable names!!
-#		'wear' implementation has similar limitations to containers... no limits on how many similar items can be worn
-#		Containers implementation is very cheesey 
+Maintenance and clean-up I should do someday
+	Fix trigger so that it no longer sometimes returns a value and sometimes doesn't
+	use '.lower().strip() on input'
+	consider using 'import textwrap'
+	repeat option like 'again' / 'g' in Zork (JE request)
+	Future deployment options: Cloud web, instance, container, Lambda / serverless, mobile, text, echo
+	create a "generalized" verb block with trigger & score for every verb
+	shorter variable names!!
+	'wear' implementation has similar limitations to containers... no limits on how many similar items can be worn
+	Containers implementation is very cheesey 
 #			No concept of the container being _in_ in the room - contents basically just dumped to room
 #			no capacity limits
 #			no 'put'
