@@ -1,10 +1,13 @@
 +++ To Dos +++
 
 Updates for v1.6
+	Sort out Working Copy
+		DONE: Get live connection working (Open from Pythonista file manger - use app chooser)
+		DONE: Test an Undo / Revert (pre remote push, left swipe on commit to undo then "revert" at top)
+	Centralize lists and dictionaries
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	document the terms of art (e.g. items vs. features vs. view_only)
 	docstrings for all functions [?]
-	Centralize lists and dictionaries
 
 Updates for v 1.7
 	Post to GitHub using working Copy
