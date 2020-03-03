@@ -13,9 +13,9 @@ import random
 import math
 
 
-# *************************
-# *** Situational Logic ***
-# *************************
+# *********************
+# --- Situational Logic
+# *********************
 
 
 def switch_value(switch_key, switch_dict):
@@ -156,29 +156,29 @@ def timer(
 
     if timer_key == 'drop-stale_biscuits':
 
-        # --- If the hedgehog no longer exists (i.e. attacked by player), ---
-        # --- reset current_timer_value to 0 and set active_timer to none ---
-        # --- and remove 'stale_biscuits' from 'view_only' ---
+        # *** If the hedgehog no longer exists (i.e. attacked by player), ***
+        # *** reset current_timer_value to 0 and set active_timer to none ***
+        # *** and remove 'stale_biscuits' from 'view_only' ***
         if 'hedgehog' not in room_dict['main_hall']['features']:
             state_dict['hedgehog_timer'] = 0
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
             return
 
-        # --- If hedgehog exist and room == main_hall print description ---
+        # *** If hedgehog exist and room == main_hall print description ***
         if room == 'main_hall':
             print(timer_dict['drop-stale_biscuits']['timer_txt_'
                 + str(current_timer_value)])
 
-        # --- decrement timer ---
+        # *** decrement timer ***
         state_dict['hedgehog_timer'] -= 1
 
-        # --- if timer == 0 reset 'active_timer' & remove 'stale_biscuits' ---
+        # *** if timer == 0 reset 'active_timer' & remove 'stale_biscuits' ***
         if state_dict['hedgehog_timer'] == 0:
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
 
-            # --- update hedgehog state & description based on shiny_sword ---
+            # *** update hedgehog state & description based on shiny_sword ***
             if 'shiny_sword' in room_dict['main_hall']['items']:
                 state_dict['hedgehog_state'] \
                     = 'description_fed_sword_not_taken'
@@ -193,9 +193,9 @@ def timer(
 
         return
 
-# ***********************
-# *** Helper Routines ***
-# ***********************
+# *******************
+# --- Helper Routines
+# *******************
 
 
 def unknown_word():
@@ -322,7 +322,7 @@ def room_action(
     return
 
 
-# --- Score is called from look(), 'take', 'attack', and a few other spots ---
+# *** Score is called from look(), 'take', 'attack', and a few other spots ***
 def score(score_key, score_dict, state_dict):
     if score_dict[score_key][0] == 0:
         state_dict['current_score'] += score_dict[score_key][1]
@@ -331,9 +331,9 @@ def score(score_key, score_dict, state_dict):
     score_dict[score_key][0] += 1
     return
 
-# ************************
-# *** Text Interpreter ***
-# ************************
+# ********************
+# --- Text Interpreter
+# ********************
 
 
 def interpreter_text(
@@ -343,7 +343,7 @@ def interpreter_text(
         pre_action_trigger_lst, post_action_trigger_lst, timer_dict, s_d_dict,
         switch_dict, worn_dict):
 
-    # --- local variables ---
+    # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
     allowed_movement = allowed_lang_dict['allowed_movement']
     room = state_dict['room']
@@ -353,7 +353,7 @@ def interpreter_text(
     backpack = state_dict['backpack']
     worn = state_dict['worn']
 
-# --- Convert User Input to single word strings ---
+# *** Convert User Input to single word strings ***
 
     user_input_lst = str_to_lst(user_input)
 
@@ -379,7 +379,7 @@ def interpreter_text(
             return
 
 
-# --- Handle One Word Commands ---
+# --- Handle One Word Commands
 
     if word1 == "help":
         help()
@@ -407,9 +407,9 @@ def interpreter_text(
             action, word1, room, state_dict, path_dict, room_dict,
             score_key, score_dict, description_dict)
 
-# --- Handle Two Word Commands ---
+# *** Handle Two Word Commands ***
 
-# *** Examine verb ***
+# --- Examine verb
 
     elif word1 == "examine":
 
@@ -439,28 +439,28 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Take verb ***
+# --- Take verb
 
     elif word1 == "take":
 
         takeable_items = backpack + room_items + worn
 
-        # --- if item is takable && not "nothing" (inventory placeholder) ---
+        # *** if item is takable && not "nothing" (inventory placeholder) ***
         if word2 in takeable_items and word2 != "nothing":
 
-            # --- swap variable ---
+            # *** swap variable ***
             temp_swap = hand[0]
             del hand[0]
 
-            # --- add the taken item to player's hand' ---
+            # *** add the taken item to player's hand' ***
             hand.append(word2)
             state_dict['hand'] = hand
 
-            # --- put contents of hand in backpack unless hand == "nothing" ---
+            # *** put contents of hand in backpack unless hand == "nothing" ***
             if temp_swap != "nothing":
                 backpack.append(temp_swap)
 
-            # --- remove taken item from its source list (backpack or room) ---
+            # *** remove taken item from its source list (backpack or room) ***
             if word2 in backpack:
                 backpack.remove(word2)
             elif word2 in worn:
@@ -469,7 +469,7 @@ def interpreter_text(
                 room_items.remove(word2)
                 room_dict[room]['room_items'] = room_items
 
-                # --- Deal with Container Cases ---
+                # *** Deal with Container Cases ***
                 if word2 in state_dict['item_containers']:
                     container = state_dict['item_containers'][word2]
                     door_dict[container]['contains'].remove(word2)
@@ -477,25 +477,25 @@ def interpreter_text(
                         door_dict[container]['contains'].append('nothing')
                     del state_dict['item_containers'][word2]
 
-            # --- confirm to the player that the item has been taken ---
+            # *** confirm to the player that the item has been taken ***
             print("Taken\n")
 
-# --- Clean up source containers ---
+# *** Clean up source containers ***
 
-            # --- if the backpack is now empty add placeholder "nothing" ---
+            # *** if the backpack is now empty add placeholder "nothing" ***
             if len(backpack) == 0:
                 backpack.append("nothing")
 
-            # --- ensure we don't get multiple "nothing" in backpack ---
+            # *** ensure we don't get multiple "nothing" in backpack ***
             if len(backpack) > 1 and "nothing" in backpack:
                 backpack.remove("nothing")
 
-            # --- if worn is now empty add the placeholder "nothing" to it ---
+            # *** if worn is now empty add the placeholder "nothing" to it ***
             if len(worn) == 0:
                 worn.append("nothing")
                 print(worn_dict[score_key])  # print garment removal text
 
-            # --- ensure we don't get multiple "nothing" in backpack ---
+            # *** ensure we don't get multiple "nothing" in backpack ***
             if len(worn) > 1 and "nothing" in backpack:
                 worn.remove("nothing")
             
@@ -508,7 +508,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Drop verb ***
+# --- Drop verb
 
     elif word1 == "drop":
 
@@ -532,7 +532,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Open verb ***
+# --- Open verb
 
     elif word1 == "open":
     
@@ -557,7 +557,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Unlock verb ***
+# --- Unlock verb
 
     elif word1 == "unlock":
     
@@ -577,7 +577,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!")
 
-# *** read verb ***
+# --- read verb
 
     elif word1 == "read":
     
@@ -600,7 +600,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** attack verb ***
+# --- attack verb
 
     elif word1 == "attack":
     
@@ -644,7 +644,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** eat verb ***
+# --- eat verb
 
     elif word1 == "eat":
         if word2 in allowed_lang_dict['can_be_eaten_lst'] and word2 in hand:
@@ -652,7 +652,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Pull verb ***
+# --- Pull verb
 
     elif word1 == 'pull':
 
@@ -680,7 +680,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Push verb ***
+# --- Push verb
 
     elif word1 == 'push':
 
@@ -708,7 +708,7 @@ def interpreter_text(
         else:
             print("Burt you can't " + word1 + " that!\n")
 
-# *** Wear verb ***
+# --- Wear verb
 
     elif word1 == "wear":
 
@@ -718,30 +718,30 @@ def interpreter_text(
                 print("Burt, you're not holding the " + word2 + "!\n")
                 return
 
-# --- add the taken item to player's hand' ---
+# *** add the taken item to player's hand' ***
             worn.append(word2)
             state_dict['worn'] = worn
 
-# --- remove the taken item from its source list (hand) ---
+# *** remove the taken item from its source list (hand) ***
             if word2 in hand:
                 hand.remove(word2)
 
-# --- if the backpack is now empty add the placeholder "nothing" to it ---
+# *** if the backpack is now empty add the placeholder "nothing" to it ***
             if len(hand) == 0:
                 hand.append("nothing")
 
-# ---remove 'nothing' once something is worn ---
+# *** remove 'nothing' once something is worn ***
             if len(worn) > 1 and "nothing" in worn:
                 worn.remove("nothing")
                 state_dict['worn'] = worn
 
-# --- confirm to the player that the item has been worn ---
+# *** confirm to the player that the item has been worn ***
             print("Worn\n")
-            
-# --- print worn_dict text ---
+
+# *** print worn_dict text ***
             print(worn_dict[score_key])
 
-# --- update global 'hand' and score ---
+# *** update global 'hand' and score ***
             state_dict['hand'] = hand
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
@@ -752,11 +752,11 @@ def interpreter_text(
     else:
         unknown_word()
 
-# ****************************
-# *** Dictionaries & Lists ***
-# ****************************
+# ************************
+# --- Dictionaries & Lists
+# ************************
 
-# **** Door Dictionary *** [Variable]
+# --- Door Dictionary [Variable]
 door_dict = {
     'front_gate': {
         'door_state': 'closed',
@@ -779,10 +779,10 @@ door_dict = {
     }
 }
 
-# *** Switch Dictionary *** [Variable]
+# --- Switch Dictionary [Variable]
 switch_dict = {
 
-    # --- Control Panel ---
+    # *** Control Panel ***
 
     'left_lever': {
         'state': 'down'
@@ -800,7 +800,7 @@ switch_dict = {
     }
 }
 
-# *** Description Dictionary *** [Programmatically Update w description_update]
+# --- Description Dictionary [Programmatically Updated]
 description_dict = {
 
     # --- Doors ---
@@ -1235,7 +1235,7 @@ description_dict = {
                                 "gears but nothing happens.\n"
 }
 
-# *** Path Description Dictionary *** [STATIC]
+# --- Path Description Dictionary [STATIC]
 path_dict = {
     'entrance-north': {
         'description': "You approach the daunting front gate.\n",
@@ -1343,7 +1343,7 @@ path_dict = {
     }
 }
 
-# *** Room Dictionary *** [VARIABLE]
+# --- Room Dictionary [VARIABLE]
 room_dict = {
     'entrance': {
         'features': ["front_gate"],
@@ -1367,7 +1367,7 @@ room_dict = {
     }
 }
 
-# *** List of Pre-Action Triggers *** [STATIC]
+# --- List of Pre-Action Triggers [STATIC]
 pre_action_trigger_lst = [
     'take-shiny_sword',
     'examine-control_panel',
@@ -1379,7 +1379,7 @@ pre_action_trigger_lst = [
     'west-blank'
 ]
 
-# *** List of Post-Action Triggers *** [STATIC]
+# --- List of Post-Action Triggers [STATIC]
 post_action_trigger_lst = [
     'drop-stale_biscuits',
     'attack-goblin',
@@ -1389,7 +1389,7 @@ post_action_trigger_lst = [
     'read-illuminated_letters'
 ]
 
-# *** Writing Dictionary *** [STATIC]
+# --- Writing Dictionary [STATIC]
 writing_dict = {
     'rusty_lettering': {
        'written_on': 'front_gate',
@@ -1439,7 +1439,7 @@ writing_dict = {
     }
 }
 
-# *** Creature Dictionary *** [STATIC]
+# --- Creature Dictionary [STATIC]
 creature_dict = {
     'hedgehog': {
 
@@ -1497,7 +1497,7 @@ creature_dict = {
     }
 }
 
-# *** Stateful Description Dictionary *** [STATIC]
+# --- Stateful Description Dictionary [STATIC]
 s_d_dict = {
 
     'hedgehog_hungry_has_sword': "This poor little hedgehog has seen better "
@@ -1553,7 +1553,7 @@ s_d_dict = {
                         "top of the crystal_box is engraved with calligraphy."
 }
 
-# *** Food Dictionary *** [STATIC]
+# --- Food Dictionary [STATIC]
 food_dict = {
     'stale_biscuits': {
 
@@ -1570,14 +1570,14 @@ food_dict = {
     }
 }
 
-# *** Worn Dictionary *** [STATIC]
+# --- Worn Dictionary [STATIC]
 worn_dict = {
     'wear-royal_crown': "You now feel more regal.\n",
     
     'take-royal_crown': "You suddenly feel a bit less kingly.\n"
 }
 
-# *** Unknown Word List *** [STATIC]
+# --- Unknown Word List [STATIC]
 unknown_word_lst = [
     "Burt, I have no idea what you're talking about!\n",
     "Burt, are you babbling again?\n",
@@ -1587,7 +1587,7 @@ unknown_word_lst = [
     "Burt! What would your mother say if she heard you speaking like that!?\n"
 ]
 
-# *** Game State Dictionary *** [VARIABLE]
+# --- Game State Dictionary [VARIABLE]
 state_dict = {
     'room': 'entrance',
     'hand': ["nothing"],
@@ -1604,7 +1604,7 @@ state_dict = {
     'worn': ['nothing']
 }
 
-# *** Score Dictionary *** [VARIABLE]
+# --- Score Dictionary [VARIABLE]
 score_dict = {
     'take-rusty_key': [0, 5],
     'main_hall': [0, 5],
@@ -1620,7 +1620,7 @@ score_dict = {
     'read-illuminated_letters': [0, 15]
 }
 
-# *** Timer Dcitionary *** [STATIC]
+# --- Timer Dcitionary [STATIC]
 timer_dict = {
     'drop-stale_biscuits': {
         'timer_visible_room': 'main_hall',
@@ -1641,7 +1641,7 @@ timer_dict = {
     }
 }
 
-# ***Titles Dictionary *** [STATIC]
+# --- Titles Dictionary [STATIC]
 titles_dict = {
     -10: 'Burt the Best Forgotten',
     0: 'Burt the Boneheaded',
@@ -1655,7 +1655,7 @@ titles_dict = {
     80: 'Burt the Bold, Baron of Bright Castle'
 }
 
-# *** Allowed Language Dictionary *** [STATIC]
+# --- Allowed Language Dictionary [STATIC]
 allowed_lang_dict = {
     'allowed_movement': ["north", "south", "east", "west"],
     'allowed_verbs': [
@@ -1675,9 +1675,9 @@ allowed_lang_dict = {
     'can_be_worn': ['royal_crown']   # not broach; causes player confusion
 }
 
-# ********************
-# *** Main Routine ***
-# ********************
+# ****************
+# --- Main Routine
+# ****************
 
 # *** Variable Assignment ***
 switch_dict['big_red_button']['success_value'] = random.randint(0, 7)
