@@ -5,8 +5,12 @@ Updates for v1.6
 		DONE: Get live connection working (Open from Pythonista file manger - use app chooser)
 		DONE: Test an Undo / Revert (pre remote push, left swipe on commit to undo then "revert" at top)
 	Centralize lists and dictionaries
-	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
+		worn_dict => description_dict
+		room_dict descriptions => description_dict
+		score_dict => state_dict
+		triggers lists => allowed_language
 	document the terms of art (e.g. items vs. features vs. view_only)
+	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]
 
 Updates for v 1.7
