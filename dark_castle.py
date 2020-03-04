@@ -1,4 +1,4 @@
-"""Castle Adventure 1.50
+"""Castle Adventure 1.52
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -493,7 +493,8 @@ def interpreter_text(
             # *** if worn is now empty add the placeholder "nothing" to it ***
             if len(worn) == 0:
                 worn.append("nothing")
-                print(worn_dict[score_key])  # print garment removal text
+#                print(worn_dict[score_key])  # print garment removal text
+                print(description_dict[score_key + '-worn']) # worn removal txt
 
             # *** ensure we don't get multiple "nothing" in backpack ***
             if len(worn) > 1 and "nothing" in backpack:
@@ -718,7 +719,7 @@ def interpreter_text(
                 print("Burt, you're not holding the " + word2 + "!\n")
                 return
 
-# *** add the taken item to player's hand' ***
+# *** wear the taken item ***
             worn.append(word2)
             state_dict['worn'] = worn
 
@@ -726,7 +727,7 @@ def interpreter_text(
             if word2 in hand:
                 hand.remove(word2)
 
-# *** if the backpack is now empty add the placeholder "nothing" to it ***
+# *** if the hand is now empty add the placeholder "nothing" to it ***
             if len(hand) == 0:
                 hand.append("nothing")
 
@@ -738,8 +739,9 @@ def interpreter_text(
 # *** confirm to the player that the item has been worn ***
             print("Worn\n")
 
-# *** print worn_dict text ***
-            print(worn_dict[score_key])
+# *** print worn update text ***
+#            print(worn_dict[score_key])
+            print(description_dict[score_key])
 
 # *** update global 'hand' and score ***
             state_dict['hand'] = hand
@@ -1232,7 +1234,14 @@ description_dict = {
                                  "closes.\n",
 
     'push-big_red_button-fail': "You press the button and hear a whirring of "
-                                "gears but nothing happens.\n"
+                                "gears but nothing happens.\n",
+
+    # --- Worn Descriptions ---
+
+    'wear-royal_crown': "You now feel more regal.\n",
+
+    'take-royal_crown-worn': "You suddenly feel a bit less kingly.\n"
+
 }
 
 # --- Path Description Dictionary [STATIC]
