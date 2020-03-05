@@ -5,7 +5,7 @@ Updates for v1.6
 		DONE: Get live connection working (Open from Pythonista file manger - use app chooser)
 		DONE: Test an Undo / Revert (pre remote push, left swipe on commit to undo then "revert" at top)
 	Centralize lists and dictionaries
-		worn_dict => description_dict
+		DONE: worn_dict => description_dict
 		room_dict descriptions => description_dict
 		score_dict => state_dict
 		triggers lists => allowed_language

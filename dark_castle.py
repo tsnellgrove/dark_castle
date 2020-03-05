@@ -341,7 +341,7 @@ def interpreter_text(
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
         writing_dict, creature_dict, food_dict, score_dict,
         pre_action_trigger_lst, post_action_trigger_lst, timer_dict, s_d_dict,
-        switch_dict, worn_dict):
+        switch_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -493,7 +493,6 @@ def interpreter_text(
             # *** if worn is now empty add the placeholder "nothing" to it ***
             if len(worn) == 0:
                 worn.append("nothing")
-#                print(worn_dict[score_key])  # print garment removal text
                 print(description_dict[score_key + '-worn']) # worn removal txt
 
             # *** ensure we don't get multiple "nothing" in backpack ***
@@ -740,7 +739,6 @@ def interpreter_text(
             print("Worn\n")
 
 # *** print worn update text ***
-#            print(worn_dict[score_key])
             print(description_dict[score_key])
 
 # *** update global 'hand' and score ***
@@ -1579,13 +1577,6 @@ food_dict = {
     }
 }
 
-# --- Worn Dictionary [STATIC]
-worn_dict = {
-    'wear-royal_crown': "You now feel more regal.\n",
-    
-    'take-royal_crown': "You suddenly feel a bit less kingly.\n"
-}
-
 # --- Unknown Word List [STATIC]
 unknown_word_lst = [
     "Burt, I have no idea what you're talking about!\n",
@@ -1716,7 +1707,7 @@ while True:
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
             writing_dict, creature_dict, food_dict, score_dict,
             pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
-            s_d_dict, switch_dict, worn_dict)
+            s_d_dict, switch_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
