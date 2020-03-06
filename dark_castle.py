@@ -1,11 +1,11 @@
-"""Castle Adventure 1.52
+"""Castle Adventure 1.53
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Feb 14, 2020
+Last update = Mar 6, 2020
 """
 
 # *** Imports ***
@@ -401,7 +401,7 @@ def interpreter_text(
         print("You are wearing: " + worn_inv + "\n")
         
     elif word1 in allowed_movement:
-        print(path_dict[room + "-" + word1]['description'])
+        print(description_dict[room + "-" + word1])
         action = path_dict[room + "-" + word1]['action']
         room_action(
             action, word1, room, state_dict, path_dict, room_dict,
@@ -1238,112 +1238,130 @@ description_dict = {
 
     'wear-royal_crown': "You now feel more regal.\n",
 
-    'take-royal_crown-worn': "You suddenly feel a bit less kingly.\n"
+    'take-royal_crown-worn': "You suddenly feel a bit less kingly.\n",
+
+    # --- Path Descriptions ---
+
+    'entrance-north': "You approach the daunting front gate.\n",
+
+    'entrance-south': "Don't be ridiculous Burt. You just swore to the whole "
+                      "pub that you'd march into the Dark Castle and grab "
+                      "the gold and buy everyone drinks with it. \nThat is "
+                      "why they gave you the rusty_key. You can't turn back "
+                      "now!\n",
+
+    'entrance-east': "With confidence and vigor you pitch off the side of "
+                     "the drawbridge and into the moat. Who knew it would "
+                     "be full of crocodiles?\n",
+
+    'entrance-west': "With confidence and vigor you pitch off the side of "
+                     "the drawbridge and into the moat. Who knew it would "
+                     "be full of crocodiles?\n",
+
+    'main_hall-north': "You pass through the foreboding archway.\n",
+
+    'main_hall-south': "You exit through the front_gate.\n",
+
+    'main_hall-east': "Ouch! You have walked into a wall.\n",
+
+    'main_hall-west': "Ouch! You have walked into a wall.\n",
+
+    'antechamber-north': "You approach the iron_portcullis.\n",
+
+    'antechamber-south': "You exit through the southern passage.\n",
+
+    'antechamber-east': "Ouch! Burt, stop walking into walls!\n",
+
+    'antechamber-west': "Ouch! Burt, stop walking into walls!\n",
+
+    'throne_room-north': "Ouch! Burt, stop walking into walls!\n",
+
+    'throne_room-south': "You approach the iron_portcullis.\n",
+
+    'throne_room-east': "Ouch! Burt, stop walking into walls!\n",
+
+    'throne_room-west': "Ouch! Burt, stop walking into walls!\n"
 
 }
 
 # --- Path Description Dictionary [STATIC]
 path_dict = {
     'entrance-north': {
-        'description': "You approach the daunting front gate.\n",
         'action': 'door',
         'door': 'front_gate',
         'next_room': 'main_hall'
     },
     'entrance-south': {
-        'description': "Don't be ridiculous Burt. You just swore to the whole "
-                       "pub that you'd march into the Dark Castle and grab "
-                       "the gold and buy everyone drinks with it. \nThat is "
-                       "why they gave you the rusty_key. You can't turn back "
-                       "now!\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'entrance-east': {
-        'description': "With confidence and vigor you pitch off the side of "
-                       "the drawbridge and into the moat. Who knew it would "
-                       "be full of crocodiles?\n",
         'action': 'death',
         'door': 'none',
         'next_room': 'none'
     },
     'entrance-west': {
-        'description': "With confidence and vigor you pitch off the side of "
-                       "the drawbridge and into the moat. Who knew it would "
-                       "be full of crocodiles?\n",
         'action': 'death',
         'door': 'none',
         'next_room': 'none'
     },
     'main_hall-north': {
-        'description': "You pass through the foreboding archway.\n",
         'action': 'passage',
         'door': 'none',
         'next_room': 'antechamber'
     },
     'main_hall-south': {
-        'description': "You exit through the front_gate.\n",
         'action': 'door',
         'door': 'front_gate',
         'next_room': 'entrance'
     },
     'main_hall-east': {
-        'description': "Ouch! You have walked into a wall.\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'main_hall-west': {
-        'description': "Ouch! You have walked into a wall.\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'antechamber-north': {
-        'description': "You approach the iron_portcullis.\n",
         'action': 'door',
         'door': 'iron_portcullis',
         'next_room': 'throne_room'
     },
     'antechamber-south': {
-        'description': "You exit through the southern passage.\n",
         'action': 'passage',
         'door': 'none',
         'next_room': 'main_hall'
     },
     'antechamber-east': {
-        'description': "Ouch! Burt, stop walking into walls!\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'antechamber-west': {
-        'description': "Ouch! Burt, stop walking into walls!\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'throne_room-north': {
-        'description': "Ouch! Burt, stop walking into walls!\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'throne_room-south': {
-        'description': "You approach the iron_portcullis.\n",
         'action': 'door',
         'door': 'iron_portcullis',
         'next_room': 'antechamber'
     },
     'throne_room-east': {
-        'description': "Ouch! Burt, stop walking into walls!\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
     },
     'throne_room-west': {
-        'description': "Ouch! Burt, stop walking into walls!\n",
         'action': 'none',
         'door': 'none',
         'next_room': 'none'
