@@ -6,7 +6,8 @@ Updates for v1.6
 		DONE: Test an Undo / Revert (pre remote push, left swipe on commit to undo then "revert" at top)
 	Centralize lists and dictionaries
 		DONE: worn_dict => description_dict
-		room_dict descriptions => description_dict
+		DONE: room_dict descriptions => description_dict
+		other text to description_dict
 		score_dict => state_dict
 		triggers lists => allowed_language
 	document the terms of art (e.g. items vs. features vs. view_only)
@@ -18,6 +19,7 @@ Updates for v 1.7
 
 
 Maintenance and clean-up I should do someday
+	Find a more efficient way to tell the player "you can't go that way" - unique path descriptins won't scale well to 10 cardinal directions for 10+ rooms
 	Fix trigger so that it no longer sometimes returns a value and sometimes doesn't
 	use '.lower().strip() on input'
 	consider using 'import textwrap'
