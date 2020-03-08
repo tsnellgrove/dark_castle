@@ -7,9 +7,9 @@ Updates for v1.6
 	Centralize lists and dictionaries
 		DONE: worn_dict => description_dict
 		DONE: room_dict descriptions => description_dict
-		writing_dict text => description_dict [remove commented txt]
-		other text to description_dict
+		DONE: writing_dict text => description_dict [remove commented txt]
 		consolidate writing_dict into single level dictionary
+		other text to description_dict
 		score_dict => state_dict
 		triggers lists => allowed_language
 	document the terms of art (e.g. items vs. features vs. view_only)

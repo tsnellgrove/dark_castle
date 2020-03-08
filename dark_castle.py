@@ -589,16 +589,14 @@ def interpreter_text(
 
         if word2 in allowed_lang_dict['can_be_read']:
             if writing_dict[word2]['written_on'] in visible_items:
-#                print(writing_dict[word2]['read_txt'])
                 print(description_dict[word2 + "-read"])
-            else:
-                print("Burt, you can't read what you can't see!\n")
-
                 if trigger_key in post_action_trigger_lst:
                     trigger(
                         room, trigger_key, room_dict, word2, timer_dict,
                         description_dict, creature_dict, s_d_dict, state_dict,
                         titles_dict, door_dict, score_dict)
+            else:
+                print("Burt, you can't read what you can't see!\n")
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -1464,49 +1462,21 @@ post_action_trigger_lst = [
 writing_dict = {
     'rusty_lettering': {
        'written_on': 'front_gate',
-#       'read_txt': "'ABANDON HOPE ALL YE WHO EVEN THINK ABOUT IT'\n"
     },
     'trademark': {
         'written_on': "stale_biscuits",
-#        'read_txt': "'McVities'\n"
     },
     'dwarven_runes': {
         'written_on': 'shiny_sword',
-#        'read_txt': "'Goblin Walloper'\n"
     },
     'messy_handwriting': {
         'written_on': 'torn_note',
-#        'read_txt': ""  # assigned with random number at top of main routine
     },
     'calligraphy': {
         'written_on': 'crystal_box',
-#        'read_txt': "'The Scroll of the King'\n"
     },
     'illuminated_letters': {
         'written_on': 'scroll_of_the_king',
-#        'read_txt': "First with great effort and then, surprisingly, with "
-#                    "surety and confidence, you read out loud the text on the "
-#                    "scroll. Your voice booms forth of its own accord - as if "
-#                    "some part of your brain has been getting ready to say "
-#                    "these words all your life. The rest of brain is "
-#                    "struggling just to make sense of what you're saying with "
-#                    "such confidence... it seems to be something along the "
-#                    "lines of a recipe with ingredients... so if the 'heir "
-#                    "to the true king' (whoever that might be)... reads 'this "
-#                    "precious parchment'(you're pretty sure that means the "
-#                    "scroll you're holding)... in the throne_room (you've "
-#                    "been there!)... while 'adorned with the gleaming "
-#                    "headpiece of state' (whatever that means)... and also "
-#                    "requiring that 'so long as the castle remains invested "
-#                    "with a representative of our most noble heraldic charge "
-#                    "seen ever upon our crest, seal, and glorious coat of "
-#                    "arms' (even Ms. Lusk would have no clue what this means "
-#                    "but she would notice that an awful lot of the "
-#                    "illuminated_letters in this sentence include a hedgehog "
-#                    "with a sword and a key)... and then it finishes on a "
-#                    "rather dramatic high note with the words 'upon the hour "
-#                    "these conditions be met, a new King of Bright Castle "
-#                    "shall shine forth and be proclaimed!'\n"
     }
 }
 
@@ -1745,9 +1715,6 @@ allowed_lang_dict = {
 
 # *** Variable Assignment ***
 switch_dict['big_red_button']['success_value'] = random.randint(0, 7)
-#writing_dict['messy_handwriting']['read_txt'] = "'..ode is " \
-#    + str(switch_dict['big_red_button']['success_value']) \
-#    + ". Don't tell anyo..'\n"
 description_dict['messy_handwriting-read'] = "'..ode is " \
     + str(switch_dict['big_red_button']['success_value']) \
     + ". Don't tell anyo..'\n"
