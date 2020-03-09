@@ -8,7 +8,7 @@ Updates for v1.6
 		DONE: worn_dict => description_dict
 		DONE: room_dict descriptions => description_dict
 		DONE: writing_dict text => description_dict [remove commented txt]
-		consolidate writing_dict into single level dictionary
+		DONE: consolidate writing_dict into single level dictionary
 		other text to description_dict
 		score_dict => state_dict
 		triggers lists => allowed_language

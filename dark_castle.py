@@ -1,11 +1,11 @@
-"""Castle Adventure 1.53
+"""Castle Adventure 1.54
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 6, 2020
+Last update = Mar 9, 2020
 """
 
 # *** Imports ***
@@ -339,7 +339,7 @@ def score(score_key, score_dict, state_dict):
 def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
-        writing_dict, creature_dict, food_dict, score_dict,
+        written_on_dict, creature_dict, food_dict, score_dict,
         pre_action_trigger_lst, post_action_trigger_lst, timer_dict, s_d_dict,
         switch_dict):
 
@@ -588,7 +588,7 @@ def interpreter_text(
         visible_items.append("burt")
 
         if word2 in allowed_lang_dict['can_be_read']:
-            if writing_dict[word2]['written_on'] in visible_items:
+            if written_on_dict[word2] in visible_items:
                 print(description_dict[word2 + "-read"])
                 if trigger_key in post_action_trigger_lst:
                     trigger(
@@ -1458,26 +1458,14 @@ post_action_trigger_lst = [
     'read-illuminated_letters'
 ]
 
-# --- Writing Dictionary [STATIC]
-writing_dict = {
-    'rusty_lettering': {
-       'written_on': 'front_gate',
-    },
-    'trademark': {
-        'written_on': "stale_biscuits",
-    },
-    'dwarven_runes': {
-        'written_on': 'shiny_sword',
-    },
-    'messy_handwriting': {
-        'written_on': 'torn_note',
-    },
-    'calligraphy': {
-        'written_on': 'crystal_box',
-    },
-    'illuminated_letters': {
-        'written_on': 'scroll_of_the_king',
-    }
+# --- Written On Dictionary [STATIC]
+written_on_dict = {
+    'rusty_lettering': 'front_gate',
+    'trademark': "stale_biscuits",
+    'dwarven_runes': 'shiny_sword',
+    'messy_handwriting': 'torn_note',
+    'calligraphy': 'crystal_box',
+    'illuminated_letters': 'scroll_of_the_king'
 }
 
 # --- Creature Dictionary [STATIC]
@@ -1739,7 +1727,7 @@ while True:
         interpreter_text(
             user_input, description_dict, path_dict, room_dict,
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
-            writing_dict, creature_dict, food_dict, score_dict,
+            written_on_dict, creature_dict, food_dict, score_dict,
             pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
             s_d_dict, switch_dict)
         if state_dict['active_timer'] != 'none':
