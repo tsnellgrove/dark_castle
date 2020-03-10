@@ -9,9 +9,10 @@ Updates for v1.6
 		DONE: room_dict descriptions => description_dict
 		DONE: writing_dict text => description_dict [remove commented txt]
 		DONE: consolidate writing_dict into single level dictionary
+		DONE: creature_dict descriptions => description_dict
 		other text to description_dict
 		score_dict => state_dict
-		triggers lists => allowed_language
+		Consolidate single_depth static lists & dicts
 	document the terms of art (e.g. items vs. features vs. view_only)
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]
