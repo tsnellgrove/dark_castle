@@ -615,7 +615,9 @@ def interpreter_text(
 
             attack_weapon = word1 + "-" + weapon
             attack_result = attack_weapon + "-" + 'result'
-            print(creature_dict[word2][attack_weapon])
+            attack_description = word2 + "-" + attack_weapon
+            print(description_dict[attack_description])
+#            print(creature_dict[word2][attack_weapon])
 
             if creature_dict[word2][attack_result] == 'creature_death':
                 room_dict[room]['features'].remove(word2)
@@ -1324,7 +1326,49 @@ description_dict = {
                                 "dramatic high note with the words 'upon the "
                                 "hour these conditions be met, a new King of "
                                 "Bright Castle shall shine forth and be "
-                                "proclaimed!'\n"
+                                "proclaimed!'\n",
+
+    # --- Attack Results ---
+
+    'hedgehog-attack-fist': "You take a wild swipe at the hedgehog with your "
+                            "fist but it nimbly leaps aside. BURT! What has "
+                            "gotten into you?? We have an evil castle to "
+                            "conquer. Stop trying to slay defenseless "
+                            "woodland creatures!\n",
+
+    'hedgehog-attack-shiny_sword': "You strike at the hedgehog with the "
+                                    "shiny_sword and it flees, terrified, "
+                                    "from your unprovoked attack. You know in "
+                                    "your heart that you will come to regret "
+                                    "this unkingly deed.\n",
+
+    'hedgehog-attack-grimy_axe': "You strike at the hedgehog with the "
+                                 "grimy_axe and it flees, terrified, "
+                                 "from your unprovoked attack. You know in "
+                                 "your heart that you will come to regret "
+                                 "this unkingly deed.\n",
+
+    'goblin-attack-fist': "With an echoing war cry you charge the goblin, "
+                          "flailing your fists wildly in all directions as "
+                          "you come. This technique has served you well "
+                          "during drunken altercations at the pub but it "
+                          "proves less effective against a trained goblin "
+                          "guard. The last thing you ever see is the goblin's "
+                          "grimy_axe swinging towards your head.\n",
+
+    'goblin-attack-shiny_sword': "The shiny_sword surges with power and "
+                                 "lethal heft in your hand. A preternatural "
+                                 "calm comes over you. You were born for this "
+                                 "moment. Your raucous pub crawling days "
+                                 "were a mere temporary distraction.. you "
+                                 "know in your bones that this primal "
+                                 "showdown was meant to be and that, with the "
+                                 "shiny_sword at your command, you were meant "
+                                 "to win it. Resolute, and with a confidence "
+                                 "you have never even imagined having up "
+                                 "until this very moment, you stride to meet "
+                                 "your foe in battle and dispatch him with "
+                                 "one blazing fast strike of your sword.\n"
 
 }
 
@@ -1474,53 +1518,53 @@ creature_dict = {
 
         'drops': [],
 
-        'attack-fist': "You take a wild swipe at the hedgehog with your fist "
-                       "but it nimbly leaps aside. BURT! What has gotten into "
-                       "you?? We have an evil castle to conquer. Stop "
-                       "trying to slay defenseless woodland creatures!\n",
+#        'attack-fist': "You take a wild swipe at the hedgehog with your fist "
+#                       "but it nimbly leaps aside. BURT! What has gotten into "
+#                       "you?? We have an evil castle to conquer. Stop "
+#                       "trying to slay defenseless woodland creatures!\n",
 
         'attack-fist-result': 'none',
 
-        'attack-shiny_sword': "You strike at the hedgehog with the "
-                              "shiny_sword and it flees, terrified, from your "
-                              "unprovoked attack. You know in your heart that "
-                              "you will come to regret this unkingly deed.\n",
+#        'attack-shiny_sword': "You strike at the hedgehog with the "
+#                              "shiny_sword and it flees, terrified, from your "
+#                              "unprovoked attack. You know in your heart that "
+#                              "you will come to regret this unkingly deed.\n",
 
         'attack-shiny_sword-result': 'creature_runs',
 
-        'attack-grimy_axe': "You strike at the hedgehog with the grimy_axe "
-                            "and it flees, terrified, from your unprovoked "
-                            "attack. You know in your heart that you will "
-                            "come to regret this unkingly deed.\n",
+#        'attack-grimy_axe': "You strike at the hedgehog with the grimy_axe "
+#                            "and it flees, terrified, from your unprovoked "
+#                            "attack. You know in your heart that you will "
+#                            "come to regret this unkingly deed.\n",
 
         'attack-grimy_axe-result': 'creature_runs'
     },
     'goblin': {
     
         'drops': ['grimy_axe', 'torn_note'],
-        
-        'attack-fist': "With an echoing war cry you charge the goblin, "
-                       "flailing your fists wildly in all directions as you "
-                       "come. This technique has served you well during "
-                       "drunken altercations at the pub but it proves less "
-                       "effective against a trained goblin guard. The last "
-                       "thing you ever see is the goblin's grimy_axe swinging "
-                       "towards your head.\n",
-        
+
+#        'attack-fist': "With an echoing war cry you charge the goblin, "
+#                       "flailing your fists wildly in all directions as you "
+#                       "come. This technique has served you well during "
+#                       "drunken altercations at the pub but it proves less "
+#                       "effective against a trained goblin guard. The last "
+#                       "thing you ever see is the goblin's grimy_axe swinging "
+#                       "towards your head.\n",
+
         'attack-fist-result': 'player_death',
-        
-        'attack-shiny_sword': "The shiny_sword surges with power and lethal "
-                              "heft in your hand. A preternatural calm comes "
-                              "over you. You were born for this moment. Your "
-                              "raucous pub crawling days were a mere "
-                              "temporary distraction.. you know in your bones "
-                              "that this primal showdown was meant to be and "
-                              "that, with the shiny_sword at your command, "
-                              "you were meant to win it. Resolute, and with a "
-                              "confidence you have never even imagined having "
-                              "up until this very moment, you stride to meet "
-                              "your foe in battle and dispatch him with one "
-                              "blazing fast strike of your sword.\n",
+
+#        'attack-shiny_sword': "The shiny_sword surges with power and lethal "
+#                              "heft in your hand. A preternatural calm comes "
+#                              "over you. You were born for this moment. Your "
+#                              "raucous pub crawling days were a mere "
+#                              "temporary distraction.. you know in your bones "
+#                              "that this primal showdown was meant to be and "
+#                              "that, with the shiny_sword at your command, "
+#                              "you were meant to win it. Resolute, and with a "
+#                              "confidence you have never even imagined having "
+#                              "up until this very moment, you stride to meet "
+#                              "your foe in battle and dispatch him with one "
+#                              "blazing fast strike of your sword.\n",
         
         'attack-shiny_sword-result': 'creature_death'
     }
