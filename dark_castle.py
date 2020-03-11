@@ -134,14 +134,12 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             door_dict['iron_portcullis']['door_state'] = 'open'
             print(description_dict['push-big_red_button-open'])
             description_dict['iron_portcullis'] = \
-                s_d_dict['iron_portcullis-base'] \
-                + "The iron_portcullis is open.\n"
+                s_d_dict['iron_portcullis-base'] + "open.\n"
         else:
             door_dict['iron_portcullis']['door_state'] = 'closed'
             print(description_dict['push-big_red_button-close'])
             description_dict['iron_portcullis'] = \
-                s_d_dict['iron_portcullis-base'] \
-                + "The iron_portcullis is closed.\n"
+                s_d_dict['iron_portcullis-base'] + "closed.\n"
 
     return
 
@@ -546,8 +544,8 @@ def interpreter_text(
             else:
                 print("Opened\n")
                 door_dict[word2]['door_state'] = 'open'
-                description_dict[word2] = s_d_dict[word2 + '-base'] + "The " \
-                    + word2 + " is " + door_dict[word2]['door_state'] + ".\n"
+                description_dict[word2] = s_d_dict[word2 + '-base'] \
+                    + door_dict[word2]['door_state'] + ".\n"
                 if door_dict[word2]['is_container']:
                     contain_inv = ', '.join(door_dict[word2]['contains'])
                     print("The " + word2 + " contains a "
@@ -811,12 +809,10 @@ description_dict = {
                   "drawbridge. It is 10 feet tall and reenforced with steel "
                   "bands. Imposing indeed! There is rusty_lettering across "
                   "the top of the gate and a rusty keyhole next to a handle. "
-                  "The front_gate is "
-                  + door_dict['front_gate']['door_state'] + ".\n",
+                  "The front_gate is closed.\n",
     
     'iron_portcullis': "Beyond the iron_portcullis you can dimly make out the "
-                       "next room. The iron_portcullis is "
-                       + door_dict['iron_portcullis']['door_state'] + ".\n",
+                       "next room. The iron_portcullis is closed.\n",
 
     # --- Non-Door Features ---
 
@@ -1567,10 +1563,10 @@ s_d_dict = {
                        "drawbridge. It is 10 feet tall and reenforced with "
                        "steel bands. Imposing indeed! There is "
                        "rusty_lettering across the top of the gate and a "
-                       "rusty keyhole next to a handle. ",
+                       "rusty keyhole next to a handle. The front_gate is ",
     
     'iron_portcullis-base': "Beyond the iron_portcullis you can dimly make "
-                            "out the next room. ",
+                            "out the next room. The iron_portcullis is ",
     
     'crystal_box-base': "Atop an ornate pillar to the left of the throne sits "
                         "an intricate crystal_box. Through the glass you can "
@@ -1580,6 +1576,7 @@ s_d_dict = {
                         "glitters brilliantly - much like the shiny_sword in "
                         "fact - in the otherwise dark and brooding room. The "
                         "top of the crystal_box is engraved with calligraphy. "
+                        "The crystal_box is "
 }
 
 # --- Food Dictionary [STATIC]
