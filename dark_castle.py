@@ -135,13 +135,13 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             print(description_dict['push-big_red_button-open'])
             description_dict['iron_portcullis'] = \
                 s_d_dict['iron_portcullis-base'] \
-                + " The iron_portcullis is open.\n"
+                + "The iron_portcullis is open.\n"
         else:
             door_dict['iron_portcullis']['door_state'] = 'closed'
             print(description_dict['push-big_red_button-close'])
             description_dict['iron_portcullis'] = \
                 s_d_dict['iron_portcullis-base'] \
-                + " The iron_portcullis is closed.\n"
+                + "The iron_portcullis is closed.\n"
 
     return
 
@@ -1579,7 +1579,7 @@ s_d_dict = {
                         "keyhole on the front of the crystal_box that "
                         "glitters brilliantly - much like the shiny_sword in "
                         "fact - in the otherwise dark and brooding room. The "
-                        "top of the crystal_box is engraved with calligraphy."
+                        "top of the crystal_box is engraved with calligraphy. "
 }
 
 # --- Food Dictionary [STATIC]
