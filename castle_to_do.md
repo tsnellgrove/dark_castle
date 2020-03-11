@@ -15,7 +15,11 @@ Updates for v1.6
 		other text to description_dict
 		score_dict => state_dict
 		Consolidate single_depth static lists & dicts
-	document the terms of art (e.g. items vs. features vs. view_only)
+		more directions
+		"close" verb
+		descript_dict => external file
+		landscape / path changes
+		document the terms of art (e.g. items vs. features vs. view_only)
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]
 
