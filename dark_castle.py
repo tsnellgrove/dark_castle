@@ -1,11 +1,11 @@
-"""Castle Adventure 1.55
+"""Castle Adventure 1.56
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 10, 2020
+Last update = Mar 12, 2020
 """
 
 # *** Imports ***
@@ -33,8 +33,7 @@ def switch_value(switch_key, switch_dict):
 
 
 def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
-            creature_dict, s_d_dict, state_dict, titles_dict, door_dict,
-            score_dict):
+            creature_dict, state_dict, titles_dict, door_dict, score_dict):
     # *** Situational triggers and switch results ***
 
     if trigger_key == 'take-shiny_sword':
@@ -64,8 +63,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             state_dict['hedgehog_timer'] = 5
             state_dict['hedgehog_state'] = 'hedgehog_eating'
             description_update(
-                'hedgehog', 'hedgehog_eating', description_dict, creature_dict,
-                s_d_dict)
+                'hedgehog', 'hedgehog_eating', description_dict, creature_dict)
             return
     
     elif trigger_key == 'drop-shiny_sword':
@@ -74,7 +72,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             state_dict['hedgehog_state'] = 'hedgehog_fed_sword_returned'
             description_update(
                 'hedgehog', 'hedgehog_fed_sword_returned', description_dict,
-                creature_dict, s_d_dict)
+                creature_dict)
             print(description_dict[trigger_key])
             room_dict[room]['items'].append('silver_key')
             return
@@ -146,7 +144,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
 
 def timer(
         room, room_dict, timer_dict, state_dict, description_dict,
-        creature_dict, stateful_description_dict):
+        creature_dict):
     # *** Timer conditionals ***
 
     timer_key = state_dict['active_timer']
@@ -182,12 +180,12 @@ def timer(
                     = 'description_fed_sword_not_taken'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_not_taken',
-                    description_dict, creature_dict, s_d_dict)
+                    description_dict, creature_dict)
             else:
                 state_dict['hedgehog_state'] = 'description_fed_sword_taken'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_taken',
-                    description_dict, creature_dict, s_d_dict)
+                    description_dict, creature_dict)
 
         return
 
@@ -249,8 +247,7 @@ def str_to_lst(user_input):
 
 def description_update(
         description_key, update_key, description_dict,
-        creature_dict, s_d_dict):
-#    description_dict[description_key] = s_d_dict[update_key]
+        creature_dict):
     description_dict[description_key] = description_dict[update_key]
     return
 
@@ -339,7 +336,7 @@ def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
         written_on_dict, creature_dict, food_dict, score_dict,
-        pre_action_trigger_lst, post_action_trigger_lst, timer_dict, s_d_dict,
+        pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
         switch_dict):
 
     # *** local variables ***
@@ -373,7 +370,7 @@ def interpreter_text(
     if trigger_key in pre_action_trigger_lst:
         if trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, creature_dict, s_d_dict, state_dict,
+                description_dict, creature_dict, state_dict,
                 titles_dict, door_dict, score_dict):
             return
 
@@ -429,7 +426,7 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, s_d_dict, state_dict,
+                    description_dict, creature_dict, state_dict,
                     titles_dict, door_dict, score_dict)
 
             if score_key in score_dict:
@@ -525,7 +522,7 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, s_d_dict, state_dict,
+                    description_dict, creature_dict, state_dict,
                     titles_dict, door_dict, score_dict)
                            
         else:
@@ -592,7 +589,7 @@ def interpreter_text(
                 if trigger_key in post_action_trigger_lst:
                     trigger(
                         room, trigger_key, room_dict, word2, timer_dict,
-                        description_dict, creature_dict, s_d_dict, state_dict,
+                        description_dict, creature_dict, state_dict,
                         titles_dict, door_dict, score_dict)
             else:
                 print("Burt, you can't read what you can't see!\n")
@@ -639,7 +636,7 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, s_d_dict, state_dict,
+                    description_dict, creature_dict, state_dict,
                     titles_dict, door_dict, score_dict)
 
         else:
@@ -675,7 +672,7 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, s_d_dict, state_dict,
+                    description_dict, creature_dict, state_dict,
                     titles_dict, door_dict, score_dict)
 
         else:
@@ -701,7 +698,7 @@ def interpreter_text(
 
             trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, creature_dict, s_d_dict, state_dict,
+                description_dict, creature_dict, state_dict,
                 titles_dict, door_dict, score_dict)
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
@@ -1578,63 +1575,6 @@ written_on_dict = {
     'illuminated_letters': 'scroll_of_the_king'
 }
 
-# --- Stateful Description Dictionary [STATIC]
-s_d_dict = {
-
-#    'hedgehog_hungry_has_sword': "This poor little hedgehog has seen better "
-#                                 "days. It looks gaunt and like it skipped "
-#                                 "breakfast - and maybe lunch and dinner too. "
-#                                 "But despite looking in need of a good meal "
-#                                 "the hedgehog's eyes have a bright, "
-#                                 "territorial gleam in them and it appears to "
-#                                 "have quite a preference for shiny things. "
-#                                 "You don't know why but you feel an innate "
-#                                 "fondness for this small but valiant "
-#                                 "creature.\n",
-    
-#    'hedgehog_eating': "The hedgehog is eating ravenously.\n",
-    
-#    'hedgehog_fed_sword_not_taken': "The hedgehog is looking svelte and "
-#                                    "chipper. It has the swagger of a "
-#                                    "hedgehog that has scored a meal of "
-#                                    "stale_biscuits and still has it's "
-#                                    "favorite shiny possession.\n",
-    
-#    'hedgehog_fed_sword_taken': "The hedgehog is looking svelte and chipper "
-#                                "but not entirely content. It's clearly "
-#                                "grateful for its recent meal but keeps "
-#                                "looking at you hopefully.",
-    
-#    'hedgehog_fed_sword_returned': "This hedgehog is on top of the world! It "
-#                                   "has recently devoured a meal of "
-#                                   "stale_biscuits (a rare delicacy among "
-#                                   "hedgehogs) and now has it's favorite "
-#                                   "shiny object back. It looks upon you with "
-#                                   "gratitude and devotion. It sees within "
-#                                   "you a nobility, compassion, and destiny "
-#                                   "beyond anything you've hitherto imagined "
-#                                   "possessing.\n",
-
-#    'front_gate-base': "The front_gate is just north of the Dark Castle's "
-#                       "drawbridge. It is 10 feet tall and reenforced with "
-#                       "steel bands. Imposing indeed! There is "
-#                       "rusty_lettering across the top of the gate and a "
-#                       "rusty keyhole next to a handle. The front_gate is ",
-    
-#    'iron_portcullis-base': "Beyond the iron_portcullis you can dimly make "
-#                            "out the next room. The iron_portcullis is ",
-    
-#    'crystal_box-base': "Atop an ornate pillar to the left of the throne sits "
-#                        "an intricate crystal_box. Through the glass you can "
-#                        "make out and aged but intact scroll that fits "
-#                        "perfectly within the container. There is a silver "
-#                        "keyhole on the front of the crystal_box that "
-#                        "glitters brilliantly - much like the shiny_sword in "
-#                        "fact - in the otherwise dark and brooding room. The "
-#                        "top of the crystal_box is engraved with calligraphy. "
-#                        "The crystal_box is "
-}
-
 # --- Food Dictionary [STATIC]
 food_dict = {
     'stale_biscuits': {
@@ -1782,8 +1722,8 @@ while True:
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
             written_on_dict, creature_dict, food_dict, score_dict,
             pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
-            s_d_dict, switch_dict)
+            switch_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
-                description_dict, creature_dict, s_d_dict)
+                description_dict, creature_dict)

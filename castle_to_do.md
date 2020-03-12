@@ -10,7 +10,7 @@ Updates for v1.6
 		DONE: writing_dict text => description_dict [remove commented txt]
 		DONE: consolidate writing_dict into single level dictionary
 		DONE: creature_dict descriptions => description_dict
-		understand and the update_dict and migrate to description_dict (crystal box testing needed)
+		DONE: understand and the update_dict and migrate to description_dict (crystal box testing needed)
 		use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
 		other text to description_dict
 		score_dict => state_dict
