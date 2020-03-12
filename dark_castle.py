@@ -134,12 +134,12 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             door_dict['iron_portcullis']['door_state'] = 'open'
             print(description_dict['push-big_red_button-open'])
             description_dict['iron_portcullis'] = \
-                s_d_dict['iron_portcullis-base'] + "open.\n"
+                description_dict['iron_portcullis-base'] + "open.\n"
         else:
             door_dict['iron_portcullis']['door_state'] = 'closed'
             print(description_dict['push-big_red_button-close'])
             description_dict['iron_portcullis'] = \
-                s_d_dict['iron_portcullis-base'] + "closed.\n"
+                description_dict['iron_portcullis-base'] + "closed.\n"
 
     return
 
@@ -250,7 +250,8 @@ def str_to_lst(user_input):
 def description_update(
         description_key, update_key, description_dict,
         creature_dict, s_d_dict):
-    description_dict[description_key] = s_d_dict[update_key]
+#    description_dict[description_key] = s_d_dict[update_key]
+    description_dict[description_key] = description_dict[update_key]
     return
 
 
@@ -544,7 +545,7 @@ def interpreter_text(
             else:
                 print("Opened\n")
                 door_dict[word2]['door_state'] = 'open'
-                description_dict[word2] = s_d_dict[word2 + '-base'] \
+                description_dict[word2] = description_dict[word2 + '-base'] \
                     + door_dict[word2]['door_state'] + ".\n"
                 if door_dict[word2]['is_container']:
                     contain_inv = ', '.join(door_dict[word2]['contains'])
@@ -1363,7 +1364,62 @@ description_dict = {
                                  "you have never even imagined having up "
                                  "until this very moment, you stride to meet "
                                  "your foe in battle and dispatch him with "
-                                 "one blazing fast strike of your sword.\n"
+                                 "one blazing fast strike of your sword.\n",
+
+# --- Stateful Description Updates ---
+
+    'hedgehog_hungry_has_sword': "This poor little hedgehog has seen better "
+                                 "days. It looks gaunt and like it skipped "
+                                 "breakfast - and maybe lunch and dinner too. "
+                                 "But despite looking in need of a good meal "
+                                 "the hedgehog's eyes have a bright, "
+                                 "territorial gleam in them and it appears to "
+                                 "have quite a preference for shiny things. "
+                                 "You don't know why but you feel an innate "
+                                 "fondness for this small but valiant "
+                                 "creature.\n",
+    
+    'hedgehog_eating': "The hedgehog is eating ravenously.\n",
+    
+    'hedgehog_fed_sword_not_taken': "The hedgehog is looking svelte and "
+                                    "chipper. It has the swagger of a "
+                                    "hedgehog that has scored a meal of "
+                                    "stale_biscuits and still has it's "
+                                    "favorite shiny possession.\n",
+    
+    'hedgehog_fed_sword_taken': "The hedgehog is looking svelte and chipper "
+                                "but not entirely content. It's clearly "
+                                "grateful for its recent meal but keeps "
+                                "looking at you hopefully.",
+    
+    'hedgehog_fed_sword_returned': "This hedgehog is on top of the world! It "
+                                   "has recently devoured a meal of "
+                                   "stale_biscuits (a rare delicacy among "
+                                   "hedgehogs) and now has it's favorite "
+                                   "shiny object back. It looks upon you with "
+                                   "gratitude and devotion. It sees within "
+                                   "you a nobility, compassion, and destiny "
+                                   "beyond anything you've hitherto imagined "
+                                   "possessing.\n",
+
+    'front_gate-base': "The front_gate is just north of the Dark Castle's "
+                       "drawbridge. It is 10 feet tall and reenforced with "
+                       "steel bands. Imposing indeed! There is "
+                       "rusty_lettering across the top of the gate and a "
+                       "rusty keyhole next to a handle. The front_gate is ",
+    
+    'iron_portcullis-base': "Beyond the iron_portcullis you can dimly make "
+                            "out the next room. The iron_portcullis is ",
+    
+    'crystal_box-base': "Atop an ornate pillar to the left of the throne sits "
+                        "an intricate crystal_box. Through the glass you can "
+                        "make out and aged but intact scroll that fits "
+                        "perfectly within the container. There is a silver "
+                        "keyhole on the front of the crystal_box that "
+                        "glitters brilliantly - much like the shiny_sword in "
+                        "fact - in the otherwise dark and brooding room. The "
+                        "top of the crystal_box is engraved with calligraphy. "
+                        "The crystal_box is "
 
 }
 
@@ -1525,58 +1581,58 @@ written_on_dict = {
 # --- Stateful Description Dictionary [STATIC]
 s_d_dict = {
 
-    'hedgehog_hungry_has_sword': "This poor little hedgehog has seen better "
-                                 "days. It looks gaunt and like it skipped "
-                                 "breakfast - and maybe lunch and dinner too. "
-                                 "But despite looking in need of a good meal "
-                                 "the hedgehog's eyes have a bright, "
-                                 "territorial gleam in them and it appears to "
-                                 "have quite a preference for shiny things. "
-                                 "You don't know why but you feel an innate "
-                                 "fondness for this small but valiant "
-                                 "creature.\n",
+#    'hedgehog_hungry_has_sword': "This poor little hedgehog has seen better "
+#                                 "days. It looks gaunt and like it skipped "
+#                                 "breakfast - and maybe lunch and dinner too. "
+#                                 "But despite looking in need of a good meal "
+#                                 "the hedgehog's eyes have a bright, "
+#                                 "territorial gleam in them and it appears to "
+#                                 "have quite a preference for shiny things. "
+#                                 "You don't know why but you feel an innate "
+#                                 "fondness for this small but valiant "
+#                                 "creature.\n",
     
-    'hedgehog_eating': "The hedgehog is eating ravenously.\n",
+#    'hedgehog_eating': "The hedgehog is eating ravenously.\n",
     
-    'hedgehog_fed_sword_not_taken': "The hedgehog is looking svelte and "
-                                    "chipper. It has the swagger of a "
-                                    "hedgehog that has scored a meal of "
-                                    "stale_biscuits and still has it's "
-                                    "favorite shiny possession.\n",
+#    'hedgehog_fed_sword_not_taken': "The hedgehog is looking svelte and "
+#                                    "chipper. It has the swagger of a "
+#                                    "hedgehog that has scored a meal of "
+#                                    "stale_biscuits and still has it's "
+#                                    "favorite shiny possession.\n",
     
-    'hedgehog_fed_sword_taken': "The hedgehog is looking svelte and chipper "
-                                "but not entirely content. It's clearly "
-                                "grateful for its recent meal but keeps "
-                                "looking at you hopefully.",
+#    'hedgehog_fed_sword_taken': "The hedgehog is looking svelte and chipper "
+#                                "but not entirely content. It's clearly "
+#                                "grateful for its recent meal but keeps "
+#                                "looking at you hopefully.",
     
-    'hedgehog_fed_sword_returned': "This hedgehog is on top of the world! It "
-                                   "has recently devoured a meal of "
-                                   "stale_biscuits (a rare delicacy among "
-                                   "hedgehogs) and now has it's favorite "
-                                   "shiny object back. It looks upon you with "
-                                   "gratitude and devotion. It sees within "
-                                   "you a nobility, compassion, and destiny "
-                                   "beyond anything you've hitherto imagined "
-                                   "possessing.\n",
+#    'hedgehog_fed_sword_returned': "This hedgehog is on top of the world! It "
+#                                   "has recently devoured a meal of "
+#                                   "stale_biscuits (a rare delicacy among "
+#                                   "hedgehogs) and now has it's favorite "
+#                                   "shiny object back. It looks upon you with "
+#                                   "gratitude and devotion. It sees within "
+#                                   "you a nobility, compassion, and destiny "
+#                                   "beyond anything you've hitherto imagined "
+#                                   "possessing.\n",
 
-    'front_gate-base': "The front_gate is just north of the Dark Castle's "
-                       "drawbridge. It is 10 feet tall and reenforced with "
-                       "steel bands. Imposing indeed! There is "
-                       "rusty_lettering across the top of the gate and a "
-                       "rusty keyhole next to a handle. The front_gate is ",
+#    'front_gate-base': "The front_gate is just north of the Dark Castle's "
+#                       "drawbridge. It is 10 feet tall and reenforced with "
+#                       "steel bands. Imposing indeed! There is "
+#                       "rusty_lettering across the top of the gate and a "
+#                       "rusty keyhole next to a handle. The front_gate is ",
     
-    'iron_portcullis-base': "Beyond the iron_portcullis you can dimly make "
-                            "out the next room. The iron_portcullis is ",
+#    'iron_portcullis-base': "Beyond the iron_portcullis you can dimly make "
+#                            "out the next room. The iron_portcullis is ",
     
-    'crystal_box-base': "Atop an ornate pillar to the left of the throne sits "
-                        "an intricate crystal_box. Through the glass you can "
-                        "make out and aged but intact scroll that fits "
-                        "perfectly within the container. There is a silver "
-                        "keyhole on the front of the crystal_box that "
-                        "glitters brilliantly - much like the shiny_sword in "
-                        "fact - in the otherwise dark and brooding room. The "
-                        "top of the crystal_box is engraved with calligraphy. "
-                        "The crystal_box is "
+#    'crystal_box-base': "Atop an ornate pillar to the left of the throne sits "
+#                        "an intricate crystal_box. Through the glass you can "
+#                        "make out and aged but intact scroll that fits "
+#                        "perfectly within the container. There is a silver "
+#                        "keyhole on the front of the crystal_box that "
+#                        "glitters brilliantly - much like the shiny_sword in "
+#                        "fact - in the otherwise dark and brooding room. The "
+#                        "top of the crystal_box is engraved with calligraphy. "
+#                        "The crystal_box is "
 }
 
 # --- Food Dictionary [STATIC]
