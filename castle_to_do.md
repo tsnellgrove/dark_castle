@@ -28,6 +28,7 @@ Updates for v 1.7
 
 
 Maintenance and clean-up I should do someday
+	Text Adventure Link: https://inventwithpython.com/blog/2014/12/11/making-a-text-adventure-game-with-the-cmd-and-textwrap-python-modules/
 	Find a more efficient way to tell the player "you can't go that way" - unique path descriptins won't scale well to 10 cardinal directions for 10+ rooms
 	Fix trigger so that it no longer sometimes returns a value and sometimes doesn't
 	use '.lower().strip() on input'
