@@ -646,7 +646,8 @@ def interpreter_text(
 
     elif word1 == "eat":
         if word2 in allowed_lang_dict['can_be_eaten_lst'] and word2 in hand:
-            print(food_dict[word2]['eat_txt'])
+#            print(food_dict[word2]['eat_txt'])
+            print(description_dict[word2 + "-eat"])
         else:
             print("Burt you can't " + word1 + " that!\n")
 
@@ -1416,7 +1417,19 @@ description_dict = {
                         "glitters brilliantly - much like the shiny_sword in "
                         "fact - in the otherwise dark and brooding room. The "
                         "top of the crystal_box is engraved with calligraphy. "
-                        "The crystal_box is "
+                        "The crystal_box is ",
+
+# --- Eat Results ---
+
+    'stale_biscuits-eat': "You'd really rather not. You've been rooming in "
+                          "your Mom's basement and living off the "
+                          "stale_biscuits in her pantry ever since you "
+                          "finished school - mostly so that you could spend "
+                          "whatever money you had at the pub. You don't mind "
+                          "sleeping in the basement but the stale_biscuits "
+                          "are really getting to you.. you'll need to be a "
+                          "lot hungrier than you are now before you'll be "
+                          "able to keep another of those down!\n"
 
 }
 
@@ -1579,14 +1592,14 @@ written_on_dict = {
 food_dict = {
     'stale_biscuits': {
 
-        'eat_txt': "You'd really rather not. You've been rooming in your "
-                   "Mom's basement and living off the stale_biscuits in her "
-                   "pantry ever since you finished school - mostly so that "
-                   "you could spend whatever money you had at the pub. You "
-                   "don't mind sleeping in the basement but the "
-                   "stale_biscuits are really getting to you.. you'll need to "
-                   "be a lot hungrier than you are now before you'll "
-                   "be able to keep another of those down!\n",
+#        'eat_txt': "You'd really rather not. You've been rooming in your "
+#                   "Mom's basement and living off the stale_biscuits in her "
+#                   "pantry ever since you finished school - mostly so that "
+#                   "you could spend whatever money you had at the pub. You "
+#                   "don't mind sleeping in the basement but the "
+#                   "stale_biscuits are really getting to you.. you'll need to "
+#                   "be a lot hungrier than you are now before you'll "
+#                   "be able to keep another of those down!\n",
         
         'eat_action': 'none'
     }
