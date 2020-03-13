@@ -11,12 +11,14 @@ Updates for v1.6
 		DONE: consolidate writing_dict into single level dictionary
 		DONE: creature_dict descriptions => description_dict
 		DONE: understand and the update_dict and migrate to description_dict (crystal box testing needed)
+		DONE: food_dict txt => description_dict
 		use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
 		other text to description_dict
 		score_dict => state_dict
 		Consolidate single_depth static lists & dicts
 		more directions
 		"close" verb
+		"food" that can be eaten
 		descript_dict => external file
 		landscape / path changes
 		document the terms of art (e.g. items vs. features vs. view_only)

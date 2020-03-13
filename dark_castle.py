@@ -1,11 +1,11 @@
-"""Castle Adventure 1.56
+"""Castle Adventure 1.565
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 12, 2020
+Last update = Mar 13, 2020
 """
 
 # *** Imports ***
@@ -646,7 +646,6 @@ def interpreter_text(
 
     elif word1 == "eat":
         if word2 in allowed_lang_dict['can_be_eaten_lst'] and word2 in hand:
-#            print(food_dict[word2]['eat_txt'])
             print(description_dict[word2 + "-eat"])
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -1588,21 +1587,9 @@ written_on_dict = {
     'illuminated_letters': 'scroll_of_the_king'
 }
 
-# --- Food Dictionary [STATIC]
+# --- Food Results Dictionary [STATIC]
 food_dict = {
-    'stale_biscuits': {
-
-#        'eat_txt': "You'd really rather not. You've been rooming in your "
-#                   "Mom's basement and living off the stale_biscuits in her "
-#                   "pantry ever since you finished school - mostly so that "
-#                   "you could spend whatever money you had at the pub. You "
-#                   "don't mind sleeping in the basement but the "
-#                   "stale_biscuits are really getting to you.. you'll need to "
-#                   "be a lot hungrier than you are now before you'll "
-#                   "be able to keep another of those down!\n",
-        
-        'eat_action': 'none'
-    }
+    'stale_biscuits': 'none'
 }
 
 # --- Unknown Word List [STATIC]
