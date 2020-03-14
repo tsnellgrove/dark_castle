@@ -1,11 +1,11 @@
-"""Castle Adventure 1.565
+"""Castle Adventure 1.567
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 13, 2020
+Last update = Mar 14, 2020
 """
 
 # *** Imports ***
@@ -33,7 +33,7 @@ def switch_value(switch_key, switch_dict):
 
 
 def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
-            creature_dict, state_dict, titles_dict, door_dict, score_dict):
+            state_dict, titles_dict, door_dict, score_dict):
     # *** Situational triggers and switch results ***
 
     if trigger_key == 'take-shiny_sword':
@@ -63,7 +63,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             state_dict['hedgehog_timer'] = 5
             state_dict['hedgehog_state'] = 'hedgehog_eating'
             description_update(
-                'hedgehog', 'hedgehog_eating', description_dict, creature_dict)
+                'hedgehog', 'hedgehog_eating', description_dict)
             return
     
     elif trigger_key == 'drop-shiny_sword':
@@ -71,8 +71,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
                 and state_dict['active_timer'] != 'drop-stale_biscuits':
             state_dict['hedgehog_state'] = 'hedgehog_fed_sword_returned'
             description_update(
-                'hedgehog', 'hedgehog_fed_sword_returned', description_dict,
-                creature_dict)
+                'hedgehog', 'hedgehog_fed_sword_returned', description_dict)
             print(description_dict[trigger_key])
             room_dict[room]['items'].append('silver_key')
             return
@@ -142,9 +141,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
     return
 
 
-def timer(
-        room, room_dict, timer_dict, state_dict, description_dict,
-        creature_dict):
+def timer(room, room_dict, timer_dict, state_dict, description_dict):
     # *** Timer conditionals ***
 
     timer_key = state_dict['active_timer']
@@ -180,12 +177,12 @@ def timer(
                     = 'description_fed_sword_not_taken'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_not_taken',
-                    description_dict, creature_dict)
+                    description_dict)
             else:
                 state_dict['hedgehog_state'] = 'description_fed_sword_taken'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_taken',
-                    description_dict, creature_dict)
+                    description_dict)
 
         return
 
@@ -245,9 +242,7 @@ def str_to_lst(user_input):
     return(lst[0].split())
 
 
-def description_update(
-        description_key, update_key, description_dict,
-        creature_dict):
+def description_update(description_key, update_key, description_dict):
     description_dict[description_key] = description_dict[update_key]
     return
 
@@ -370,8 +365,8 @@ def interpreter_text(
     if trigger_key in pre_action_trigger_lst:
         if trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, creature_dict, state_dict,
-                titles_dict, door_dict, score_dict):
+                description_dict, state_dict, titles_dict, door_dict,
+                score_dict):
             return
 
 
@@ -426,8 +421,8 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, state_dict,
-                    titles_dict, door_dict, score_dict)
+                    description_dict, state_dict, titles_dict, door_dict,
+                    score_dict)
 
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
@@ -522,8 +517,8 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, state_dict,
-                    titles_dict, door_dict, score_dict)
+                    description_dict, state_dict, titles_dict, door_dict,
+                    score_dict)
                            
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -589,8 +584,8 @@ def interpreter_text(
                 if trigger_key in post_action_trigger_lst:
                     trigger(
                         room, trigger_key, room_dict, word2, timer_dict,
-                        description_dict, creature_dict, state_dict,
-                        titles_dict, door_dict, score_dict)
+                        description_dict, state_dict, titles_dict, door_dict,
+                        score_dict)
             else:
                 print("Burt, you can't read what you can't see!\n")
 
@@ -636,8 +631,8 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, state_dict,
-                    titles_dict, door_dict, score_dict)
+                    description_dict, state_dict, titles_dict, door_dict,
+                    score_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -672,8 +667,8 @@ def interpreter_text(
             if trigger_key in post_action_trigger_lst:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, creature_dict, state_dict,
-                    titles_dict, door_dict, score_dict)
+                    description_dict, state_dict, titles_dict, door_dict,
+                    score_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -698,8 +693,8 @@ def interpreter_text(
 
             trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, creature_dict, state_dict,
-                titles_dict, door_dict, score_dict)
+                description_dict, state_dict, titles_dict, door_dict,
+                score_dict)
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
 
@@ -1726,4 +1721,4 @@ while True:
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
-                description_dict, creature_dict)
+                description_dict)
