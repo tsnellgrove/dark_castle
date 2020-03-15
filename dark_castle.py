@@ -1,11 +1,11 @@
-"""Castle Adventure 1.567
+"""Castle Adventure 1.57
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 14, 2020
+Last update = Mar 15, 2020
 """
 
 # *** Imports ***
@@ -33,7 +33,7 @@ def switch_value(switch_key, switch_dict):
 
 
 def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
-            state_dict, titles_dict, door_dict, score_dict):
+            state_dict, titles_dict, door_dict, score_dict, creature_dict):
     # *** Situational triggers and switch results ***
 
     if trigger_key == 'take-shiny_sword':
@@ -61,7 +61,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             room_dict[room]['view_only'].append(word2)
             state_dict['active_timer'] = 'drop-stale_biscuits'
             state_dict['hedgehog_timer'] = 5
-            state_dict['hedgehog_state'] = 'hedgehog_eating'
+            creature_dict['hedgehog']['state'] = 'hedgehog_eating'
             description_update(
                 'hedgehog', 'hedgehog_eating', description_dict)
             return
@@ -69,7 +69,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
     elif trigger_key == 'drop-shiny_sword':
         if room == 'main_hall' and 'hedgehog' in room_dict[room]['features'] \
                 and state_dict['active_timer'] != 'drop-stale_biscuits':
-            state_dict['hedgehog_state'] = 'hedgehog_fed_sword_returned'
+            creature_dict['hedgehog']['state'] = 'hedgehog_fed_sword_returned'
             description_update(
                 'hedgehog', 'hedgehog_fed_sword_returned', description_dict)
             print(description_dict[trigger_key])
@@ -173,13 +173,12 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
 
             # *** update hedgehog state & description based on shiny_sword ***
             if 'shiny_sword' in room_dict['main_hall']['items']:
-                state_dict['hedgehog_state'] \
-                    = 'description_fed_sword_not_taken'
+                creature_dict['hedgehog']['state'] = 'fed_sword_returned'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_not_taken',
                     description_dict)
             else:
-                state_dict['hedgehog_state'] = 'description_fed_sword_taken'
+                creature_dict['hedgehog']['state'] = 'fed_sword_taken'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_taken',
                     description_dict)
@@ -366,7 +365,7 @@ def interpreter_text(
         if trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
                 description_dict, state_dict, titles_dict, door_dict,
-                score_dict):
+                score_dict, creature_dict):
             return
 
 
@@ -422,7 +421,7 @@ def interpreter_text(
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
-                    score_dict)
+                    score_dict, creature_dict)
 
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
@@ -518,7 +517,7 @@ def interpreter_text(
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
-                    score_dict)
+                    score_dict, creature_dict)
                            
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -585,7 +584,7 @@ def interpreter_text(
                     trigger(
                         room, trigger_key, room_dict, word2, timer_dict,
                         description_dict, state_dict, titles_dict, door_dict,
-                        score_dict)
+                        score_dict, creature_dict)
             else:
                 print("Burt, you can't read what you can't see!\n")
 
@@ -632,7 +631,7 @@ def interpreter_text(
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
-                    score_dict)
+                    score_dict, creature_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -668,7 +667,7 @@ def interpreter_text(
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
-                    score_dict)
+                    score_dict, creature_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -694,7 +693,7 @@ def interpreter_text(
             trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
                 description_dict, state_dict, titles_dict, door_dict,
-                score_dict)
+                score_dict, creature_dict)
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
 
@@ -1539,12 +1538,14 @@ room_dict = {
 creature_dict = {
     'hedgehog': {
         'drops': [],
+        'state': 'hungry_has_sword',
         'attack-fist-result': 'none',
         'attack-shiny_sword-result': 'creature_runs',
         'attack-grimy_axe-result': 'creature_runs'
     },
     'goblin': {
         'drops': ['grimy_axe', 'torn_note'],
+        'state': 'guarding',
         'attack-fist-result': 'player_death',
         'attack-shiny_sword-result': 'creature_death'
     }
@@ -1607,7 +1608,6 @@ state_dict = {
     'max_score': 75,
     'active_timer': 'none',
     'hedgehog_timer': 0,
-    'hedgehog_state': 'hungry_has_sword',
     'hedgehog_broach_found': False,
     'game_ending': 'unknown',
     'item_containers': {'scroll_of_the_king': 'crystal_box'},

@@ -13,6 +13,7 @@ Updates for v1.6
 		DONE: understand and the update_dict and migrate to description_dict (crystal box testing needed)
 		DONE: food_dict txt => description_dict
 		DONE: remove creature_dict from timer, trigger, and update routines
+		DONE: state_dict['hedgehog_state] => creature_dict
 		sort out timer functionality
 		move timer text to descript_dict
 		use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
@@ -21,6 +22,7 @@ Updates for v1.6
 		consolidate single_depth static lists & dicts
 		use '.lower().strip() on input'
 		consider using 'import textwrap'
+		normalize each "if verb"
 		document the terms of art (e.g. items vs. features vs. view_only)
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]
