@@ -14,7 +14,8 @@ Updates for v1.6
 		DONE: food_dict txt => description_dict
 		DONE: remove creature_dict from timer, trigger, and update routines
 		DONE: state_dict['hedgehog_state] => creature_dict
-		sort out timer functionality
+		DONE: Move timer from state_dict to timer_dict
+		Move timer descriptions to description_dict and make timer_dict single level
 		move timer text to descript_dict
 		use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
 		consider merging written_on and contairs (in state_dict) info into one "contains_dict"	
