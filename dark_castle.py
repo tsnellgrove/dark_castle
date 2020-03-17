@@ -159,8 +159,10 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
 
         # *** If hedgehog exist and room == main_hall print description ***
         if room == 'main_hall':
-            print(timer_dict['drop-stale_biscuits']['timer_txt_'
+            print(description_dict[timer_key + "-timer_" 
                 + str(timer_dict['drop-stale_biscuits']['timer'])])
+#            print(timer_dict['drop-stale_biscuits']['timer_txt_'
+#                + str(timer_dict['drop-stale_biscuits']['timer'])])
 
         # *** decrement timer ***
         timer_dict['drop-stale_biscuits']['timer'] -= 1
@@ -1421,7 +1423,30 @@ description_dict = {
                           "sleeping in the basement but the stale_biscuits "
                           "are really getting to you.. you'll need to be a "
                           "lot hungrier than you are now before you'll be "
-                          "able to keep another of those down!\n"
+                          "able to keep another of those down!\n",
+
+# --- Timer Descriptions ---
+
+    'drop-stale_biscuits-timer_5': "With a yelp of grateful delight the "
+                                   "starving hedgehog leaps upon the "
+                                   "stale_biscuits and begins to devour "
+                                   "them.\n",
+
+    'drop-stale_biscuits-timer_4': "The hedgehog is ravenously devouring the "
+                                   "stale_biscuits and is taking no notice of "
+                                   "you at all.\n",
+
+    'drop-stale_biscuits-timer_3': "The hedgehog has eaten through half the "
+                                   "stale_biscuits but is still giving them "
+                                   "all of its attention.\n",
+
+    'drop-stale_biscuits-timer_2': "The hedgehog is nearly done eating all of "
+                                   "the stale_biscuits and is beginning to "
+                                   "look around a bit.\n",
+
+    'drop-stale_biscuits-timer_1': "The hedgehog has finished the "
+                                   "stale_biscuits and is vigilantly looking "
+                                   "around.\n"
 
 }
 
@@ -1632,20 +1657,20 @@ score_dict = {
 timer_dict = {
     'drop-stale_biscuits': {
         'timer': 0,
-        'timer_txt_5': "With a yelp of grateful delight the starving hedgehog "
-                       "leaps upon the stale_biscuits and begins to devour "
-                       "them.\n",
-        'timer_txt_4': "The hedgehog is ravenously devouring the "
-                       "stale_biscuits and is taking no notice of you at "
-                       "all.\n",
-        'timer_txt_3': "The hedgehog has eaten through half the "
-                       "stale_biscuits but is still giving them all of its "
-                       "attention.\n",
-        'timer_txt_2': "The hedgehog is nearly done eating all of the "
-                       "stale_biscuits and is beginning to look around a "
-                       "bit.\n",
-        'timer_txt_1': "The hedgehog has finished the stale_biscuits and is "
-                       "vigilantly looking around.\n"
+#        'timer_txt_5': "With a yelp of grateful delight the starving hedgehog "
+#                       "leaps upon the stale_biscuits and begins to devour "
+#                       "them.\n",
+#        'timer_txt_4': "The hedgehog is ravenously devouring the "
+#                       "stale_biscuits and is taking no notice of you at "
+#                       "all.\n",
+#        'timer_txt_3': "The hedgehog has eaten through half the "
+#                       "stale_biscuits but is still giving them all of its "
+#                       "attention.\n",
+#        'timer_txt_2': "The hedgehog is nearly done eating all of the "
+#                       "stale_biscuits and is beginning to look around a "
+#                       "bit.\n",
+#        'timer_txt_1': "The hedgehog has finished the stale_biscuits and is "
+#                       "vigilantly looking around.\n"
     }
 }
 
