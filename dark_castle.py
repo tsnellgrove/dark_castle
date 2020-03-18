@@ -1,11 +1,11 @@
-"""Castle Adventure 1.575
+"""Castle Adventure 1.577
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 17, 2020
+Last update = Mar 18, 2020
 """
 
 # *** Imports ***
@@ -814,14 +814,11 @@ description_dict = {
                      "them (a clear ISO lapse is ever you've seen one "
                      "Burt).\n",
     
-    'left_lever': "The left_lever is "
-                  + switch_dict['left_lever']['state'] + ".\n",
+    'left_lever': "The left_lever is down.\n",
     
-    'middle_lever': "The middle_lever is "
-                    + switch_dict['middle_lever']['state'] + ".\n",
+    'middle_lever': "The middle_lever is down.\n",
     
-    'right_lever': "The right_lever is "
-                   + switch_dict['right_lever']['state'] + ".\n",
+    'right_lever': "The right_lever is down.\n",
     
     'big_red_button': "The big_red_button is to the right of the three "
                       "levers. You have no idea what it does but you have an "
