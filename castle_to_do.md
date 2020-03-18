@@ -15,15 +15,16 @@ Updates for v1.6
 		DONE: remove creature_dict from timer, trigger, and update routines
 		DONE: state_dict['hedgehog_state] => creature_dict
 		DONE: Move timer from state_dict to timer_dict
-		Move timer descriptions to description_dict and make timer_dict single level
-		move timer text to descript_dict
+		DONE: Move timer descriptions to description_dict and make timer_dict single level
 		use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
 		consider merging written_on and contairs (in state_dict) info into one "contains_dict"	
-		consolidate some variable single-level dicts (e.g.score_dict => state_dict ?)
+		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		consolidate single_depth static lists & dicts
 		use '.lower().strip() on input'
 		consider using 'import textwrap'
 		normalize each "if verb"
+		reduce path_dict to only valid paths and create random text for banging into wall
+		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]

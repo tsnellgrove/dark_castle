@@ -1,4 +1,4 @@
-"""Castle Adventure 1.572
+"""Castle Adventure 1.575
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -60,7 +60,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             room_dict[room]['items'].remove(word2)
             room_dict[room]['view_only'].append(word2)
             state_dict['active_timer'] = 'drop-stale_biscuits'
-            timer_dict['drop-stale_biscuits']['timer'] = 5
+            timer_dict['drop-stale_biscuits'] = 5
             creature_dict['hedgehog']['state'] = 'hedgehog_eating'
             description_update(
                 'hedgehog', 'hedgehog_eating', description_dict)
@@ -152,7 +152,7 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
         # *** reset timer_value to 0 and set active_timer to none ***
         # *** and remove 'stale_biscuits' from 'view_only' ***
         if 'hedgehog' not in room_dict['main_hall']['features']:
-            timer_dict['drop-stale_biscuits']['timer'] = 0
+            timer_dict['drop-stale_biscuits'] = 0
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
             return
@@ -160,15 +160,13 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
         # *** If hedgehog exist and room == main_hall print description ***
         if room == 'main_hall':
             print(description_dict[timer_key + "-timer_" 
-                + str(timer_dict['drop-stale_biscuits']['timer'])])
-#            print(timer_dict['drop-stale_biscuits']['timer_txt_'
-#                + str(timer_dict['drop-stale_biscuits']['timer'])])
+                + str(timer_dict['drop-stale_biscuits'])])
 
         # *** decrement timer ***
-        timer_dict['drop-stale_biscuits']['timer'] -= 1
+        timer_dict['drop-stale_biscuits'] -= 1
 
         # *** if timer == 0 reset 'active_timer' & remove 'stale_biscuits' ***
-        if timer_dict['drop-stale_biscuits']['timer'] == 0:
+        if timer_dict['drop-stale_biscuits'] == 0:
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
 
@@ -1653,25 +1651,9 @@ score_dict = {
     'read-illuminated_letters': [0, 15]
 }
 
-# --- Timer Dcitionary [STATIC]
+# --- Timer Dcitionary [VARIABLE]
 timer_dict = {
-    'drop-stale_biscuits': {
-        'timer': 0,
-#        'timer_txt_5': "With a yelp of grateful delight the starving hedgehog "
-#                       "leaps upon the stale_biscuits and begins to devour "
-#                       "them.\n",
-#        'timer_txt_4': "The hedgehog is ravenously devouring the "
-#                       "stale_biscuits and is taking no notice of you at "
-#                       "all.\n",
-#        'timer_txt_3': "The hedgehog has eaten through half the "
-#                       "stale_biscuits but is still giving them all of its "
-#                       "attention.\n",
-#        'timer_txt_2': "The hedgehog is nearly done eating all of the "
-#                       "stale_biscuits and is beginning to look around a "
-#                       "bit.\n",
-#        'timer_txt_1': "The hedgehog has finished the stale_biscuits and is "
-#                       "vigilantly looking around.\n"
-    }
+    'drop-stale_biscuits': 0
 }
 
 # --- Titles Dictionary [STATIC]
