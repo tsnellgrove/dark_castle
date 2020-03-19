@@ -1,11 +1,11 @@
-"""Castle Adventure 1.577
+"""Castle Adventure 1.578
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 18, 2020
+Last update = Mar 19, 2020
 """
 
 # *** Imports ***
@@ -1621,15 +1621,15 @@ unknown_word_lst = [
 state_dict = {
     'room': 'entrance',
     'hand': ["nothing"],
+    'worn': ['nothing'],
     'backpack': ['rusty_key', 'stale_biscuits'],
+    'item_containers': {'scroll_of_the_king': 'crystal_box'},
     'move_counter': 0,
     'current_score': 0,
     'max_score': 75,
     'active_timer': 'none',
     'hedgehog_broach_found': False,
     'game_ending': 'unknown',
-    'item_containers': {'scroll_of_the_king': 'crystal_box'},
-    'worn': ['nothing']
 }
 
 # --- Score Dictionary [VARIABLE]
