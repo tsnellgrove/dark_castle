@@ -85,14 +85,17 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             return
 
     elif trigger_key == 'pull-throne':
-        if not state_dict['hedgehog_broach_found']:
+#        if not state_dict['hedgehog_broach_found']:
+        if state_dict['max_count']['broach_found'] > 0:
             print(description_dict[trigger_key])
             room_dict[room]['items'].append('hedgehog_broach')
-            state_dict['hedgehog_broach_found'] = True
+            state_dict['max_count']['broach_found'] -= 1
+#            state_dict['hedgehog_broach_found'] = True
         return
 
     elif trigger_key == 'push-throne':
-        if not state_dict['hedgehog_broach_found']:
+#        if not state_dict['hedgehog_broach_found']:
+        if state_dict['max_count']['broach_found'] > 0:
             print(description_dict[trigger_key])
         return
 
@@ -1624,11 +1627,12 @@ state_dict = {
     'worn': ['nothing'],
     'backpack': ['rusty_key', 'stale_biscuits'],
     'item_containers': {'scroll_of_the_king': 'crystal_box'},
+    'max_count': {'broach_found': 1,},
     'move_counter': 0,
     'current_score': 0,
     'max_score': 75,
     'active_timer': 'none',
-    'hedgehog_broach_found': False,
+#    'hedgehog_broach_found': False,
     'game_ending': 'unknown',
 }
 
