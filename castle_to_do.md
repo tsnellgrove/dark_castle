@@ -17,7 +17,9 @@ Updates for v1.6
 		DONE: Move timer from state_dict to timer_dict
 		DONE: Move timer descriptions to description_dict and make timer_dict single level
 		DONE: use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
-		move broach_found => score trigger (i.e. score on broach found)
+		DONE: move broach_found => generalized max_count dict
+
+Updates for v 1.7
 		reduce path_dict to only valid paths and create random text for banging into wall
 		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		consolidate single_depth static lists & dicts
@@ -32,7 +34,7 @@ Updates for v1.6
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]
 
-Updates for v 1.7
+Updates for v 1.8
 	Post to GitHub using working Copy
 
 

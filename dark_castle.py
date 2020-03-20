@@ -1,11 +1,11 @@
-"""Castle Adventure 1.578
+"""Castle Adventure 1.579
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 19, 2020
+Last update = Mar 20, 2020
 """
 
 # *** Imports ***
@@ -85,16 +85,13 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             return
 
     elif trigger_key == 'pull-throne':
-#        if not state_dict['hedgehog_broach_found']:
         if state_dict['max_count']['broach_found'] > 0:
             print(description_dict[trigger_key])
             room_dict[room]['items'].append('hedgehog_broach')
             state_dict['max_count']['broach_found'] -= 1
-#            state_dict['hedgehog_broach_found'] = True
         return
 
     elif trigger_key == 'push-throne':
-#        if not state_dict['hedgehog_broach_found']:
         if state_dict['max_count']['broach_found'] > 0:
             print(description_dict[trigger_key])
         return
@@ -1632,7 +1629,6 @@ state_dict = {
     'current_score': 0,
     'max_score': 75,
     'active_timer': 'none',
-#    'hedgehog_broach_found': False,
     'game_ending': 'unknown',
 }
 
