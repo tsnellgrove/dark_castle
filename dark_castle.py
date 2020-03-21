@@ -1,11 +1,11 @@
-"""Castle Adventure 1.6
+"""Castle Adventure 1.61
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 20, 2020
+Last update = Mar 21, 2020
 """
 
 # *** Imports ***
@@ -225,13 +225,6 @@ def look(
         print("The following items are here: " + ", ".join(room_items) + "\n")
         if score_key in score_dict:
             score(score_key, score_dict, state_dict)
-
-
-def intro():
-    print("\nWelcome brave adventurer!\n")
-    print(
-        "You are Burt-the-Boneheaded, the only adventurer brave - or "
-        "foolish - enough to enter the Dark Castle in search of treasure\n")
 
 
 def str_to_lst(user_input):
@@ -984,6 +977,10 @@ description_dict = {
 
     # --- Special ---
 
+    'intro': "\nWelcome brave adventurer!\nYou are Burt-the-Boneheaded, the "
+             "only adventurer brave - or foolish - enough to enter the Dark "
+             "Castle in search of treasure\n",
+
     "fist": "Yep, that's your fist. Still bruised from the last time you "
             "swung and missed and hit a wall...\n",
     
@@ -1660,7 +1657,7 @@ description_dict['messy_handwriting-read'] = "'..ode is " \
     + ". Don't tell anyo..'\n"
 
 # *** Start of Game Welcome Text ***
-intro()
+print(description_dict['intro'])
 help()
 look(
     state_dict['room'], room_dict, room_dict[state_dict['room']]['items'],
