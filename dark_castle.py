@@ -1,4 +1,4 @@
-"""Castle Adventure 1.61
+"""Castle Adventure 1.62
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -323,7 +323,7 @@ def interpreter_text(
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
         written_on_dict, creature_dict, food_dict, score_dict,
         pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
-        switch_dict):
+        switch_dict, static_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -391,7 +391,7 @@ def interpreter_text(
                 score_key, score_dict, description_dict)
         else:
             response = random.randint(0, 4)
-            print(state_dict['invalid_path_lst'][response])
+            print(static_dict['invalid_path_lst'][response])
 
 # *** Handle Two Word Commands ***
 
@@ -1569,7 +1569,7 @@ unknown_word_lst = [
     "Burt! What would your mother say if she heard you speaking like that!?\n"
 ]
 
-# --- Game State Dictionary [VARIABLE]
+# --- State Dictionary [VARIABLE]
 state_dict = {
     'room': 'entrance',
     'hand': ["nothing"],
@@ -1577,6 +1577,15 @@ state_dict = {
     'backpack': ['rusty_key', 'stale_biscuits'],
     'item_containers': {'scroll_of_the_king': 'crystal_box'},
     'max_count': {'broach_found': 1,},
+    'move_counter': 0,
+    'current_score': 0,
+    'max_score': 75,  # STATIC Global Really
+    'active_timer': 'none',
+    'game_ending': 'unknown',
+}
+
+# --- Static Dictionary [STATIC]
+static_dict = {
     'invalid_path_lst': [
         "Ouch! You have walked into a wall.\n",
         "Ouch! Burt, stop walking into walls!\n",
@@ -1584,11 +1593,6 @@ state_dict = {
         "And exactly how do you propose to do that?\n",
         "There's no exit that way.\n"
     ],
-    'move_counter': 0,
-    'current_score': 0,
-    'max_score': 75,
-    'active_timer': 'none',
-    'game_ending': 'unknown',
 }
 
 # --- Score Dictionary [VARIABLE]
@@ -1678,7 +1682,7 @@ while True:
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
             written_on_dict, creature_dict, food_dict, score_dict,
             pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
-            switch_dict)
+            switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
