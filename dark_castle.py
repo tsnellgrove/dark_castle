@@ -1,4 +1,4 @@
-"""Castle Adventure 1.579
+"""Castle Adventure 1.6
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -390,11 +390,15 @@ def interpreter_text(
         print("You are wearing: " + worn_inv + "\n")
         
     elif word1 in allowed_movement:
-        print(description_dict[room + "-" + word1])
-        action = path_dict[room + "-" + word1]['action']
-        room_action(
-            action, word1, room, state_dict, path_dict, room_dict,
-            score_key, score_dict, description_dict)
+        if (room + "-" + word1) in path_dict:
+            print(description_dict[room + "-" + word1])
+            action = path_dict[room + "-" + word1]['action']
+            room_action(
+                action, word1, room, state_dict, path_dict, room_dict,
+                score_key, score_dict, description_dict)
+        else:
+            response = random.randint(0, 4)
+            print(state_dict['invalid_path_lst'][response])
 
 # *** Handle Two Word Commands ***
 
@@ -1248,25 +1252,25 @@ description_dict = {
 
     'main_hall-south': "You exit through the front_gate.\n",
 
-    'main_hall-east': "Ouch! You have walked into a wall.\n",
+#    'main_hall-east': "Ouch! You have walked into a wall.\n",
 
-    'main_hall-west': "Ouch! You have walked into a wall.\n",
+#    'main_hall-west': "Ouch! You have walked into a wall.\n",
 
     'antechamber-north': "You approach the iron_portcullis.\n",
 
     'antechamber-south': "You exit through the southern passage.\n",
 
-    'antechamber-east': "Ouch! Burt, stop walking into walls!\n",
+#    'antechamber-east': "Ouch! Burt, stop walking into walls!\n",
 
-    'antechamber-west': "Ouch! Burt, stop walking into walls!\n",
+#    'antechamber-west': "Ouch! Burt, stop walking into walls!\n",
 
-    'throne_room-north': "Ouch! Burt, stop walking into walls!\n",
+#    'throne_room-north': "Ouch! Burt, stop walking into walls!\n",
 
     'throne_room-south': "You approach the iron_portcullis.\n",
 
-    'throne_room-east': "Ouch! Burt, stop walking into walls!\n",
+#    'throne_room-east': "Ouch! Burt, stop walking into walls!\n",
 
-    'throne_room-west': "Ouch! Burt, stop walking into walls!\n",
+#    'throne_room-west': "Ouch! Burt, stop walking into walls!\n",
 
     # --- Read Text ---
 
@@ -1477,16 +1481,16 @@ path_dict = {
         'door': 'front_gate',
         'next_room': 'entrance'
     },
-    'main_hall-east': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    },
-    'main_hall-west': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    },
+#    'main_hall-east': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    },
+#    'main_hall-west': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    },
     'antechamber-north': {
         'action': 'door',
         'door': 'iron_portcullis',
@@ -1497,36 +1501,36 @@ path_dict = {
         'door': 'none',
         'next_room': 'main_hall'
     },
-    'antechamber-east': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    },
-    'antechamber-west': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    },
-    'throne_room-north': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    },
+#    'antechamber-east': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    },
+#    'antechamber-west': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    },
+#    'throne_room-north': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    },
     'throne_room-south': {
         'action': 'door',
         'door': 'iron_portcullis',
         'next_room': 'antechamber'
     },
-    'throne_room-east': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    },
-    'throne_room-west': {
-        'action': 'none',
-        'door': 'none',
-        'next_room': 'none'
-    }
+#    'throne_room-east': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    },
+#    'throne_room-west': {
+#        'action': 'none',
+#        'door': 'none',
+#        'next_room': 'none'
+#    }
 }
 
 # --- Room Dictionary [VARIABLE]
@@ -1625,6 +1629,13 @@ state_dict = {
     'backpack': ['rusty_key', 'stale_biscuits'],
     'item_containers': {'scroll_of_the_king': 'crystal_box'},
     'max_count': {'broach_found': 1,},
+    'invalid_path_lst': [
+        "Ouch! You have walked into a wall.\n",
+        "Ouch! Burt, stop walking into walls!\n",
+        "You can't go that way.\n",
+        "And exactly how do you propose to do that?\n",
+        "There's no exit that way.\n"
+    ],
     'move_counter': 0,
     'current_score': 0,
     'max_score': 75,
