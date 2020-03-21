@@ -1252,25 +1252,11 @@ description_dict = {
 
     'main_hall-south': "You exit through the front_gate.\n",
 
-#    'main_hall-east': "Ouch! You have walked into a wall.\n",
-
-#    'main_hall-west': "Ouch! You have walked into a wall.\n",
-
     'antechamber-north': "You approach the iron_portcullis.\n",
 
     'antechamber-south': "You exit through the southern passage.\n",
 
-#    'antechamber-east': "Ouch! Burt, stop walking into walls!\n",
-
-#    'antechamber-west': "Ouch! Burt, stop walking into walls!\n",
-
-#    'throne_room-north': "Ouch! Burt, stop walking into walls!\n",
-
     'throne_room-south': "You approach the iron_portcullis.\n",
-
-#    'throne_room-east': "Ouch! Burt, stop walking into walls!\n",
-
-#    'throne_room-west': "Ouch! Burt, stop walking into walls!\n",
 
     # --- Read Text ---
 
@@ -1481,16 +1467,6 @@ path_dict = {
         'door': 'front_gate',
         'next_room': 'entrance'
     },
-#    'main_hall-east': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    },
-#    'main_hall-west': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    },
     'antechamber-north': {
         'action': 'door',
         'door': 'iron_portcullis',
@@ -1501,36 +1477,11 @@ path_dict = {
         'door': 'none',
         'next_room': 'main_hall'
     },
-#    'antechamber-east': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    },
-#    'antechamber-west': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    },
-#    'throne_room-north': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    },
     'throne_room-south': {
         'action': 'door',
         'door': 'iron_portcullis',
         'next_room': 'antechamber'
     },
-#    'throne_room-east': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    },
-#    'throne_room-west': {
-#        'action': 'none',
-#        'door': 'none',
-#        'next_room': 'none'
-#    }
 }
 
 # --- Room Dictionary [VARIABLE]

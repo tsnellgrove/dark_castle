@@ -20,7 +20,8 @@ Updates for v1.6
 		DONE: move broach_found => generalized max_count dict
 
 Updates for v 1.7
-		reduce path_dict to only valid paths and create random text for banging into wall
+		DONE: reduce path_dict to only valid paths and create random text for banging into wall
+		help text & credits => description_dict
 		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		consolidate single_depth static lists & dicts
 		use '.lower().strip() on input'
@@ -31,6 +32,13 @@ Updates for v 1.7
 		document the terms of art (e.g. items vs. features vs. view_only)
 		"close" verb
 		5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
+			copper key opens cabinet which holds potion
+			potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
+			enter mouse hole
+			maybe fight mouse?
+			silver key in mouse trap; need to swap with copper key
+			find a use for close command?
+			would be fun to use every verb ;-D
 	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
 	docstrings for all functions [?]
 
