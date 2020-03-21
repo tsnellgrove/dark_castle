@@ -1,4 +1,4 @@
-"""Castle Adventure 1.63
+"""Castle Adventure 1.64
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -109,7 +109,6 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             state_dict['game_ending'] = 'won'
             end(state_dict, titles_dict)
             print(description_dict['credits'])
-#            credits()
             exit()
 
     elif trigger_key in [
@@ -246,13 +245,6 @@ def end(state_dict, titles_dict):
 
     print("Your title is: " + titles_dict[title_score] + "\n")
     return
-
-
-#def credits():
-#    print(
-#        "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, "
-#        "Milo, Gideon, and Franco for advice and playtesting!!")
-#    return
 
 
 def room_action(

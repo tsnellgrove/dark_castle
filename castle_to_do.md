@@ -24,15 +24,23 @@ Updates for v 1.7
 		DONE: intro => description_dict
 		DONE: move 'invalid_path' to static_dict
 		DONE: help text => description_dict
-		credits => description_dict & valid 1-word command
-		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
+		DONE: credits => description_dict & valid 1-word command
 		consolidate single_depth static lists & dicts
+		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		use '.lower().strip() on input'
 		consider using 'import textwrap'
 		normalize each "if verb"
 		clean up variable passing
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
+	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
+	docstrings for all functions [?]
+
+Updates for v 1.8
+	Post to GitHub using working Copy
+
+
+Maintenance, clean-up, and features I should implement someday
 		"close" verb
 		5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
 			copper key opens cabinet which holds potion
@@ -42,16 +50,7 @@ Updates for v 1.7
 			silver key in mouse trap; need to swap with copper key
 			find a use for close command?
 			would be fun to use every verb ;-D
-	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
-	docstrings for all functions [?]
-
-Updates for v 1.8
-	Post to GitHub using working Copy
-
-
-Maintenance, clean-up, and features I should implement someday
 	more directions
-	descript_dict => external file
 	landscape / path changes
 	Text Adventure Link: https://inventwithpython.com/blog/2014/12/11/making-a-text-adventure-game-with-the-cmd-and textwrap-python-modules/
 	Find a more efficient way to tell the player "you can't go that way" - unique path descriptins won't scale well to 10 cardinal directions for 10+ rooms
