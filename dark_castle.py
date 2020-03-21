@@ -1,4 +1,4 @@
-"""Castle Adventure 1.62
+"""Castle Adventure 1.63
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -195,23 +195,6 @@ def unknown_word():
     state_dict['move_counter'] -= 1
 
 
-#def help():
-#    print(
-#        "One word commands: 'help', 'inventory', 'look', 'north', 'south', "
-#        "'east', 'west', 'score'\n")
-#    print(
-#        "Verb-noun commands: 'take' <item>, 'drop' <item>, "
-#        "'attack' <creature>, \n'open' <door or container>, "
-#        "'unlock' <door or container>, 'examine' <room, feature, or item>,\n"
-#        "read <writing>, eat <food>, pull <lever>, push <button>, "
-#        "wear <garment>.\n")
-#    print(
-#        "Items not in your hand are stored in your backpack. You can view "
-#        "them using 'inventory'. You can 'take' one object into your hand at "
-#        "a time. \nYour other hand is holding your lantern\n")
-#    print("'quit' to quit\n")
-
-
 def look(
     room, room_dict, room_items, score_dict, state_dict, description_dict
 ):
@@ -364,7 +347,6 @@ def interpreter_text(
 # --- Handle One Word Commands
 
     if word1 == "help":
-#        help()
         print(description_dict['help'])
         
     elif word1 == "look":
@@ -1678,7 +1660,6 @@ description_dict['messy_handwriting-read'] = "'..ode is " \
 
 # *** Start of Game Welcome Text ***
 print(description_dict['intro'])
-#help()
 print(description_dict['help'])
 look(
     state_dict['room'], room_dict, room_dict[state_dict['room']]['items'],

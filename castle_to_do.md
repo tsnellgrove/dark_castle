@@ -23,7 +23,7 @@ Updates for v 1.7
 		DONE: reduce path_dict to only valid paths and create random text for banging into wall
 		DONE: intro => description_dict
 		DONE: move 'invalid_path' to static_dict
-		help text => description_dict
+		DONE: help text => description_dict
 		credits => description_dict & valid 1-word command
 		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		consolidate single_depth static lists & dicts
