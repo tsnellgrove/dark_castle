@@ -108,7 +108,8 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             score(trigger_key, score_dict, state_dict)
             state_dict['game_ending'] = 'won'
             end(state_dict, titles_dict)
-            credits()
+            print(description_dict['credits'])
+#            credits()
             exit()
 
     elif trigger_key in [
@@ -247,11 +248,11 @@ def end(state_dict, titles_dict):
     return
 
 
-def credits():
-    print(
-        "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, "
-        "Milo, Gideon, and Franco for advice and playtesting!!")
-    return
+#def credits():
+#    print(
+#        "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, "
+#        "Milo, Gideon, and Franco for advice and playtesting!!")
+#    return
 
 
 def room_action(
@@ -348,7 +349,7 @@ def interpreter_text(
 
     if word1 == "help":
         print(description_dict['help'])
-        
+
     elif word1 == "look":
         look(
             room, room_dict, room_items, score_dict, state_dict,
@@ -364,7 +365,10 @@ def interpreter_text(
         print("In your backpack you have: " + backpack_inv + "\n")
         worn_inv = ', '.join(worn)
         print("You are wearing: " + worn_inv + "\n")
-        
+
+    elif word1 == "credits":
+        print(description_dict['credits'])
+
     elif word1 in allowed_movement:
         if (room + "-" + word1) in path_dict:
             print(description_dict[room + "-" + word1])
@@ -960,8 +964,12 @@ description_dict = {
 
     # --- Special ---
 
-    'help': "One word commands: 'help', 'inventory', 'look', 'north', "
-            "'south', 'east', 'west', 'score'\n\n"
+    'credits': "Written and programmed by Tom. Thanks to Toby, Joshua, "
+               "JoyEllen, Milo, Gideon, and Franco for advice and "
+               "playtesting!!",
+
+    'help': "One word commands: 'help', 'inventory', 'look', 'credits', "
+            "'north', 'south', 'east', 'west', 'score'\n\n"
             
             "Verb-noun commands: 'take' <item>, 'drop' <item>, 'attack' "
             "<creature>, \n'open' <door or container>, 'unlock' <door or "
