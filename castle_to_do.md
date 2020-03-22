@@ -25,6 +25,7 @@ Updates for v 1.7
 		DONE: move 'invalid_path' to static_dict
 		DONE: help text => description_dict
 		DONE: credits => description_dict & valid 1-word command
+		DONE: pre_action_trigger_lst => static_dict
 		consolidate single_depth static lists & dicts
 		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		use '.lower().strip() on input'

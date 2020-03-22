@@ -1,11 +1,11 @@
-"""Castle Adventure 1.64
+"""Castle Adventure 1.651
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 21, 2020
+Last update = Mar 22, 2020
 """
 
 # *** Imports ***
@@ -328,7 +328,6 @@ def interpreter_text(
     trigger_key = score_key
     switch_key = score_key
 
-#    if trigger_key in pre_action_trigger_lst:
     if trigger_key in static_dict['pre_action_trigger_lst']:
         if trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
@@ -1519,18 +1518,6 @@ creature_dict = {
         'attack-shiny_sword-result': 'creature_death'
     }
 }
-
-# --- List of Pre-Action Triggers [STATIC]
-#pre_action_trigger_lst = [
-#    'take-shiny_sword',
-#    'examine-control_panel',
-#    'open-iron_portcullis',
-#    'examine-iron_portcullis',
-#    'examine-grimy_axe',
-#    'north-blank',
-#    'east-blank',
-#    'west-blank'
-#]
 
 # --- List of Post-Action Triggers [STATIC]
 post_action_trigger_lst = [
