@@ -298,8 +298,7 @@ def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
         written_on_dict, creature_dict, food_dict, score_dict,
-        pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
-        switch_dict, static_dict):
+        post_action_trigger_lst, timer_dict, switch_dict, static_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -329,7 +328,8 @@ def interpreter_text(
     trigger_key = score_key
     switch_key = score_key
 
-    if trigger_key in pre_action_trigger_lst:
+#    if trigger_key in pre_action_trigger_lst:
+    if trigger_key in static_dict['pre_action_trigger_lst']:
         if trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
                 description_dict, state_dict, titles_dict, door_dict,
@@ -1521,16 +1521,16 @@ creature_dict = {
 }
 
 # --- List of Pre-Action Triggers [STATIC]
-pre_action_trigger_lst = [
-    'take-shiny_sword',
-    'examine-control_panel',
-    'open-iron_portcullis',
-    'examine-iron_portcullis',
-    'examine-grimy_axe',
-    'north-blank',
-    'east-blank',
-    'west-blank'
-]
+#pre_action_trigger_lst = [
+#    'take-shiny_sword',
+#    'examine-control_panel',
+#    'open-iron_portcullis',
+#    'examine-iron_portcullis',
+#    'examine-grimy_axe',
+#    'north-blank',
+#    'east-blank',
+#    'west-blank'
+#]
 
 # --- List of Post-Action Triggers [STATIC]
 post_action_trigger_lst = [
@@ -1591,6 +1591,16 @@ static_dict = {
         "And exactly how do you propose to do that?\n",
         "There's no exit that way.\n"
     ],
+    'pre_action_trigger_lst': [
+        'take-shiny_sword',
+        'examine-control_panel',
+        'open-iron_portcullis',
+        'examine-iron_portcullis',
+        'examine-grimy_axe',
+        'north-blank',
+        'east-blank',
+        'west-blank'
+    ]
 }
 
 # --- Score Dictionary [VARIABLE]
@@ -1679,8 +1689,7 @@ while True:
             user_input, description_dict, path_dict, room_dict,
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
             written_on_dict, creature_dict, food_dict, score_dict,
-            pre_action_trigger_lst, post_action_trigger_lst, timer_dict,
-            switch_dict, static_dict)
+            post_action_trigger_lst, timer_dict, switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
