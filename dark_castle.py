@@ -1,11 +1,11 @@
-"""Castle Adventure 1.651
+"""Castle Adventure 1.652
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 22, 2020
+Last update = Mar 23, 2020
 """
 
 # *** Imports ***
@@ -1518,16 +1518,6 @@ creature_dict = {
         'attack-shiny_sword-result': 'creature_death'
     }
 }
-
-# --- List of Post-Action Triggers [STATIC]
-#post_action_trigger_lst = [
-#    'drop-stale_biscuits',
-#    'attack-goblin',
-#    'drop-shiny_sword',
-#    'pull-throne',
-#    'push-throne',
-#    'read-illuminated_letters'
-#]
 
 # --- Written On Dictionary [STATIC]
 written_on_dict = {
