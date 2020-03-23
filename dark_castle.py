@@ -298,7 +298,7 @@ def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
         written_on_dict, creature_dict, food_dict, score_dict,
-        post_action_trigger_lst, timer_dict, switch_dict, static_dict):
+        timer_dict, switch_dict, static_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -391,7 +391,7 @@ def interpreter_text(
                     print("The " + word2 + " contains a "
                         + contain_inv + ".\n")
 
-            if trigger_key in post_action_trigger_lst:
+            if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
@@ -487,7 +487,7 @@ def interpreter_text(
             room_dict[room]['room_items'] = room_items
             print("Dropped\n")
             
-            if trigger_key in post_action_trigger_lst:
+            if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
@@ -554,7 +554,7 @@ def interpreter_text(
         if word2 in allowed_lang_dict['can_be_read']:
             if written_on_dict[word2] in visible_items:
                 print(description_dict[word2 + "-read"])
-                if trigger_key in post_action_trigger_lst:
+                if trigger_key in static_dict['post_action_trigger_lst']:
                     trigger(
                         room, trigger_key, room_dict, word2, timer_dict,
                         description_dict, state_dict, titles_dict, door_dict,
@@ -601,7 +601,7 @@ def interpreter_text(
                 end(state_dict, titles_dict)
                 exit()
 
-            if trigger_key in post_action_trigger_lst:
+            if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
@@ -637,7 +637,7 @@ def interpreter_text(
                     description_dict[word2] = "The " + word2 + " is " \
                         + switch_dict[word2]['state'] + ".\n"
 
-            if trigger_key in post_action_trigger_lst:
+            if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
                     description_dict, state_dict, titles_dict, door_dict,
@@ -1520,14 +1520,14 @@ creature_dict = {
 }
 
 # --- List of Post-Action Triggers [STATIC]
-post_action_trigger_lst = [
-    'drop-stale_biscuits',
-    'attack-goblin',
-    'drop-shiny_sword',
-    'pull-throne',
-    'push-throne',
-    'read-illuminated_letters'
-]
+#post_action_trigger_lst = [
+#    'drop-stale_biscuits',
+#    'attack-goblin',
+#    'drop-shiny_sword',
+#    'pull-throne',
+#    'push-throne',
+#    'read-illuminated_letters'
+#]
 
 # --- Written On Dictionary [STATIC]
 written_on_dict = {
@@ -1587,6 +1587,14 @@ static_dict = {
         'north-blank',
         'east-blank',
         'west-blank'
+    ],
+    'post_action_trigger_lst': [
+        'drop-stale_biscuits',
+        'attack-goblin',
+        'drop-shiny_sword',
+        'pull-throne',
+        'push-throne',
+        'read-illuminated_letters'
     ]
 }
 
@@ -1676,7 +1684,7 @@ while True:
             user_input, description_dict, path_dict, room_dict,
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
             written_on_dict, creature_dict, food_dict, score_dict,
-            post_action_trigger_lst, timer_dict, switch_dict, static_dict)
+            timer_dict, switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
