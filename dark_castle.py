@@ -297,8 +297,8 @@ def score(score_key, score_dict, state_dict):
 def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
         door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
-        written_on_dict, creature_dict, food_dict, score_dict,
-        timer_dict, switch_dict, static_dict):
+        creature_dict, food_dict, score_dict, timer_dict, switch_dict,
+        static_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -552,7 +552,8 @@ def interpreter_text(
         visible_items.append("burt")
 
         if word2 in allowed_lang_dict['can_be_read']:
-            if written_on_dict[word2] in visible_items:
+#            if written_on_dict[word2] in visible_items:
+            if static_dict['written_on_dict'][word2] in visible_items:
                 print(description_dict[word2 + "-read"])
                 if trigger_key in static_dict['post_action_trigger_lst']:
                     trigger(
@@ -1520,14 +1521,14 @@ creature_dict = {
 }
 
 # --- Written On Dictionary [STATIC]
-written_on_dict = {
-    'rusty_lettering': 'front_gate',
-    'trademark': "stale_biscuits",
-    'dwarven_runes': 'shiny_sword',
-    'messy_handwriting': 'torn_note',
-    'calligraphy': 'crystal_box',
-    'illuminated_letters': 'scroll_of_the_king'
-}
+#written_on_dict = {
+#    'rusty_lettering': 'front_gate',
+#    'trademark': "stale_biscuits",
+#    'dwarven_runes': 'shiny_sword',
+#    'messy_handwriting': 'torn_note',
+#    'calligraphy': 'crystal_box',
+#    'illuminated_letters': 'scroll_of_the_king'
+#}
 
 # --- Food Results Dictionary [STATIC]
 food_dict = {
@@ -1585,7 +1586,15 @@ static_dict = {
         'pull-throne',
         'push-throne',
         'read-illuminated_letters'
-    ]
+    ],
+    'written_on_dict': {
+        'rusty_lettering': 'front_gate',
+        'trademark': "stale_biscuits",
+        'dwarven_runes': 'shiny_sword',
+        'messy_handwriting': 'torn_note',
+        'calligraphy': 'crystal_box',
+        'illuminated_letters': 'scroll_of_the_king'
+    }
 }
 
 # --- Score Dictionary [VARIABLE]
@@ -1673,8 +1682,8 @@ while True:
         interpreter_text(
             user_input, description_dict, path_dict, room_dict,
             door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
-            written_on_dict, creature_dict, food_dict, score_dict,
-            timer_dict, switch_dict, static_dict)
+            creature_dict, food_dict, score_dict, timer_dict, switch_dict,
+            static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
