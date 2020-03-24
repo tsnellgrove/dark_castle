@@ -1,11 +1,11 @@
-"""Castle Adventure 1.652
+"""Castle Adventure 1.653
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 23, 2020
+Last update = Mar 24, 2020
 """
 
 # *** Imports ***
@@ -552,7 +552,6 @@ def interpreter_text(
         visible_items.append("burt")
 
         if word2 in allowed_lang_dict['can_be_read']:
-#            if written_on_dict[word2] in visible_items:
             if static_dict['written_on_dict'][word2] in visible_items:
                 print(description_dict[word2 + "-read"])
                 if trigger_key in static_dict['post_action_trigger_lst']:
@@ -1519,16 +1518,6 @@ creature_dict = {
         'attack-shiny_sword-result': 'creature_death'
     }
 }
-
-# --- Written On Dictionary [STATIC]
-#written_on_dict = {
-#    'rusty_lettering': 'front_gate',
-#    'trademark': "stale_biscuits",
-#    'dwarven_runes': 'shiny_sword',
-#    'messy_handwriting': 'torn_note',
-#    'calligraphy': 'crystal_box',
-#    'illuminated_letters': 'scroll_of_the_king'
-#}
 
 # --- Food Results Dictionary [STATIC]
 food_dict = {
