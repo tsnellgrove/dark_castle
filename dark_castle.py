@@ -191,7 +191,8 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
 
 def unknown_word():
     response = random.randint(0, 4)
-    print(unknown_word_lst[response])
+#    print(unknown_word_lst[response])
+    print(static_dict['unknown_word_lst'][response])
     state_dict['move_counter'] -= 1
 
 
@@ -296,9 +297,8 @@ def score(score_key, score_dict, state_dict):
 
 def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
-        door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
-        creature_dict, food_dict, score_dict, timer_dict, switch_dict,
-        static_dict):
+        door_dict, state_dict, allowed_lang_dict, creature_dict, food_dict,
+        score_dict, timer_dict, switch_dict, static_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -1525,14 +1525,14 @@ food_dict = {
 }
 
 # --- Unknown Word List [STATIC]
-unknown_word_lst = [
-    "Burt, I have no idea what you're talking about!\n",
-    "Burt, are you babbling again?\n",
-    "Burt, I'm just going to pretend I didn't hear that\n",
-    "Burt, you've said some strange things over the years but "
-    "that was a doosey!\n",
-    "Burt! What would your mother say if she heard you speaking like that!?\n"
-]
+#unknown_word_lst = [
+#    "Burt, I have no idea what you're talking about!\n",
+#    "Burt, are you babbling again?\n",
+#    "Burt, I'm just going to pretend I didn't hear that\n",
+#    "Burt, you've said some strange things over the years but "
+#    "that was a doosey!\n",
+#    "Burt! What would your mother say if she heard you speaking like that!?\n"
+#]
 
 # --- State Dictionary [VARIABLE]
 state_dict = {
@@ -1583,7 +1583,15 @@ static_dict = {
         'messy_handwriting': 'torn_note',
         'calligraphy': 'crystal_box',
         'illuminated_letters': 'scroll_of_the_king'
-    }
+    },
+    'unknown_word_lst': [
+        "Burt, I have no idea what you're talking about!\n",
+        "Burt, are you babbling again?\n",
+        "Burt, I'm just going to pretend I didn't hear that\n",
+        "Burt, you've said some strange things over the years but "
+        "that was a doosey!\n",
+        "Burt! What would your mother say if she heard you speaking like that!?\n"
+    ]
 }
 
 # --- Score Dictionary [VARIABLE]
@@ -1670,9 +1678,8 @@ while True:
         state_dict['move_counter'] += 1
         interpreter_text(
             user_input, description_dict, path_dict, room_dict,
-            door_dict, unknown_word_lst, state_dict, allowed_lang_dict,
-            creature_dict, food_dict, score_dict, timer_dict, switch_dict,
-            static_dict)
+            door_dict, state_dict, allowed_lang_dict, creature_dict, food_dict,
+            score_dict, timer_dict, switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
                 state_dict['room'], room_dict, timer_dict, state_dict,
