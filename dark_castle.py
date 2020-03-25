@@ -1,11 +1,11 @@
-"""Castle Adventure 1.653
+"""Castle Adventure 1.654
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 24, 2020
+Last update = Mar 25, 2020
 """
 
 # *** Imports ***
@@ -191,7 +191,6 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
 
 def unknown_word():
     response = random.randint(0, 4)
-#    print(unknown_word_lst[response])
     print(static_dict['unknown_word_lst'][response])
     state_dict['move_counter'] -= 1
 
@@ -1523,16 +1522,6 @@ creature_dict = {
 food_dict = {
     'stale_biscuits': 'none'
 }
-
-# --- Unknown Word List [STATIC]
-#unknown_word_lst = [
-#    "Burt, I have no idea what you're talking about!\n",
-#    "Burt, are you babbling again?\n",
-#    "Burt, I'm just going to pretend I didn't hear that\n",
-#    "Burt, you've said some strange things over the years but "
-#    "that was a doosey!\n",
-#    "Burt! What would your mother say if she heard you speaking like that!?\n"
-#]
 
 # --- State Dictionary [VARIABLE]
 state_dict = {
