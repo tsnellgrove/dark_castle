@@ -1,11 +1,11 @@
-"""Castle Adventure 1.654
+"""Castle Adventure 1.655
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 25, 2020
+Last update = Mar 26, 2020
 """
 
 # *** Imports ***
@@ -296,7 +296,7 @@ def score(score_key, score_dict, state_dict):
 
 def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
-        door_dict, state_dict, allowed_lang_dict, creature_dict, food_dict,
+        door_dict, state_dict, allowed_lang_dict, creature_dict,
         score_dict, timer_dict, switch_dict, static_dict):
 
     # *** local variables ***
@@ -1518,11 +1518,6 @@ creature_dict = {
     }
 }
 
-# --- Food Results Dictionary [STATIC]
-food_dict = {
-    'stale_biscuits': 'none'
-}
-
 # --- State Dictionary [VARIABLE]
 state_dict = {
     'room': 'entrance',
@@ -1580,7 +1575,10 @@ static_dict = {
         "Burt, you've said some strange things over the years but "
         "that was a doosey!\n",
         "Burt! What would your mother say if she heard you speaking like that!?\n"
-    ]
+    ],
+    'food_dict': {
+        'stale_biscuits': 'none'
+    } #  used to track food results
 }
 
 # --- Score Dictionary [VARIABLE]
@@ -1667,7 +1665,7 @@ while True:
         state_dict['move_counter'] += 1
         interpreter_text(
             user_input, description_dict, path_dict, room_dict,
-            door_dict, state_dict, allowed_lang_dict, creature_dict, food_dict,
+            door_dict, state_dict, allowed_lang_dict, creature_dict,
             score_dict, timer_dict, switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
