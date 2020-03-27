@@ -33,7 +33,7 @@ def switch_value(switch_key, switch_dict):
 
 
 def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
-            state_dict, titles_dict, door_dict, score_dict, creature_dict):
+            state_dict, static_dict, door_dict, score_dict, creature_dict):
     # *** Situational triggers and switch results ***
 
     if trigger_key == 'take-shiny_sword':
@@ -107,7 +107,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             print(description_dict['read-illuminated_letters-win'])
             score(trigger_key, score_dict, state_dict)
             state_dict['game_ending'] = 'won'
-            end(state_dict, titles_dict)
+            end(state_dict, static_dict)
             print(description_dict['credits'])
             exit()
 
@@ -121,7 +121,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
         elif room == 'antechamber' and 'goblin' in room_dict[room]['features']\
                 and 'shiny_sword' 'shiny_sword' not in state_dict['hand']:
             print(description_dict['goblin_attacks-death'])
-            end(state_dict, titles_dict)
+            end(state_dict, static_dict)
             exit()
         else:
             return(False)
@@ -221,7 +221,7 @@ def description_update(description_key, update_key, description_dict):
     return
 
 
-def end(state_dict, titles_dict):
+def end(state_dict, static_dict):
     if state_dict['game_ending'] == 'death':
         print("You have died.\n")
     elif state_dict['game_ending'] == 'quit':
@@ -243,7 +243,7 @@ def end(state_dict, titles_dict):
     else:
         title_score = math.ceil(score / 10) * 10
 
-    print("Your title is: " + titles_dict[title_score] + "\n")
+    print("Your title is: " + static_dict['titles_dict'][title_score] + "\n")
     return
 
 
@@ -253,7 +253,7 @@ def room_action(
 
     if action == "death":
         state_dict['game_ending'] = 'death'
-        end(state_dict, titles_dict)
+        end(state_dict, static_dict)
         exit()
 
     elif action == "door":
@@ -330,7 +330,7 @@ def interpreter_text(
     if trigger_key in static_dict['pre_action_trigger_lst']:
         if trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, state_dict, titles_dict, door_dict,
+                description_dict, state_dict, static_dict, door_dict,
                 score_dict, creature_dict):
             return
 
@@ -393,7 +393,7 @@ def interpreter_text(
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, titles_dict, door_dict,
+                    description_dict, state_dict, static_dict, door_dict,
                     score_dict, creature_dict)
 
             if score_key in score_dict:
@@ -489,7 +489,7 @@ def interpreter_text(
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, titles_dict, door_dict,
+                    description_dict, state_dict, static_dict, door_dict,
                     score_dict, creature_dict)
                            
         else:
@@ -556,7 +556,7 @@ def interpreter_text(
                 if trigger_key in static_dict['post_action_trigger_lst']:
                     trigger(
                         room, trigger_key, room_dict, word2, timer_dict,
-                        description_dict, state_dict, titles_dict, door_dict,
+                        description_dict, state_dict, static_dict, door_dict,
                         score_dict, creature_dict)
             else:
                 print("Burt, you can't read what you can't see!\n")
@@ -597,13 +597,13 @@ def interpreter_text(
 
             elif creature_dict[word2][attack_result] == 'player_death':
                 state_dict['game_ending'] = 'death'
-                end(state_dict, titles_dict)
+                end(state_dict, static_dict)
                 exit()
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, titles_dict, door_dict,
+                    description_dict, state_dict, static_dict, door_dict,
                     score_dict, creature_dict)
 
         else:
@@ -639,7 +639,7 @@ def interpreter_text(
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, titles_dict, door_dict,
+                    description_dict, state_dict, static_dict, door_dict,
                     score_dict, creature_dict)
 
         else:
@@ -665,7 +665,7 @@ def interpreter_text(
 
             trigger(
                 room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, state_dict, titles_dict, door_dict,
+                description_dict, state_dict, static_dict, door_dict,
                 score_dict, creature_dict)
             if score_key in score_dict:
                 score(score_key, score_dict, state_dict)
@@ -1578,7 +1578,19 @@ static_dict = {
     ],
     'food_dict': {
         'stale_biscuits': 'none'
-    } #  used to track food results
+    }, #  to be used to track food results
+    'titles_dict': {
+        -10: 'Burt the Best Forgotten',
+        0: 'Burt the Boneheaded',
+        10: 'Burt the Beginner',
+        20: 'Burt the Better Than Average',
+        30: 'Burt the Brawny',
+        40: 'Burt the Brainy',
+        50: 'Burt the Benevolent',
+        60: 'Burt the Breathtaking',
+        70: 'Burt the Bodacious',
+        80: 'Burt the Bold, Baron of Bright Castle'
+    }
 }
 
 # --- Score Dictionary [VARIABLE]
@@ -1603,18 +1615,18 @@ timer_dict = {
 }
 
 # --- Titles Dictionary [STATIC]
-titles_dict = {
-    -10: 'Burt the Best Forgotten',
-    0: 'Burt the Boneheaded',
-    10: 'Burt the Beginner',
-    20: 'Burt the Better Than Average',
-    30: 'Burt the Brawny',
-    40: 'Burt the Brainy',
-    50: 'Burt the Benevolent',
-    60: 'Burt the Breathtaking',
-    70: 'Burt the Bodacious',
-    80: 'Burt the Bold, Baron of Bright Castle'
-}
+#titles_dict = {
+#    -10: 'Burt the Best Forgotten',
+#    0: 'Burt the Boneheaded',
+#    10: 'Burt the Beginner',
+#    20: 'Burt the Better Than Average',
+#    30: 'Burt the Brawny',
+#    40: 'Burt the Brainy',
+#    50: 'Burt the Benevolent',
+#    60: 'Burt the Breathtaking',
+#    70: 'Burt the Bodacious',
+#    80: 'Burt the Bold, Baron of Bright Castle'
+#}
 
 # --- Allowed Language Dictionary [STATIC]
 allowed_lang_dict = {
@@ -1659,7 +1671,7 @@ while True:
     if user_input == "quit":
         print("Goodbye Burt!\n")
         state_dict['game_ending'] = 'quit'
-        end(state_dict, titles_dict)
+        end(state_dict, static_dict)
         break
     else:
         state_dict['move_counter'] += 1
