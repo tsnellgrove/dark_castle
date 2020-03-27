@@ -1,11 +1,11 @@
-"""Castle Adventure 1.655
+"""Castle Adventure 1.656
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 26, 2020
+Last update = Mar 27, 2020
 """
 
 # *** Imports ***
@@ -1613,20 +1613,6 @@ score_dict = {
 timer_dict = {
     'drop-stale_biscuits': 0
 }
-
-# --- Titles Dictionary [STATIC]
-#titles_dict = {
-#    -10: 'Burt the Best Forgotten',
-#    0: 'Burt the Boneheaded',
-#    10: 'Burt the Beginner',
-#    20: 'Burt the Better Than Average',
-#    30: 'Burt the Brawny',
-#    40: 'Burt the Brainy',
-#    50: 'Burt the Benevolent',
-#    60: 'Burt the Breathtaking',
-#    70: 'Burt the Bodacious',
-#    80: 'Burt the Bold, Baron of Bright Castle'
-#}
 
 # --- Allowed Language Dictionary [STATIC]
 allowed_lang_dict = {
