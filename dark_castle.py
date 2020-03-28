@@ -1,11 +1,11 @@
-"""Castle Adventure 1.656
+"""Castle Adventure 1.657
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 27, 2020
+Last update = Mar 28, 2020
 """
 
 # *** Imports ***
@@ -49,7 +49,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             if score_dict['gator-crown'][0] == 0:
                 print(description_dict['east-blank-crown'])
                 state_dict['backpack'].append('royal_crown')
-                score('gator-crown', score_dict, state_dict)
+                score('gator-crown', score_dict, state_dict, static_dict)
                 return(True)
             else:
                 print(description_dict['east-blank-no_crown'])
@@ -105,7 +105,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             print(description_dict['read-illuminated_letters-no_crown'])
         else:
             print(description_dict['read-illuminated_letters-win'])
-            score(trigger_key, score_dict, state_dict)
+            score(trigger_key, score_dict, state_dict, static_dict)
             state_dict['game_ending'] = 'won'
             end(state_dict, static_dict)
             print(description_dict['credits'])
@@ -196,7 +196,7 @@ def unknown_word():
 
 
 def look(
-    room, room_dict, room_items, score_dict, state_dict, description_dict
+    room, room_dict, room_items, score_dict, state_dict, description_dict, static_dict
 ):
 
     score_key = room
@@ -207,7 +207,7 @@ def look(
     if len(room_items) > 0:
         print("The following items are here: " + ", ".join(room_items) + "\n")
         if score_key in score_dict:
-            score(score_key, score_dict, state_dict)
+            score(score_key, score_dict, state_dict, static_dict)
 
 
 def str_to_lst(user_input):
@@ -233,7 +233,7 @@ def end(state_dict, static_dict):
         + " moves.\n")
     print(
         "Your score is " + str(state_dict['current_score']) + " out of "
-        + str(state_dict['max_score']) + "\n")
+        + str(static_dict['global_dict']['max_score']) + "\n")
     
     score = state_dict['current_score']
     if score < 0:
@@ -263,7 +263,7 @@ def room_action(
             room = next_room
             look(
                 room, room_dict, room_dict[room]['items'], score_dict,
-                state_dict, description_dict)
+                state_dict, description_dict, static_dict)
             state_dict['room'] = next_room
         else:
             print("The " + door_name + " is closed.\n")
@@ -274,18 +274,18 @@ def room_action(
         room = next_room
         look(
             room, room_dict, room_dict[room]['items'], score_dict,
-            state_dict, description_dict)
+            state_dict, description_dict, static_dict)
         state_dict['room'] = next_room
 
     return
 
 
 # *** Score is called from look(), 'take', 'attack', and a few other spots ***
-def score(score_key, score_dict, state_dict):
+def score(score_key, score_dict, state_dict, static_dict):
     if score_dict[score_key][0] == 0:
         state_dict['current_score'] += score_dict[score_key][1]
         print("Your score is now " + str(state_dict['current_score'])
-            + " out of " + str(state_dict['max_score']) + "\n")
+            + " out of " + str(static_dict['global_dict']['max_score']) + "\n")
     score_dict[score_key][0] += 1
     return
 
@@ -343,11 +343,11 @@ def interpreter_text(
     elif word1 == "look":
         look(
             room, room_dict, room_items, score_dict, state_dict,
-            description_dict)
+            description_dict, static_dict)
 
     elif word1 == "score":
         print("Your score is now " + str(state_dict['current_score'])
-            + " out of " + str(state_dict['max_score']) + "\n")
+            + " out of " + str(static_dict['global_dict']['max_score']) + "\n")
 
     elif word1 == "inventory":
         print("In your hand you have: " + hand[0] + "\n")
@@ -397,7 +397,7 @@ def interpreter_text(
                     score_dict, creature_dict)
 
             if score_key in score_dict:
-                score(score_key, score_dict, state_dict)
+                score(score_key, score_dict, state_dict, static_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -466,7 +466,7 @@ def interpreter_text(
             state_dict['worn'] = worn
             
             if score_key in score_dict:
-                score(score_key, score_dict, state_dict)
+                score(score_key, score_dict, state_dict, static_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -586,14 +586,14 @@ def interpreter_text(
                 room_dict[room]['features'].append('dead_' + word2)
                 print("the " + word2 + " has died.\n")
                 if score_key in score_dict:
-                    score(score_key, score_dict, state_dict)
+                    score(score_key, score_dict, state_dict, static_dict)
                 room_dict[room]['items'].extend(creature_dict[word2]['drops'])
 
             elif creature_dict[word2][attack_result] == 'creature_runs':
                 room_dict[room]['features'].remove(word2)
                 print("the " + word2 + " has run away.\n")
                 if score_key in score_dict:
-                    score(score_key, score_dict, state_dict)
+                    score(score_key, score_dict, state_dict, static_dict)
 
             elif creature_dict[word2][attack_result] == 'player_death':
                 state_dict['game_ending'] = 'death'
@@ -668,7 +668,7 @@ def interpreter_text(
                 description_dict, state_dict, static_dict, door_dict,
                 score_dict, creature_dict)
             if score_key in score_dict:
-                score(score_key, score_dict, state_dict)
+                score(score_key, score_dict, state_dict, static_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -709,7 +709,7 @@ def interpreter_text(
 # *** update global 'hand' and score ***
             state_dict['hand'] = hand
             if score_key in score_dict:
-                score(score_key, score_dict, state_dict)
+                score(score_key, score_dict, state_dict, static_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -1528,13 +1528,15 @@ state_dict = {
     'max_count': {'broach_found': 1,},
     'move_counter': 0,
     'current_score': 0,
-    'max_score': 75,  # STATIC Global Really
     'active_timer': 'none',
     'game_ending': 'unknown',
 }
 
 # --- Static Dictionary [STATIC]
 static_dict = {
+    'global_dict': {
+        'max_score': 75
+    },
     'invalid_path_lst': [
         "Ouch! You have walked into a wall.\n",
         "Ouch! Burt, stop walking into walls!\n",
@@ -1649,7 +1651,7 @@ print(description_dict['intro'])
 print(description_dict['help'])
 look(
     state_dict['room'], room_dict, room_dict[state_dict['room']]['items'],
-    score_dict, state_dict, description_dict)
+    score_dict, state_dict, description_dict, static_dict)
 
 # *** Get User Input ***
 while True:

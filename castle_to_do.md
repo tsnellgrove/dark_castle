@@ -31,11 +31,13 @@ Updates for v 1.7
 		DONE: unknown_word_lst => static_dict
 		DONE: food_dict => static_dict
 		DONE: titles_dict => static_dict
+		DONE: max_score => static_dict
 		consolidate single_depth static lists & dicts
 		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		use '.lower().strip() on input'
 		consider using 'import textwrap'
 		normalize each "if verb"
+		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
 		clean up variable passing
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
