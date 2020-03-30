@@ -1,11 +1,11 @@
-"""Castle Adventure 1.66
+"""Castle Adventure 1.663
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 29, 2020
+Last update = Mar 30, 2020
 """
 
 # *** Imports ***
@@ -32,7 +32,7 @@ def switch_value(switch_key, switch_dict):
     return(temp_value)
 
 
-def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
+def trigger(room, trigger_key, room_dict, word2, description_dict,
             state_dict, static_dict, door_dict, creature_dict):
     # *** Situational triggers and switch results ***
 
@@ -60,7 +60,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
             room_dict[room]['items'].remove(word2)
             room_dict[room]['view_only'].append(word2)
             state_dict['active_timer'] = 'drop-stale_biscuits'
-            timer_dict['drop-stale_biscuits'] = 5
+            state_dict['timer_dict']['drop-stale_biscuits'] = 5
             creature_dict['hedgehog']['state'] = 'hedgehog_eating'
             description_update(
                 'hedgehog', 'hedgehog_eating', description_dict)
@@ -141,7 +141,7 @@ def trigger(room, trigger_key, room_dict, word2, timer_dict, description_dict,
     return
 
 
-def timer(room, room_dict, timer_dict, state_dict, description_dict):
+def timer(room, room_dict, state_dict, description_dict):
     # *** Timer conditionals ***
 
     timer_key = state_dict['active_timer']
@@ -152,7 +152,7 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
         # *** reset timer_value to 0 and set active_timer to none ***
         # *** and remove 'stale_biscuits' from 'view_only' ***
         if 'hedgehog' not in room_dict['main_hall']['features']:
-            timer_dict['drop-stale_biscuits'] = 0
+            state_dict['timer_dict']['drop-stale_biscuits'] = 0
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
             return
@@ -160,13 +160,13 @@ def timer(room, room_dict, timer_dict, state_dict, description_dict):
         # *** If hedgehog exist and room == main_hall print description ***
         if room == 'main_hall':
             print(description_dict[timer_key + "-timer_" 
-                + str(timer_dict['drop-stale_biscuits'])])
+                + str(state_dict['timer_dict']['drop-stale_biscuits'])])
 
         # *** decrement timer ***
-        timer_dict['drop-stale_biscuits'] -= 1
+        state_dict['timer_dict']['drop-stale_biscuits'] -= 1
 
         # *** if timer == 0 reset 'active_timer' & remove 'stale_biscuits' ***
-        if timer_dict['drop-stale_biscuits'] == 0:
+        if state_dict['timer_dict']['drop-stale_biscuits'] == 0:
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
 
@@ -297,7 +297,7 @@ def score(score_key, state_dict, static_dict):
 def interpreter_text(
         user_input, description_dict, path_dict, room_dict,
         door_dict, state_dict, allowed_lang_dict, creature_dict,
-        timer_dict, switch_dict, static_dict):
+        switch_dict, static_dict):
 
     # *** local variables ***
     allowed_verbs = allowed_lang_dict['allowed_verbs']
@@ -329,9 +329,8 @@ def interpreter_text(
 
     if trigger_key in static_dict['pre_action_trigger_lst']:
         if trigger(
-                room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, state_dict, static_dict, door_dict,
-                creature_dict):
+                room, trigger_key, room_dict, word2, description_dict,
+                state_dict, static_dict, door_dict, creature_dict):
             return
 
 
@@ -392,9 +391,8 @@ def interpreter_text(
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, static_dict, door_dict,
-                    creature_dict)
+                    room, trigger_key, room_dict, word2, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
 
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
@@ -488,9 +486,8 @@ def interpreter_text(
             
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, static_dict, door_dict,
-                    creature_dict)
+                    room, trigger_key, room_dict, word2, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
                            
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -555,9 +552,8 @@ def interpreter_text(
                 print(description_dict[word2 + "-read"])
                 if trigger_key in static_dict['post_action_trigger_lst']:
                     trigger(
-                        room, trigger_key, room_dict, word2, timer_dict,
-                        description_dict, state_dict, static_dict, door_dict,
-                        creature_dict)
+                        room, trigger_key, room_dict, word2, description_dict,
+                        state_dict, static_dict, door_dict, creature_dict)
             else:
                 print("Burt, you can't read what you can't see!\n")
 
@@ -602,9 +598,8 @@ def interpreter_text(
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, static_dict, door_dict,
-                    creature_dict)
+                    room, trigger_key, room_dict, word2, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -638,9 +633,8 @@ def interpreter_text(
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, timer_dict,
-                    description_dict, state_dict, static_dict, door_dict,
-                    creature_dict)
+                    room, trigger_key, room_dict, word2, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -664,9 +658,8 @@ def interpreter_text(
                     print(description_dict[word1 + "-" + word2 + '-fail'])
 
             trigger(
-                room, trigger_key, room_dict, word2, timer_dict,
-                description_dict, state_dict, static_dict, door_dict,
-                creature_dict)
+                room, trigger_key, room_dict, word2, description_dict,
+                state_dict, static_dict, door_dict, creature_dict)
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
 
@@ -1543,6 +1536,9 @@ state_dict = {
         'gator-crown': [0, 5],
         'wear-royal_crown': [0, 5],
         'read-illuminated_letters': [0, 15]
+    },
+    'timer_dict': {
+        'drop-stale_biscuits': 0
     }
 }
 
@@ -1609,11 +1605,6 @@ static_dict = {
     }
 }
 
-# --- Timer Dcitionary [VARIABLE]
-timer_dict = {
-    'drop-stale_biscuits': 0
-}
-
 # --- Allowed Language Dictionary [STATIC]
 allowed_lang_dict = {
     'allowed_movement': ["north", "south", "east", "west"],
@@ -1664,8 +1655,8 @@ while True:
         interpreter_text(
             user_input, description_dict, path_dict, room_dict,
             door_dict, state_dict, allowed_lang_dict, creature_dict,
-            timer_dict, switch_dict, static_dict)
+            switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
             timer(
-                state_dict['room'], room_dict, timer_dict, state_dict,
+                state_dict['room'], room_dict, state_dict,
                 description_dict)

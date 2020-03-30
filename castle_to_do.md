@@ -32,7 +32,8 @@ Updates for v 1.7
 		DONE: food_dict => static_dict
 		DONE: titles_dict => static_dict
 		DONE: max_score => static_dict
-		DONE: score_dict => static_dict
+		DONE: score_dict => state_dict
+		DONE: timer_dict => state_dict
 		consolidate single_depth static lists & dicts
 		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
 		use '.lower().strip() on input'
