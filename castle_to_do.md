@@ -34,9 +34,7 @@ Updates for v 1.7
 		DONE: max_score => static_dict
 		DONE: score_dict => state_dict
 		DONE: timer_dict => state_dict
-		consolidate single_depth static lists & dicts
-		consolidate some variable single-level dicts (e.g.score_dict => state_dict ? [aka 'global_dict])
-		use '.lower().strip() on input'
+		DONE: use .lower() on input
 		consider using 'import textwrap'
 		normalize each "if verb"
 		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
@@ -62,6 +60,7 @@ Maintenance, clean-up, and features I should implement someday
 			find a use for close command?
 			would be fun to use every verb ;-D
 	more directions
+	use .strip() on input
 	landscape / path changes
 	Text Adventure Link: https://inventwithpython.com/blog/2014/12/11/making-a-text-adventure-game-with-the-cmd-and textwrap-python-modules/
 	Find a more efficient way to tell the player "you can't go that way" - unique path descriptins won't scale well to 10 cardinal directions for 10+ rooms

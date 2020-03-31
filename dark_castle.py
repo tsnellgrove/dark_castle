@@ -1,11 +1,11 @@
-"""Castle Adventure 1.663
+"""Castle Adventure 1.667
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 30, 2020
+Last update = Mar 31, 2020
 """
 
 # *** Imports ***
@@ -1644,7 +1644,7 @@ look(
 
 # *** Get User Input ***
 while True:
-    user_input = input("> ")
+    user_input = input("> ").lower()
     if user_input == "quit":
         print("Goodbye Burt!\n")
         state_dict['game_ending'] = 'quit'
