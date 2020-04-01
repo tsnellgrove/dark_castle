@@ -35,7 +35,10 @@ Updates for v 1.7
 		DONE: score_dict => state_dict
 		DONE: timer_dict => state_dict
 		DONE: use .lower() on input
-		consider using 'import textwrap'
+		Implement 'import textwrap'
+			Create printtw() function (see: https://www.geeksforgeeks.org/textwrap-text-wrapping-filling-python/)
+			Test printtw() on opening text in Main Routine
+			Extend to all other existing print() commands
 		normalize each "if verb"
 		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
 		look at local variable usage to simplify code (e.g. score_dict)
