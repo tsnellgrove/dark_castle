@@ -1,16 +1,17 @@
-"""Castle Adventure 1.667
+"""Castle Adventure 1.67
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Mar 31, 2020
+Last update = Apr 2, 2020
 """
 
 # *** Imports ***
 import random
 import math
+import textwrap
 
 
 # *********************
@@ -188,6 +189,13 @@ def timer(room, room_dict, state_dict, description_dict):
 # --- Helper Routines
 # *******************
 
+def printtw(value):
+    wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
+    word_list = wrapper.wrap(text=value) 
+    for element in word_list: 
+        print(element)
+    return
+
 
 def unknown_word():
     response = random.randint(0, 4)
@@ -200,12 +208,12 @@ def look(
 ):
 
     score_key = room
-    print(description_dict[room])
+    printtw(description_dict[room])
     if len(room_dict[room]['features']) > 0:
         for feature in room_dict[room]['features']:
             print("There is a " + feature + " here.\n")
     if len(room_items) > 0:
-        print("The following items are here: " + ", ".join(room_items) + "\n")
+        printtw("The following items are here: " + ", ".join(room_items) + "\n")
         if score_key in state_dict['score_dict']:
             score(score_key, state_dict, static_dict)
 
@@ -951,7 +959,7 @@ description_dict = {
                "JoyEllen, Milo, Gideon, and Franco for advice and "
                "playtesting!!",
 
-    'help': "One word commands: 'help', 'inventory', 'look', 'credits', "
+    'help': "\n\nOne word commands: 'help', 'inventory', 'look', 'credits', "
             "'north', 'south', 'east', 'west', 'score'\n\n"
             
             "Verb-noun commands: 'take' <item>, 'drop' <item>, 'attack' "
@@ -968,7 +976,7 @@ description_dict = {
 
     'intro': "\nWelcome brave adventurer!\nYou are Burt-the-Boneheaded, the "
              "only adventurer brave - or foolish - enough to enter the Dark "
-             "Castle in search of treasure\n",
+             "Castle in search of treasure.\n\n",
 
     "fist": "Yep, that's your fist. Still bruised from the last time you "
             "swung and missed and hit a wall...\n",
@@ -1636,8 +1644,8 @@ description_dict['messy_handwriting-read'] = "'..ode is " \
     + ". Don't tell anyo..'\n"
 
 # *** Start of Game Welcome Text ***
-print(description_dict['intro'])
-print(description_dict['help'])
+printtw(description_dict['intro'])
+printtw(description_dict['help'])
 look(
     state_dict['room'], room_dict, room_dict[state_dict['room']]['items'],
     state_dict, description_dict, static_dict)
