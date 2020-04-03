@@ -190,10 +190,19 @@ def timer(room, room_dict, state_dict, description_dict):
 # *******************
 
 def printtw(value):
-    wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
-    word_list = wrapper.wrap(text=value) 
-    for element in word_list: 
-        print(element)
+#    wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
+#    word_list = wrapper.wrap(text=value) 
+
+    body = "s"
+    body = '\n'.join(['\n'.join(textwrap.wrap(value, 80,
+                     break_long_words=False, replace_whitespace=False))
+    for line in body.splitlines() if line.strip() != ''])
+    print(body)
+
+
+#    for element in word_list: 
+#    for element in body: 
+#        print(element)
     return
 
 
@@ -959,24 +968,24 @@ description_dict = {
                "JoyEllen, Milo, Gideon, and Franco for advice and "
                "playtesting!!",
 
-    'help': "\n\nOne word commands: 'help', 'inventory', 'look', 'credits', "
+    'help': "One word commands: 'help', 'inventory', 'look', 'credits', "
             "'north', 'south', 'east', 'west', 'score'\n\n"
-            
+
             "Verb-noun commands: 'take' <item>, 'drop' <item>, 'attack' "
-            "<creature>, \n'open' <door or container>, 'unlock' <door or "
-            "container>, 'examine' <room, feature, or item>,\nread <writing>, "
+            "<creature>, 'open' <door or container>, 'unlock' <door or "
+            "container>, 'examine' <room, feature, or item>,read <writing>, "
             "eat <food>, pull <lever>, push <button>, wear "
             "<garment>.\n\n"
-            
+
             "Items not in your hand are stored in your backpack. You can view "
             "them using 'inventory'. You can 'take' one object into your hand "
-            "at a time. \nYour other hand is holding your light source.\n\n"
-            
+            "at a time. Your other hand is holding your light source.\n\n"
+
             "'quit' to quit\n",
 
-    'intro': "\nWelcome brave adventurer!\nYou are Burt-the-Boneheaded, the "
+    'intro': "Welcome brave adventurer!\n\nYou are Burt-the-Boneheaded, the "
              "only adventurer brave - or foolish - enough to enter the Dark "
-             "Castle in search of treasure.\n\n",
+             "Castle in search of treasure.\n",
 
     "fist": "Yep, that's your fist. Still bruised from the last time you "
             "swung and missed and hit a wall...\n",
