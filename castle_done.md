@@ -27,8 +27,8 @@ Next Actions
 	DONE Unlock Door & Open Door;
 	DONE room feature text in look: for i in [lst] Print("there is an " + i + " here\n")  
 
-#	main_hall
-#		DONE Describe paths
+	main_hall
+		DONE Describe paths
 #		DONE Add stale_biscuts to backpack
 #		DONE Add writing_dict
 #		DONE Describe items & features: shiny_sword, hedgehog, tapestries, biscuts 
