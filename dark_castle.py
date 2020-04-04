@@ -12,6 +12,7 @@ Last update = Apr 2, 2020
 import random
 import math
 import textwrap
+import pprint
 
 
 # *********************
@@ -190,19 +191,41 @@ def timer(room, room_dict, state_dict, description_dict):
 # *******************
 
 def printtw(value):
+
+
+# ATTEMPT 1
+#    aa=[]
+#    for ix in value.splitlines():
+#        if len(ix)<=80: aa.append(ix)
+#        else: aa.extend(textwrap.wrap(ix,80))
+
+#    pprint.pprint(aa)
+
+# ATTEMPT 2
 #    wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
 #    word_list = wrapper.wrap(text=value) 
-
-    body = "s"
-    body = '\n'.join(['\n'.join(textwrap.wrap(value, 80,
-                     break_long_words=False, replace_whitespace=False))
-    for line in body.splitlines() if line.strip() != ''])
-    print(body)
-
 
 #    for element in word_list: 
 #    for element in body: 
 #        print(element)
+
+
+    body = "s"
+
+# ATTEMPT 3
+    body = '\n'.join(['\n'.join(textwrap.wrap(value, 80,
+                     break_long_words=False, replace_whitespace=False))
+    for line in body.splitlines() if line.strip() != ''])
+
+
+# ATTEMPT 4
+#    wrapArgs = {'width': 90, 'break_long_words': True, 'replace_whitespace': False}
+#    fold = lambda value, wrapArgs: textwrap.fill(value, **wrapArgs)
+#    body = '\n'.join([fold(value, wrapArgs) for value in body.splitlines()])
+
+    print(body)
+
+
     return
 
 
@@ -217,7 +240,7 @@ def look(
 ):
 
     score_key = room
-    printtw(description_dict[room])
+    print(description_dict[room])
     if len(room_dict[room]['features']) > 0:
         for feature in room_dict[room]['features']:
             print("There is a " + feature + " here.\n")
@@ -983,7 +1006,9 @@ description_dict = {
 
             "'quit' to quit\n",
 
-    'intro': "Welcome brave adventurer!\n\nYou are Burt-the-Boneheaded, the "
+    'intro': "Welcome brave adventurer!"
+             "\n\n"
+             "You are Burt-the-Boneheaded, the "
              "only adventurer brave - or foolish - enough to enter the Dark "
              "Castle in search of treasure.\n",
 
