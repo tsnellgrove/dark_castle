@@ -1,18 +1,17 @@
-"""Castle Adventure 1.695
+"""Castle Adventure 1.69
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 3, 2020
+Last update = Apr 4, 2020
 """
 
 # *** Imports ***
 import random
 import math
 import textwrap
-import pprint
 
 
 # *********************
@@ -42,19 +41,19 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
         if room == 'main_hall' and 'hedgehog' in room_dict[room]['features'] \
                 and 'stale_biscuits' not in room_dict[room]['view_only'] \
                 and 'shiny_sword' in room_dict[room]['items']:
-            print(description_dict[trigger_key])
+            printtw(description_dict[trigger_key])
             return(True)
 
     elif (trigger_key == 'east-blank') or (trigger_key == 'west-blank'):
         if room == 'entrance' and ('grimy_axe' in state_dict['hand']
                     or 'shiny_sword' in state_dict['hand']):
             if state_dict['score_dict']['gator-crown'][0] == 0:
-                print(description_dict['east-blank-crown'])
+                printtw(description_dict['east-blank-crown'])
                 state_dict['backpack'].append('royal_crown')
                 score('gator-crown', state_dict, static_dict)
                 return(True)
             else:
-                print(description_dict['east-blank-no_crown'])
+                printtw(description_dict['east-blank-no_crown'])
                 return(True)
 
     elif trigger_key == 'drop-stale_biscuits':
@@ -74,7 +73,7 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
             creature_dict['hedgehog']['state'] = 'hedgehog_fed_sword_returned'
             description_update(
                 'hedgehog', 'hedgehog_fed_sword_returned', description_dict)
-            print(description_dict[trigger_key])
+            printtw(description_dict[trigger_key])
             room_dict[room]['items'].append('silver_key')
             return
     
@@ -88,29 +87,29 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
 
     elif trigger_key == 'pull-throne':
         if state_dict['max_count']['broach_found'] > 0:
-            print(description_dict[trigger_key])
+            printtw(description_dict[trigger_key])
             room_dict[room]['items'].append('hedgehog_broach')
             state_dict['max_count']['broach_found'] -= 1
         return
 
     elif trigger_key == 'push-throne':
         if state_dict['max_count']['broach_found'] > 0:
-            print(description_dict[trigger_key])
+            printtw(description_dict[trigger_key])
         return
 
     elif trigger_key == 'read-illuminated_letters':
         if room != 'throne_room':
-            print(description_dict['read-illuminated_letters-wrong_room'])
+            printtw(description_dict['read-illuminated_letters-wrong_room'])
         elif 'hedgehog' not in room_dict['main_hall']['features']:
-            print(description_dict['read-illuminated_letters-no_hedgehog'])
+            printtw(description_dict['read-illuminated_letters-no_hedgehog'])
         elif 'royal_crown' not in state_dict['worn']:
-            print(description_dict['read-illuminated_letters-no_crown'])
+            printtw(description_dict['read-illuminated_letters-no_crown'])
         else:
-            print(description_dict['read-illuminated_letters-win'])
+            printtw(description_dict['read-illuminated_letters-win'])
             score(trigger_key, state_dict, static_dict)
             state_dict['game_ending'] = 'won'
             end(state_dict, static_dict)
-            print(description_dict['credits'])
+            printtw(description_dict['credits'])
             exit()
 
     elif trigger_key in [
@@ -118,11 +117,11 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
             'examine-iron_portcullis', 'examine-grimy_axe', 'north-blank']:
         if room == 'antechamber' and 'goblin' in room_dict[room]['features'] \
                 and 'shiny_sword' in state_dict['hand']:
-            print(description_dict['goblin_attacks-parry'])
+            printtw(description_dict['goblin_attacks-parry'])
             return(True)
         elif room == 'antechamber' and 'goblin' in room_dict[room]['features']\
                 and 'shiny_sword' 'shiny_sword' not in state_dict['hand']:
-            print(description_dict['goblin_attacks-death'])
+            printtw(description_dict['goblin_attacks-death'])
             end(state_dict, static_dict)
             exit()
         else:
@@ -131,12 +130,12 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
     elif trigger_key == 'push-big_red_button-success':
         if door_dict['iron_portcullis']['door_state'] == 'closed':
             door_dict['iron_portcullis']['door_state'] = 'open'
-            print(description_dict['push-big_red_button-open'])
+            printtw(description_dict['push-big_red_button-open'])
             description_dict['iron_portcullis'] = \
                 description_dict['iron_portcullis-base'] + "open.\n"
         else:
             door_dict['iron_portcullis']['door_state'] = 'closed'
-            print(description_dict['push-big_red_button-close'])
+            printtw(description_dict['push-big_red_button-close'])
             description_dict['iron_portcullis'] = \
                 description_dict['iron_portcullis-base'] + "closed.\n"
 
@@ -161,7 +160,7 @@ def timer(room, room_dict, state_dict, description_dict):
 
         # *** If hedgehog exist and room == main_hall print description ***
         if room == 'main_hall':
-            print(description_dict[timer_key + "-timer_" 
+            printtw(description_dict[timer_key + "-timer_" 
                 + str(state_dict['timer_dict']['drop-stale_biscuits'])])
 
         # *** decrement timer ***
@@ -399,7 +398,7 @@ def interpreter_text(
         visible_items.append("burt")
 
         if word2 in visible_items:
-            print(description_dict[word2])
+            printtw(description_dict[word2])
             if word2 in allowed_lang_dict['is_container']:
                 if door_dict[word2]['door_state'] == 'open':
                     contain_inv = ', '.join(door_dict[word2]['contains'])
@@ -566,7 +565,7 @@ def interpreter_text(
 
         if word2 in allowed_lang_dict['can_be_read']:
             if static_dict['written_on_dict'][word2] in visible_items:
-                print(description_dict[word2 + "-read"])
+                printtw(description_dict[word2 + "-read"])
                 if trigger_key in static_dict['post_action_trigger_lst']:
                     trigger(
                         room, trigger_key, room_dict, word2, description_dict,
@@ -592,7 +591,7 @@ def interpreter_text(
             attack_weapon = word1 + "-" + weapon
             attack_result = attack_weapon + "-" + 'result'
             attack_description = word2 + "-" + attack_weapon
-            print(description_dict[attack_description])
+            printtw(description_dict[attack_description])
 
             if creature_dict[word2][attack_result] == 'creature_death':
                 room_dict[room]['features'].remove(word2)
@@ -625,7 +624,7 @@ def interpreter_text(
 
     elif word1 == "eat":
         if word2 in allowed_lang_dict['can_be_eaten_lst'] and word2 in hand:
-            print(description_dict[word2 + "-eat"])
+            printtw(description_dict[word2 + "-eat"])
         else:
             print("Burt you can't " + word1 + " that!\n")
 
@@ -714,7 +713,7 @@ def interpreter_text(
             print("Worn\n")
 
 # *** print worn update text ***
-            print(description_dict[score_key])
+            printtw(description_dict[score_key])
 
 # *** update global 'hand' and score ***
             state_dict['hand'] = hand
@@ -784,10 +783,10 @@ description_dict = {
                   "drawbridge. It is 10 feet tall and reenforced with steel "
                   "bands. Imposing indeed! There is rusty_lettering across "
                   "the top of the gate and a rusty keyhole next to a handle. "
-                  "The front_gate is closed.\n",
+                  "The front_gate is closed.",
     
     'iron_portcullis': "Beyond the iron_portcullis you can dimly make out the "
-                       "next room. The iron_portcullis is closed.\n",
+                       "next room. The iron_portcullis is closed.",
 
     # --- Non-Door Features ---
 
@@ -796,31 +795,31 @@ description_dict = {
                      "also contains a big_red_button. There are no directions "
                      "posted as to what the controls are for or how to use "
                      "them (a clear ISO lapse is ever you've seen one "
-                     "Burt).\n",
+                     "Burt).",
     
-    'left_lever': "The left_lever is down.\n",
-    
-    'middle_lever': "The middle_lever is down.\n",
-    
-    'right_lever': "The right_lever is down.\n",
-    
+    'left_lever': "The left_lever is down.",
+
+    'middle_lever': "The middle_lever is down.",
+
+    'right_lever': "The right_lever is down.",
+
     'big_red_button': "The big_red_button is to the right of the three "
                       "levers. You have no idea what it does but you have an "
-                      "almost irrestiable urge to push it.\n",
-    
+                      "almost irrestiable urge to push it.",
+
     'throne': "High-backed and intricately carved, the throne is secured to "
               "the floor and wedged against the castle wall behind it. It "
               "does not look entirely comfortable but it must have once been "
               "very grand indeed. Alas, like the rest of Dark Castle, it is "
               "now dingy and ominous with only faint hints of its past glory. "
               "It must have heard many secrets in its time... perhaps it "
-              "still holds some?\n",
+              "still holds some?",
     
     'stone_coffer': "This is the sort of coffer that, in better days, was no "
                     "doubt filled to the brim will brightly shining gold "
                     "pieces. Unfortunately, as you'd begun to fear, those "
                     "days are long past and now the coffer is filled only "
-                    "with a deep layer of dust.\n",
+                    "with a deep layer of dust.",
     
     'crystal_box': "Atop an ornate pillar to the left of the throne sits an "
                    "intricate crystal_box. Through the glass you can make out "
@@ -829,34 +828,34 @@ description_dict = {
                    "crystal_box that glitters brilliantly - much like the "
                    "shiny_sword in fact - in the otherwise dark and brooding "
                    "room. The top of the crystal_box is engraved with "
-                   "calligraphy. The crystal_box is closed.\n",
+                   "calligraphy. The crystal_box is closed.",
 
     # --- Items ---
 
     "rusty_key": "An old Rusty Key... the one they gave you at the pub when "
                  "you swore to pillage the Dark Castle. What could you "
-                 "possibly do with it?\n",
+                 "possibly do with it?",
     
     "stale_biscuits": "The stale_biscuits are rather unappetizing. There is a "
-                      "trademark baked into the biscuits.\n",
+                      "trademark baked into the biscuits.",
         
     'shiny_sword': "The sword glitters even in the dim light. Despite its "
                    "age, the edge is keen and looks ready for action. There "
-                   "are dwarven_runes engraved upon the blade.\n",
+                   "are dwarven_runes engraved upon the blade.",
 
     'grimy_axe': "A nasty looking weapon - and poorly maintained too. If you "
                  "ever get out of this castle you should set aside some time "
-                 "to polish it.\n",
+                 "to polish it.",
     
     'torn_note': "This must have dropped from the goblin's hand when you "
                  "slew it. The note is ragged and torn. On it there is some "
-                 "messy_handwriting.\n",
-    
+                 "messy_handwriting.",
+
     'silver_key': "The small silver_key glitters in the dim light. It "
                   "certainly stands out in the otherwise dreary Dark Castle. "
                   "If you find a glittering silver keyhole somewhere this is "
-                  "definitely the key for it!\n",
-    
+                  "definitely the key for it!",
+
     'scroll_of_the_king': "Wow this thing is fancy! Huge letters with little "
                           "pictures inside them and all sorts of curvy "
                           "flourish at the end of each and every letter. "
@@ -867,17 +866,17 @@ description_dict = {
                           "illuminated_letters. Thanks to the hard and "
                           "thankless work of your first grade teacher, Ms. "
                           "Lusk, you could probably just manage to read the "
-                          "illuminated_letters.\n",
+                          "illuminated_letters.",
 
     'royal_crown': "Giant rubies: check. Dozens of glittering jewels: check. "
                    "Gleaming gold and precious metals: check. Yep, this is a "
-                   "*seriously royal* crown you've got here Burt!\n",
+                   "*seriously royal* crown you've got here Burt!",
 
     'hedgehog_broach': "The silver hedgehog_broach is about an inch in "
             "diameter and is carved with the crest of a hedgehog bearing a "
             "sword and a key. It's strangely familiar... you've seen one "
             "just like it... long ago... examining the hedgehog_broach up "
-            "close triggers a long forgotten memory... \n\n"
+            "close triggers a long forgotten memory... \n"
 
             "you were only five or six years old... you and all your family "
             "were at the bedside of your great grandmother, Nana Baker. She "
@@ -886,21 +885,21 @@ description_dict = {
             "the past week and the village healer had given his solemn "
             "verdict that at long last her time had come. The whole village "
             "had come round to pay their last respects but now it was just "
-            "family left. She looked very tired and her eyes were closed. \n\n"
+            "family left. She looked very tired and her eyes were closed. \n"
             
             "'Thomas', said Nana, meaning your father, "
             "'I'm weary... be a good lad and go "
             "heat me some tea.. Nice and hot please.'. Next she sent your "
             "mother off for a special pillow she'd loaned to a friend. Soon "
             "every member of the family was off on an errand and it was just "
-            "you and Nana. \n\n"
+            "you and Nana. \n"
             
             "Quite suddenly, Nana's eyes opened, bright blue "
             "and wide awake. 'Well, Burty, finally we can have a little chat. "
             "I wish you were a bit older but now will have to do. Tell me "
-            "Burty, how do ya feel about baking biscuits?' \n\n"
+            "Burty, how do ya feel about baking biscuits?' \n"
             
-            "'It's na so bad' you'd stammered back. \n\n"
+            "'It's na so bad' you'd stammered back. \n"
             
             "Nana laughed and gave you a warm smile. "
             "Don't feel bad Burty, I wasn't much of a Baker myself - had a "
@@ -909,7 +908,7 @@ description_dict = {
             "mind you. Thought I might see a resemblance in your grandfather "
             "or father but they were mindful lads and happy enough to be "
             "Bakers. I guess it's waited for you to show itself. Probably "
-            "just as well. \n\n"
+            "just as well. \n"
             
             "Ah Willy... now don't get me wrong, Papa Baker "
             "was a good man - hard working and with a kind heart - took me "
@@ -917,7 +916,7 @@ description_dict = {
             "But you're from different stock Burty, very different. And that "
             "comes with some responsibilities.. you've got a destiny 'afore "
             "you and that can be hard on young man with no expecting of it. "
-            "That's why I'm telling you this now. \n\n"
+            "That's why I'm telling you this now. \n"
             
             "Your real great grandpa was Willy... William Herbert... "
             "last of the line of Flatheads.. "
@@ -929,7 +928,7 @@ description_dict = {
             "society... and so much older too... but the moment I told him he "
             "dropped right to one knee and popped the question. Didn't care "
             "the least what people said. Swore’d we'd elope if the high "
-            "priest wouldn't marry us... and he would have too! \n\n"
+            "priest wouldn't marry us... and he would have too! \n"
             
             "Alas, that crazy "
             "man... four months before the big day he was wandering about the "
@@ -940,19 +939,19 @@ description_dict = {
             "have swum in it forever. Oh the day I heard the news...' And "
             "with these words she touched the hedgehog_broach she always wore "
             "over her heart. It was a dark day Burty, a dark day for me an' "
-            "for the castle and all the lands around. \n\n"
+            "for the castle and all the lands around. \n"
             
             "Someday Burty William Baker, "
             "someday you'll be King. And when you is, you be a "
             "good King... a kind and courageous and bold king.. and when you "
             "is King don't ya going walking off the edge of the drawbridge "
             "with no weapon in your hands and breaking young girl's hearts.. "
-            "you hear me? \n\n"
+            "you hear me? \n"
             
             "Stunned by this strange tale... you began to "
             "stammer an answer but just then your Father returned with the "
             "hot tea. With a wink just for you, Nana's eyes closed again and "
-            "she sank back into the bed. Minutes later she was gone. \n\n"
+            "she sank back into the bed. Minutes later she was gone. \n"
             
             "For years and years you wondered what she was talking about.. "
             "and eventually you began to doubt the conversation had ever even "
@@ -960,7 +959,7 @@ description_dict = {
             "Dark Castle, with the hedgehog_broach before you, the memory "
             "is clear and real.. Nana was buried with her beloved broach.. "
             "she had insisted on it... this must have been a matching mate.. "
-            "presumably worn by Willy himself.\n",
+            "presumably worn by Willy himself.",
 
     # --- Special ---
 
@@ -988,13 +987,13 @@ description_dict = {
              "Castle in search of treasure.",
 
     "fist": "Yep, that's your fist. Still bruised from the last time you "
-            "swung and missed and hit a wall...\n",
+            "swung and missed and hit a wall...",
     
     "burt": "That's you. A fine specimen of a man. If not for the drooling "
-            "and the farting I don't know how you'd fend off the ladies\n",
+            "and the farting I don't know how you'd fend off the ladies",
     
     "nothing": "Burt, nothing is nothing. Nada. Zilch. Empty. Like that "
-               "noggin of yours..\n",
+               "noggin of yours..",
 
     'tapestries': "The main_hall tapestries are vast and elaborate, covering "
                   "both the east and the west walls. They appear to depict an "
@@ -1011,12 +1010,12 @@ description_dict = {
                   "adventure who lives in his mom's basement. You don't even "
                   "know what half those words mean. Stop staring at "
                   "tapestries and get out there and find the treasure you "
-                  "fool!!\n",
-    
+                  "fool!!",
+
     'alcove': "A small indentation in the west wall near the portcullis. "
               "It is just deep enough to hold one control_panel and one "
-              "goblin.\n",
-    
+              "goblin.",
+
     'family_tree': "It appears to show the family tree of the Flathead "
                    "dynasty. Though generally agreed to have peaked "
                    "(nadired?) during the reign of Dimwit Flathead and "
@@ -1027,11 +1026,11 @@ description_dict = {
                    "eventually ended with William 'The Wanderer' Flathead "
                    "only a little over 100 years ago. The area below William "
                    "is indistinct and feels incomplete.. as if there are "
-                   "details still waiting to be filled in.\n\n"
+                   "details still waiting to be filled in.\n"
 
                    "At the very top of the family_tree you see a royal "
                    "crest. Oddly enough, it appears to be a hedgehog bearing "
-                   "a sword and a key\n",
+                   "a sword and a key",
 
     # --- Creatures ---
 
@@ -1041,22 +1040,22 @@ description_dict = {
                 "hedgehog's eyes have a bright, territorial gleam in them "
                 "and it appears to have quite a preference for shiny things. "
                 "You don't know why but you feel an innate fondness for this "
-                "small but valiant creature.\n",
+                "small but valiant creature.",
     
     'dead_hedgehog': "Tragically, some mean and nasty adventurer has slain "
                      "this innocent woodland creature. In death it looks "
-                     "piteous and in need of a hug.\n",
+                     "piteous and in need of a hug.",
     
     'goblin': "The goblin stands in the alcove guarding the control_panel "
               "and is armed and dangerous. It wields a grimy_axe and looks at "
               "you with watchful malice. This goblin clearly takes its guard "
               "duties very seriously. It would not be wise to approach the "
               "iron_portcullis or the control_panel (or the goblin) "
-              "un-armed.\n",
+              "un-armed.",
 
     'dead_goblin': "Even in death the goblin looks fierce and resolute. "
                    "Whoever dispatched this enemy must be an adventurer of "
-                   "some renown!\n",
+                   "some renown!",
 
     # --- Rooms ---
 
@@ -1102,7 +1101,7 @@ description_dict = {
 
     'take-shiny_sword': "The moment you approach the sword the territorial "
                         "hedgehog springs forward, blocks your path, and "
-                        "bares it's teeth.\n",
+                        "bares it's teeth.",
 
     'east-blank-crown': "With courage and boldness to spare you leap from the "
                         "drawbridge into the murky waters of the moat. A less "
@@ -1122,23 +1121,23 @@ description_dict = {
                         "drawbridge one handed. The lads at the pub would "
                         "fall over at the sight this your skill and courage! "
                         "(though mind you, they fall over on a regular basis "
-                        "as it is)\n",
+                        "as it is)",
 
     'east-blank-no_crown': "With courage and boldness to spare you leap from "
                            "the drawbridge into the murky waters of the moat. "
                            "Apparently the last time you did this you "
                            "terrified the local wildlife so much they are "
                            "still in hiding. After treading water for a few "
-                           "minutes you clamber back onto the drawbridge.\n",
+                           "minutes you clamber back onto the drawbridge.",
 
     'drop-shiny_sword': "The hedgehog beams at you with gratitude for "
                         "returning the shiny_sword. From a hidden fold of its "
                         "fur it takes out a silver_key and places it at your "
-                        "feet with a bow.\n",
+                        "feet with a bow.",
 
     'push-throne': "You push hard on the throne. Nothing happens but one "
                    "side of the throne feels a bit askew - as if something "
-                   "was wedged behind it. Strange...\n",
+                   "was wedged behind it. Strange...",
 
     'pull-throne': "Hoping hoping to find some sort of secret compartment "
                    "filled with gold - or at least a good souvenir to show to "
@@ -1147,14 +1146,14 @@ description_dict = {
                    "metallic 'clank' and something rolls out from beneath the "
                    "throne.. it appears to be a hedgehog_broach. It must have "
                    "been wedged between the throne and the castle wall all "
-                   "these years... since the days of the last King!\n",
+                   "these years... since the days of the last King!",
 
     'read-illuminated_letters-wrong_room': "Upon reading the scroll aloud you "
                                            "hear a distant rumble as if great "
                                            "powers are at work... but then it "
                                            "fades... perhaps you need to "
                                            "read it somewhere else to "
-                                           "complete the recipe?\n",
+                                           "complete the recipe?",
 
     'read-illuminated_letters-no_hedgehog': "Upon reading the scroll aloud "
                                             "there is a rumble and a bright "
@@ -1166,7 +1165,7 @@ description_dict = {
                                             "Burt... you may need to start "
                                             "your adventures over from the "
                                             "start and play through with a "
-                                            "more benevolent spirit.\n",
+                                            "more benevolent spirit.",
 
     'read-illuminated_letters-no_crown': "Upon reading the scroll aloud "
                                          "the clouds outside part, the "
@@ -1179,7 +1178,7 @@ description_dict = {
                                          "there was some token of royal "
                                          "lineage... perhaps some form of "
                                          "headpiece you could wear.. that you "
-                                         "would proclaim your birthright...\n",
+                                         "would proclaim your birthright...",
 
     'read-illuminated_letters-win': "Upon reading the scroll aloud "
                                     "the clouds outside part, the "
@@ -1201,37 +1200,37 @@ description_dict = {
                                     "of your family and friends - and the "
                                     "eternal pride of your great grandmother "
                                     "- you are now the King of Bright "
-                                    "Castle!!\n",
+                                    "Castle!!",
 
     'goblin_attacks-parry': "The goblin does not take kindly to your "
                             "presence in the north side of the room. It "
                             "attacks with lightening-fast swing of the "
                             "grimy_axe and you only barely manage to parry "
-                            "with your own weapon.\n",
+                            "with your own weapon.",
 
     'goblin_attacks-death': "The goblin does not take kindly "
                             "to your presence in the north side of the room. "
                             "It attacks with lightening-fast swing of the "
                             "grimy_axe and you are helpless against the "
                             "onslaught. You will need a better weapon than "
-                            "your fists if you are to survive this foe.\n",
+                            "your fists if you are to survive this foe.",
 
     'push-big_red_button-open': "You hear a loud clank, a whirring "
                                 "of gears, and the iron_portcullis suddenly "
-                                "opens.\n",
+                                "opens.",
 
     'push-big_red_button-close': "You hear a loud clank, a whirring "
                                  "of gears, and the iron_portcullis suddenly "
-                                 "closes.\n",
+                                 "closes.",
 
     'push-big_red_button-fail': "You press the button and hear a whirring of "
-                                "gears but nothing happens.\n",
+                                "gears but nothing happens.",
 
     # --- Worn Descriptions ---
 
-    'wear-royal_crown': "You now feel more regal.\n",
+    'wear-royal_crown': "You now feel more regal.",
 
-    'take-royal_crown-worn': "You suddenly feel a bit less kingly.\n",
+    'take-royal_crown-worn': "You suddenly feel a bit less kingly.",
 
     # --- Path Descriptions ---
 
@@ -1263,15 +1262,15 @@ description_dict = {
 
     # --- Read Text ---
 
-    'rusty_lettering-read': "'ABANDON HOPE ALL YE WHO EVEN THINK ABOUT IT'\n",
+    'rusty_lettering-read': "'ABANDON HOPE ALL YE WHO EVEN THINK ABOUT IT'",
 
-    'trademark-read': "'McVities'\n",
+    'trademark-read': "'McVities'",
 
-    'dwarven_runes-read': "'Goblin Walloper'\n",
+    'dwarven_runes-read': "'Goblin Walloper'",
 
     'messy_handwriting-read': "",  # random number assigned in main routine
 
-    'calligraphy-read': "'The Scroll of the King'\n",
+    'calligraphy-read': "'The Scroll of the King'",
 
     'illuminated_letters-read': "First with great effort and then, "
                                 "surprisingly, with surety and confidence, "
@@ -1302,7 +1301,7 @@ description_dict = {
                                 "dramatic high note with the words 'upon the "
                                 "hour these conditions be met, a new King of "
                                 "Bright Castle shall shine forth and be "
-                                "proclaimed!'\n",
+                                "proclaimed!'",
 
     # --- Attack Results ---
 
@@ -1310,19 +1309,19 @@ description_dict = {
                             "fist but it nimbly leaps aside. BURT! What has "
                             "gotten into you?? We have an evil castle to "
                             "conquer. Stop trying to slay defenseless "
-                            "woodland creatures!\n",
+                            "woodland creatures!",
 
     'hedgehog-attack-shiny_sword': "You strike at the hedgehog with the "
                                     "shiny_sword and it flees, terrified, "
                                     "from your unprovoked attack. You know in "
                                     "your heart that you will come to regret "
-                                    "this unkingly deed.\n",
+                                    "this unkingly deed.",
 
     'hedgehog-attack-grimy_axe': "You strike at the hedgehog with the "
                                  "grimy_axe and it flees, terrified, "
                                  "from your unprovoked attack. You know in "
                                  "your heart that you will come to regret "
-                                 "this unkingly deed.\n",
+                                 "this unkingly deed.",
 
     'goblin-attack-fist': "With an echoing war cry you charge the goblin, "
                           "flailing your fists wildly in all directions as "
@@ -1330,7 +1329,7 @@ description_dict = {
                           "during drunken altercations at the pub but it "
                           "proves less effective against a trained goblin "
                           "guard. The last thing you ever see is the goblin's "
-                          "grimy_axe swinging towards your head.\n",
+                          "grimy_axe swinging towards your head.",
 
     'goblin-attack-shiny_sword': "The shiny_sword surges with power and "
                                  "lethal heft in your hand. A preternatural "
@@ -1344,7 +1343,7 @@ description_dict = {
                                  "you have never even imagined having up "
                                  "until this very moment, you stride to meet "
                                  "your foe in battle and dispatch him with "
-                                 "one blazing fast strike of your sword.\n",
+                                 "one blazing fast strike of your sword.",
 
 # --- Stateful Description Updates ---
 
@@ -1357,15 +1356,15 @@ description_dict = {
                                  "have quite a preference for shiny things. "
                                  "You don't know why but you feel an innate "
                                  "fondness for this small but valiant "
-                                 "creature.\n",
+                                 "creature.",
     
-    'hedgehog_eating': "The hedgehog is eating ravenously.\n",
+    'hedgehog_eating': "The hedgehog is eating ravenously.",
     
     'hedgehog_fed_sword_not_taken': "The hedgehog is looking svelte and "
                                     "chipper. It has the swagger of a "
                                     "hedgehog that has scored a meal of "
                                     "stale_biscuits and still has it's "
-                                    "favorite shiny possession.\n",
+                                    "favorite shiny possession.",
     
     'hedgehog_fed_sword_taken': "The hedgehog is looking svelte and chipper "
                                 "but not entirely content. It's clearly "
@@ -1380,7 +1379,7 @@ description_dict = {
                                    "gratitude and devotion. It sees within "
                                    "you a nobility, compassion, and destiny "
                                    "beyond anything you've hitherto imagined "
-                                   "possessing.\n",
+                                   "possessing.",
 
     'front_gate-base': "The front_gate is just north of the Dark Castle's "
                        "drawbridge. It is 10 feet tall and reenforced with "
@@ -1411,30 +1410,30 @@ description_dict = {
                           "sleeping in the basement but the stale_biscuits "
                           "are really getting to you.. you'll need to be a "
                           "lot hungrier than you are now before you'll be "
-                          "able to keep another of those down!\n",
+                          "able to keep another of those down!",
 
 # --- Timer Descriptions ---
 
     'drop-stale_biscuits-timer_5': "With a yelp of grateful delight the "
                                    "starving hedgehog leaps upon the "
                                    "stale_biscuits and begins to devour "
-                                   "them.\n",
+                                   "them.",
 
     'drop-stale_biscuits-timer_4': "The hedgehog is ravenously devouring the "
                                    "stale_biscuits and is taking no notice of "
-                                   "you at all.\n",
+                                   "you at all.",
 
     'drop-stale_biscuits-timer_3': "The hedgehog has eaten through half the "
                                    "stale_biscuits but is still giving them "
-                                   "all of its attention.\n",
+                                   "all of its attention.",
 
     'drop-stale_biscuits-timer_2': "The hedgehog is nearly done eating all of "
                                    "the stale_biscuits and is beginning to "
-                                   "look around a bit.\n",
+                                   "look around a bit.",
 
     'drop-stale_biscuits-timer_1': "The hedgehog has finished the "
                                    "stale_biscuits and is vigilantly looking "
-                                   "around.\n"
+                                   "around."
 
 }
 
@@ -1650,7 +1649,7 @@ allowed_lang_dict = {
 switch_dict['big_red_button']['success_value'] = random.randint(0, 7)
 description_dict['messy_handwriting-read'] = "'..ode is " \
     + str(switch_dict['big_red_button']['success_value']) \
-    + ". Don't tell anyo..'\n"
+    + ". Don't tell anyo..'"
 
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])
@@ -1662,6 +1661,7 @@ look(
 # *** Get User Input ***
 while True:
     user_input = input("> ").lower()
+    print()
     if user_input == "quit":
         print("Goodbye Burt!\n")
         state_dict['game_ending'] = 'quit'

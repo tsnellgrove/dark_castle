@@ -38,7 +38,8 @@ Updates for v 1.7
 		Implement 'import textwrap'
 			DONE: Create printtw() function (see: https://www.geeksforgeeks.org/textwrap-text-wrapping-filling-python/)
 			DONE: Test printtw() on opening text in Main Routine
-			Extend to all other existing print() commands
+			DONE: Extend to all other existing print() commands
+			Full test of game with examine all
 		normalize each "if verb"
 		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
 		look at local variable usage to simplify code (e.g. score_dict)
@@ -62,6 +63,7 @@ Maintenance, clean-up, and features I should implement someday
 			silver key in mouse trap; need to swap with copper key
 			find a use for close command?
 			would be fun to use every verb ;-D
+	provide printtw() options for double spacing (add print() to inner for) and also change column width 
 	more directions
 	use .strip() on input
 	landscape / path changes
