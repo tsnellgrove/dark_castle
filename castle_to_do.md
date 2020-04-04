@@ -37,7 +37,7 @@ Updates for v 1.7
 		DONE: use .lower() on input
 		Implement 'import textwrap'
 			DONE: Create printtw() function (see: https://www.geeksforgeeks.org/textwrap-text-wrapping-filling-python/)
-			INPROC: Test printtw() on opening text in Main Routine
+			DONE: Test printtw() on opening text in Main Routine
 			Extend to all other existing print() commands
 		normalize each "if verb"
 		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()

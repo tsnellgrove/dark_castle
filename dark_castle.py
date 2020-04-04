@@ -1,4 +1,4 @@
-"""Castle Adventure 1.69
+"""Castle Adventure 1.695
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -192,52 +192,16 @@ def timer(room, room_dict, state_dict, description_dict):
 
 def printtw(txt_str):
 
-
-# ATTEMPT 1
-#    aa=[]
-#    for ix in value.splitlines():
-#        if len(ix)<=80: aa.append(ix)
-#        else: aa.extend(textwrap.wrap(ix,80))
-
-#    pprint.pprint(aa)
-
-# ATTEMPT 2
-
-#    print(txt_str)
-
     txt_lst = []
     txt_lst = txt_str.split("\n")
 
-#    print(txt_lst)
-
     for paragraph in txt_lst:
-
-#        print(paragraph)
-
         wrapper = textwrap.TextWrapper(width=80,break_long_words=False)
-#        wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
         word_list = wrapper.wrap(text=paragraph) 
 
         for element in word_list: 
             print(element)
-
         print()
-
-#    body = "s"
-
-# ATTEMPT 3
-#    body = '\n'.join(['\n'.join(textwrap.wrap(value, 80,
-#                     break_long_words=False, replace_whitespace=False))
-#    for line in body.splitlines() if line.strip() != ''])
-
-
-# ATTEMPT 4
-#    wrapArgs = {'width': 90, 'break_long_words': True, 'replace_whitespace': False}
-#    fold = lambda value, wrapArgs: textwrap.fill(value, **wrapArgs)
-#    body = '\n'.join([fold(value, wrapArgs) for value in body.splitlines()])
-
-#    print(body)
-
 
     return
 
@@ -390,7 +354,7 @@ def interpreter_text(
 # --- Handle One Word Commands
 
     if word1 == "help":
-        print(description_dict['help'])
+        printtw(description_dict['help'])
 
     elif word1 == "look":
         look(
@@ -404,16 +368,16 @@ def interpreter_text(
     elif word1 == "inventory":
         print("In your hand you have: " + hand[0] + "\n")
         backpack_inv = ', '.join(backpack)
-        print("In your backpack you have: " + backpack_inv + "\n")
+        printtw("In your backpack you have: " + backpack_inv)
         worn_inv = ', '.join(worn)
         print("You are wearing: " + worn_inv + "\n")
 
     elif word1 == "credits":
-        print(description_dict['credits'])
+        printtw(description_dict['credits'])
 
     elif word1 in allowed_movement:
         if (room + "-" + word1) in path_dict:
-            print(description_dict[room + "-" + word1])
+            printtw(description_dict[room + "-" + word1])
             action = path_dict[room + "-" + word1]['action']
             room_action(
                 action, word1, room, state_dict, path_dict, room_dict,
@@ -1101,12 +1065,12 @@ description_dict = {
                 "front_gate. To the south the way back home. To the east "
                 "and west and below you are the moat.",
 
-    'main_hall': "\n*** Main Hall ***\n\nYou are standing in what was once "
+    'main_hall': "*** Main Hall ***\nYou are standing in what was once "
                  "the sumptuous main hall of the castle. Faded tapestries "
                  "hang on the east and west walls. The front_gate is to the "
-                 "south. And a foreboding archway leads to the north.\n",
+                 "south. And a foreboding archway leads to the north.",
 
-    'antechamber': "\n*** Antechamber ***\n\nYou are standing in a what feels "
+    'antechamber': "*** Antechamber ***\nYou are standing in a what feels "
                    "more like a wide, tall-ceilinged corridor than a room. "
                    "Apparently this is the room-before-the-room, the pre-room "
                    "before the really, really grand room that comes after it. "
@@ -1121,9 +1085,9 @@ description_dict = {
                    "small alcove. It appears to have a control_panel with "
                    "some levers and a big red button on it but you can't see "
                    "it very well due to the dim light. The whole north end of "
-                   "the room is cloaked in shadows that make you uneasy.\n",
+                   "the room is cloaked in shadows that make you uneasy.",
 
-    'throne_room': "\n*** Throne Room ***\n\nThe room you're currently in is "
+    'throne_room': "*** Throne Room ***\nThe room you're currently in is "
                    "vast - almost cavernous. At the far end sits what must "
                    "have once been a grand and glorious throne. To the right "
                    "of the throne is a giant stone_coffer and to the left an "
@@ -1132,7 +1096,7 @@ description_dict = {
                    "shattered and ruined but you've heard stories of the "
                    "glowing stained glass that once filled them. And above "
                    "the room's entrance hangs a vast (though quite grimy) "
-                   "family_tree.\n",
+                   "family_tree.",
 
     # --- Trigger Descriptions ---
 
@@ -1271,31 +1235,31 @@ description_dict = {
 
     # --- Path Descriptions ---
 
-    'entrance-north': "You approach the daunting front gate.\n",
+    'entrance-north': "You approach the daunting front gate.",
 
     'entrance-south': "Don't be ridiculous Burt. You just swore to the whole "
                       "pub that you'd march into the Dark Castle and grab "
                       "the gold and buy everyone drinks with it. \nThat is "
                       "why they gave you the rusty_key. You can't turn back "
-                      "now!\n",
+                      "now!",
 
     'entrance-east': "With confidence and vigor you pitch off the side of "
                      "the drawbridge and into the moat. Who knew it would "
-                     "be full of crocodiles?\n",
+                     "be full of crocodiles?",
 
     'entrance-west': "With confidence and vigor you pitch off the side of "
                      "the drawbridge and into the moat. Who knew it would "
-                     "be full of crocodiles?\n",
+                     "be full of crocodiles?",
 
-    'main_hall-north': "You pass through the foreboding archway.\n",
+    'main_hall-north': "You pass through the foreboding archway.",
 
-    'main_hall-south': "You exit through the front_gate.\n",
+    'main_hall-south': "You exit through the front_gate.",
 
-    'antechamber-north': "You approach the iron_portcullis.\n",
+    'antechamber-north': "You approach the iron_portcullis.",
 
-    'antechamber-south': "You exit through the southern passage.\n",
+    'antechamber-south': "You exit through the southern passage.",
 
-    'throne_room-south': "You approach the iron_portcullis.\n",
+    'throne_room-south': "You approach the iron_portcullis.",
 
     # --- Read Text ---
 
