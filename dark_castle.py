@@ -1,11 +1,11 @@
-"""Castle Adventure 1.67
+"""Castle Adventure 1.69
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 2, 2020
+Last update = Apr 3, 2020
 """
 
 # *** Imports ***
@@ -190,7 +190,7 @@ def timer(room, room_dict, state_dict, description_dict):
 # --- Helper Routines
 # *******************
 
-def printtw(value):
+def printtw(txt_str):
 
 
 # ATTEMPT 1
@@ -202,20 +202,33 @@ def printtw(value):
 #    pprint.pprint(aa)
 
 # ATTEMPT 2
-#    wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
-#    word_list = wrapper.wrap(text=value) 
 
-#    for element in word_list: 
-#    for element in body: 
-#        print(element)
+#    print(txt_str)
 
+    txt_lst = []
+    txt_lst = txt_str.split("\n")
 
-    body = "s"
+#    print(txt_lst)
+
+    for paragraph in txt_lst:
+
+#        print(paragraph)
+
+        wrapper = textwrap.TextWrapper(width=80,break_long_words=False)
+#        wrapper = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
+        word_list = wrapper.wrap(text=paragraph) 
+
+        for element in word_list: 
+            print(element)
+
+        print()
+
+#    body = "s"
 
 # ATTEMPT 3
-    body = '\n'.join(['\n'.join(textwrap.wrap(value, 80,
-                     break_long_words=False, replace_whitespace=False))
-    for line in body.splitlines() if line.strip() != ''])
+#    body = '\n'.join(['\n'.join(textwrap.wrap(value, 80,
+#                     break_long_words=False, replace_whitespace=False))
+#    for line in body.splitlines() if line.strip() != ''])
 
 
 # ATTEMPT 4
@@ -223,7 +236,7 @@ def printtw(value):
 #    fold = lambda value, wrapArgs: textwrap.fill(value, **wrapArgs)
 #    body = '\n'.join([fold(value, wrapArgs) for value in body.splitlines()])
 
-    print(body)
+#    print(body)
 
 
     return
@@ -240,7 +253,7 @@ def look(
 ):
 
     score_key = room
-    print(description_dict[room])
+    printtw(description_dict[room])
     if len(room_dict[room]['features']) > 0:
         for feature in room_dict[room]['features']:
             print("There is a " + feature + " here.\n")
@@ -992,25 +1005,23 @@ description_dict = {
                "playtesting!!",
 
     'help': "One word commands: 'help', 'inventory', 'look', 'credits', "
-            "'north', 'south', 'east', 'west', 'score'\n\n"
+            "'north', 'south', 'east', 'west', 'score'\n"
 
             "Verb-noun commands: 'take' <item>, 'drop' <item>, 'attack' "
             "<creature>, 'open' <door or container>, 'unlock' <door or "
             "container>, 'examine' <room, feature, or item>,read <writing>, "
             "eat <food>, pull <lever>, push <button>, wear "
-            "<garment>.\n\n"
+            "<garment>.\n"
 
             "Items not in your hand are stored in your backpack. You can view "
             "them using 'inventory'. You can 'take' one object into your hand "
-            "at a time. Your other hand is holding your light source.\n\n"
+            "at a time. Your other hand is holding your light source.\n"
 
-            "'quit' to quit\n",
+            "'quit' to quit",
 
-    'intro': "Welcome brave adventurer!"
-             "\n\n"
-             "You are Burt-the-Boneheaded, the "
+    'intro': "Welcome brave adventurer!\nYou are Burt-the-Boneheaded, the "
              "only adventurer brave - or foolish - enough to enter the Dark "
-             "Castle in search of treasure.\n",
+             "Castle in search of treasure.",
 
     "fist": "Yep, that's your fist. Still bruised from the last time you "
             "swung and missed and hit a wall...\n",
@@ -1085,10 +1096,10 @@ description_dict = {
 
     # --- Rooms ---
 
-    'entrance': "\n*** Entrance ***\n\nYou are standing atop a drawbridge at "
+    'entrance': "*** Entrance ***\nYou are standing atop a drawbridge at "
                 "the entrance to the Dark Castle. To the north is the "
-                "front_gate. To the south the way back home. \nTo the east "
-                "and west and below you are the moat.\n",
+                "front_gate. To the south the way back home. To the east "
+                "and west and below you are the moat.",
 
     'main_hall': "\n*** Main Hall ***\n\nYou are standing in what was once "
                  "the sumptuous main hall of the castle. Faded tapestries "
