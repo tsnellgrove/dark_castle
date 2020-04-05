@@ -39,7 +39,7 @@ Updates for v 1.7
 			DONE: Create printtw() function (see: https://www.geeksforgeeks.org/textwrap-text-wrapping-filling-python/)
 			DONE: Test printtw() on opening text in Main Routine
 			DONE: Extend to all other existing print() commands
-			Full test of game with examine all
+			DONE: Full test of game with examine all
 		normalize each "if verb"
 		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
 		look at local variable usage to simplify code (e.g. score_dict)

@@ -1,11 +1,11 @@
-"""Castle Adventure 1.69
+"""Castle Adventure 1.70
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 4, 2020
+Last update = Apr 5, 2020
 """
 
 # *** Imports ***
@@ -944,7 +944,7 @@ description_dict = {
             "Someday Burty William Baker, "
             "someday you'll be King. And when you is, you be a "
             "good King... a kind and courageous and bold king.. and when you "
-            "is King don't ya going walking off the edge of the drawbridge "
+            "is King don't ya be going walking off the edge of the drawbridge "
             "with no weapon in your hands and breaking young girl's hearts.. "
             "you hear me? \n"
             
@@ -1139,7 +1139,7 @@ description_dict = {
                    "side of the throne feels a bit askew - as if something "
                    "was wedged behind it. Strange...",
 
-    'pull-throne': "Hoping hoping to find some sort of secret compartment "
+    'pull-throne': "Hoping to find some sort of secret compartment "
                    "filled with gold - or at least a good souvenir to show to "
                    "the lads back at the pub - you pull and prod the throne. "
                    "As you are pulling the throne forward you hear a "
@@ -1204,7 +1204,7 @@ description_dict = {
 
     'goblin_attacks-parry': "The goblin does not take kindly to your "
                             "presence in the north side of the room. It "
-                            "attacks with lightening-fast swing of the "
+                            "attacks with a lightening-fast swing of the "
                             "grimy_axe and you only barely manage to parry "
                             "with your own weapon.",
 
