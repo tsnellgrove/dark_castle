@@ -20,6 +20,7 @@ Updates for v1.6
 		DONE: move broach_found => generalized max_count dict
 
 Updates for v 1.7
+		##More testing - Offer the boys $1.00 to finish the game and report bugs
 		DONE: reduce path_dict to only valid paths and create random text for banging into wall
 		DONE: intro => description_dict
 		DONE: move 'invalid_path' to static_dict
@@ -35,25 +36,24 @@ Updates for v 1.7
 		DONE: score_dict => state_dict
 		DONE: timer_dict => state_dict
 		DONE: use .lower() on input
-		Implement 'import textwrap'
+		DONE: Implement 'import textwrap'
 			DONE: Create printtw() function (see: https://www.geeksforgeeks.org/textwrap-text-wrapping-filling-python/)
 			DONE: Test printtw() on opening text in Main Routine
 			DONE: Extend to all other existing print() commands
 			DONE: Full test of game with examine all
-		normalize each "if verb"
-		sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
+		DONE: sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
 		look at local variable usage to simplify code (e.g. score_dict)
 		clean up variable passing
+		normalize each "if verb"
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
-	More testing - Offer the boys $0.50 to finish the game and $0.35 bug bounty
-	docstrings for all functions [?]
 
 Updates for v 1.8
 	Post to GitHub using working Copy
 
 
 Maintenance, clean-up, and features I should implement someday
+		docstrings for all functions [?]
 		"close" verb
 		5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
 			copper key opens cabinet which holds potion

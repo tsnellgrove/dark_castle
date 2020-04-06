@@ -1,11 +1,11 @@
-"""Castle Adventure 1.70
+"""Castle Adventure 1.71
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 5, 2020
+Last update = Apr 6, 2020
 """
 
 # *** Imports ***
@@ -237,6 +237,16 @@ def description_update(description_key, update_key, description_dict):
     return
 
 
+def print_score(state_dict, static_dict):
+
+    current_score = state_dict['current_score']
+    max_score = static_dict['global_dict']['max_score']
+
+    print("Your score is now " + str(current_score)
+        + " out of " + str(max_score) + "\n")	
+    return
+
+
 def end(state_dict, static_dict):
     if state_dict['game_ending'] == 'death':
         print("You have died.\n")
@@ -247,10 +257,8 @@ def end(state_dict, static_dict):
     print(
         "Your adventure ended after " + str(state_dict['move_counter'])
         + " moves.\n")
-    print(
-        "Your score is " + str(state_dict['current_score']) + " out of "
-        + str(static_dict['global_dict']['max_score']) + "\n")
-    
+    print_score(state_dict, static_dict)
+
     score = state_dict['current_score']
     if score < 0:
         title_score = -10
@@ -300,8 +308,7 @@ def room_action(
 def score(score_key, state_dict, static_dict):
     if state_dict['score_dict'][score_key][0] == 0:
         state_dict['current_score'] += state_dict['score_dict'][score_key][1]
-        print("Your score is now " + str(state_dict['current_score'])
-            + " out of " + str(static_dict['global_dict']['max_score']) + "\n")
+        print_score(state_dict, static_dict)
     state_dict['score_dict'][score_key][0] += 1
     return
 
@@ -361,8 +368,8 @@ def interpreter_text(
             static_dict)
 
     elif word1 == "score":
-        print("Your score is now " + str(state_dict['current_score'])
-            + " out of " + str(static_dict['global_dict']['max_score']) + "\n")
+        print_score(state_dict, static_dict)
+
 
     elif word1 == "inventory":
         print("In your hand you have: " + hand[0] + "\n")
