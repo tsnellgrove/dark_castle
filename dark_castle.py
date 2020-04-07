@@ -1,11 +1,11 @@
-"""Castle Adventure 1.71
+"""Castle Adventure 1.72
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 6, 2020
+Last update = Apr 7, 2020
 """
 
 # *** Imports ***
@@ -37,16 +37,23 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
             state_dict, static_dict, door_dict, creature_dict):
     # *** Situational triggers and switch results ***
 
+    features = room_dict[room]['features']
+    view_only = room_dict[room]['view_only']
+    items = room_dict[room]['items']
+    hand = state_dict['hand']
+    if trigger_key in description_dict:
+        trigger_descript = description_dict[trigger_key]
+
     if trigger_key == 'take-shiny_sword':
-        if room == 'main_hall' and 'hedgehog' in room_dict[room]['features'] \
-                and 'stale_biscuits' not in room_dict[room]['view_only'] \
-                and 'shiny_sword' in room_dict[room]['items']:
-            printtw(description_dict[trigger_key])
+        if room == 'main_hall' and ('hedgehog' in features) \
+                and ('stale_biscuits' not in view_only) \
+                and ('shiny_sword' in items):
+            printtw(trigger_descript)
             return(True)
 
     elif (trigger_key == 'east-blank') or (trigger_key == 'west-blank'):
-        if room == 'entrance' and ('grimy_axe' in state_dict['hand']
-                    or 'shiny_sword' in state_dict['hand']):
+        if room == 'entrance' and ('grimy_axe' in hand
+                    or 'shiny_sword' in hand):
             if state_dict['score_dict']['gator-crown'][0] == 0:
                 printtw(description_dict['east-blank-crown'])
                 state_dict['backpack'].append('royal_crown')
@@ -57,7 +64,7 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
                 return(True)
 
     elif trigger_key == 'drop-stale_biscuits':
-        if room == 'main_hall' and 'hedgehog' in room_dict[room]['features']:
+        if room == 'main_hall' and 'hedgehog' in features:
             room_dict[room]['items'].remove(word2)
             room_dict[room]['view_only'].append(word2)
             state_dict['active_timer'] = 'drop-stale_biscuits'
@@ -68,18 +75,18 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
             return
     
     elif trigger_key == 'drop-shiny_sword':
-        if room == 'main_hall' and 'hedgehog' in room_dict[room]['features'] \
+        if room == 'main_hall' and 'hedgehog' in features \
                 and state_dict['active_timer'] != 'drop-stale_biscuits':
             creature_dict['hedgehog']['state'] = 'hedgehog_fed_sword_returned'
             description_update(
                 'hedgehog', 'hedgehog_fed_sword_returned', description_dict)
-            printtw(description_dict[trigger_key])
+            printtw(trigger_descript)
             room_dict[room]['items'].append('silver_key')
             return
     
     elif trigger_key == 'attack-goblin':
         if room == 'antechamber' \
-                and 'dead_goblin' in room_dict[room]['features']:
+                and 'dead_goblin' in features:
             room_dict[room]['view_only'].extend(
                 ['left_lever', 'middle_lever', 'right_lever', 'big_red_button']
                 )
@@ -87,14 +94,14 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
 
     elif trigger_key == 'pull-throne':
         if state_dict['max_count']['broach_found'] > 0:
-            printtw(description_dict[trigger_key])
+            printtw(trigger_descript)
             room_dict[room]['items'].append('hedgehog_broach')
             state_dict['max_count']['broach_found'] -= 1
         return
 
     elif trigger_key == 'push-throne':
         if state_dict['max_count']['broach_found'] > 0:
-            printtw(description_dict[trigger_key])
+            printtw(trigger_descript)
         return
 
     elif trigger_key == 'read-illuminated_letters':
@@ -115,12 +122,12 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
     elif trigger_key in [
             'examine-control_panel', 'open-iron_portcullis',
             'examine-iron_portcullis', 'examine-grimy_axe', 'north-blank']:
-        if room == 'antechamber' and 'goblin' in room_dict[room]['features'] \
+        if room == 'antechamber' and 'goblin' in features \
                 and 'shiny_sword' in state_dict['hand']:
             printtw(description_dict['goblin_attacks-parry'])
             return(True)
-        elif room == 'antechamber' and 'goblin' in room_dict[room]['features']\
-                and 'shiny_sword' 'shiny_sword' not in state_dict['hand']:
+        elif room == 'antechamber' and 'goblin' in features \
+                and 'shiny_sword' 'shiny_sword' not in hand:
             printtw(description_dict['goblin_attacks-death'])
             end(state_dict, static_dict)
             exit()
