@@ -1,11 +1,11 @@
-"""Castle Adventure 1.72
+"""Castle Adventure 1.73
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 7, 2020
+Last update = Apr 8, 2020
 """
 
 # *** Imports ***
@@ -33,10 +33,11 @@ def switch_value(switch_key, switch_dict):
     return(temp_value)
 
 
-def trigger(room, trigger_key, room_dict, word2, description_dict,
+def trigger(trigger_key, room_dict, description_dict,
             state_dict, static_dict, door_dict, creature_dict):
     # *** Situational triggers and switch results ***
 
+    room = state_dict['room']
     features = room_dict[room]['features']
     view_only = room_dict[room]['view_only']
     items = room_dict[room]['items']
@@ -65,8 +66,8 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
 
     elif trigger_key == 'drop-stale_biscuits':
         if room == 'main_hall' and 'hedgehog' in features:
-            room_dict[room]['items'].remove(word2)
-            room_dict[room]['view_only'].append(word2)
+            room_dict[room]['items'].remove('stale_biscuits')
+            room_dict[room]['view_only'].append('stale_biscuits')
             state_dict['active_timer'] = 'drop-stale_biscuits'
             state_dict['timer_dict']['drop-stale_biscuits'] = 5
             creature_dict['hedgehog']['state'] = 'hedgehog_eating'
@@ -113,7 +114,6 @@ def trigger(room, trigger_key, room_dict, word2, description_dict,
             printtw(description_dict['read-illuminated_letters-no_crown'])
         else:
             printtw(description_dict['read-illuminated_letters-win'])
-            score(trigger_key, state_dict, static_dict)
             state_dict['game_ending'] = 'won'
             end(state_dict, static_dict)
             printtw(description_dict['credits'])
@@ -359,7 +359,7 @@ def interpreter_text(
 
     if trigger_key in static_dict['pre_action_trigger_lst']:
         if trigger(
-                room, trigger_key, room_dict, word2, description_dict,
+                trigger_key, room_dict, description_dict,
                 state_dict, static_dict, door_dict, creature_dict):
             return
 
@@ -421,7 +421,7 @@ def interpreter_text(
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, description_dict,
+                    trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
 
             if score_key in state_dict['score_dict']:
@@ -516,7 +516,7 @@ def interpreter_text(
             
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, description_dict,
+                    trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
                            
         else:
@@ -582,7 +582,7 @@ def interpreter_text(
                 printtw(description_dict[word2 + "-read"])
                 if trigger_key in static_dict['post_action_trigger_lst']:
                     trigger(
-                        room, trigger_key, room_dict, word2, description_dict,
+                        trigger_key, room_dict, description_dict,
                         state_dict, static_dict, door_dict, creature_dict)
             else:
                 print("Burt, you can't read what you can't see!\n")
@@ -628,7 +628,7 @@ def interpreter_text(
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, description_dict,
+                    trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
 
         else:
@@ -663,7 +663,7 @@ def interpreter_text(
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
-                    room, trigger_key, room_dict, word2, description_dict,
+                    trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
 
         else:
@@ -688,7 +688,7 @@ def interpreter_text(
                     print(description_dict[word1 + "-" + word2 + '-fail'])
 
             trigger(
-                room, trigger_key, room_dict, word2, description_dict,
+                trigger_key, room_dict, description_dict,
                 state_dict, static_dict, door_dict, creature_dict)
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)

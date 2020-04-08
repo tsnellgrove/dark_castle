@@ -42,11 +42,11 @@ Updates for v 1.7
 			DONE: Extend to all other existing print() commands
 			DONE: Full test of game with examine all
 		DONE: sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
-		INPROC: look at local variable usage to simplify code (e.g. score_dict)
-			DONE: Improve local variable usage in triggers()
-			DONE: Full test post trigger variable update
-			Timer variables next
-		clean up variable passing
+		INPROC: Code Revew - local variable usage, simplify code, clean up variable passing
+			DONE: triger() - Improve local variable usage
+			DONE: trigger() - Full test post local variable update
+			DONE: trigger() - clean up variable passing
+			Timer() next
 		normalize each "if verb"
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
