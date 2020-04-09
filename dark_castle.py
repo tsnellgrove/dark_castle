@@ -1,11 +1,11 @@
-"""Castle Adventure 1.73
+"""Castle Adventure 1.74
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 8, 2020
+Last update = Apr 9, 2020
 """
 
 # *** Imports ***
@@ -149,17 +149,22 @@ def trigger(trigger_key, room_dict, description_dict,
     return
 
 
-def timer(room, room_dict, state_dict, description_dict):
+def timer(room_dict, state_dict, description_dict):
     # *** Timer conditionals ***
 
     timer_key = state_dict['active_timer']
+    room = state_dict['room']
 
     if timer_key == 'drop-stale_biscuits':
+
+        features = room_dict['main_hall']['features']
+        items = room_dict['main_hall']['items']
+        timer_num = state_dict['timer_dict']['drop-stale_biscuits']
 
         # *** If the hedgehog no longer exists (i.e. attacked by player), ***
         # *** reset timer_value to 0 and set active_timer to none ***
         # *** and remove 'stale_biscuits' from 'view_only' ***
-        if 'hedgehog' not in room_dict['main_hall']['features']:
+        if 'hedgehog' not in features:
             state_dict['timer_dict']['drop-stale_biscuits'] = 0
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
@@ -167,19 +172,19 @@ def timer(room, room_dict, state_dict, description_dict):
 
         # *** If hedgehog exist and room == main_hall print description ***
         if room == 'main_hall':
-            printtw(description_dict[timer_key + "-timer_" 
-                + str(state_dict['timer_dict']['drop-stale_biscuits'])])
+            printtw(description_dict[timer_key + "-timer_" + str(timer_num)])
 
         # *** decrement timer ***
-        state_dict['timer_dict']['drop-stale_biscuits'] -= 1
+        timer_num -= 1
+        state_dict['timer_dict']['drop-stale_biscuits'] = timer_num
 
         # *** if timer == 0 reset 'active_timer' & remove 'stale_biscuits' ***
-        if state_dict['timer_dict']['drop-stale_biscuits'] == 0:
+        if timer_num == 0:
             state_dict['active_timer'] = 'none'
             room_dict['main_hall']['view_only'].remove('stale_biscuits')
 
             # *** update hedgehog state & description based on shiny_sword ***
-            if 'shiny_sword' in room_dict['main_hall']['items']:
+            if 'shiny_sword' in items:
                 creature_dict['hedgehog']['state'] = 'fed_sword_returned'
                 description_update(
                     'hedgehog', 'hedgehog_fed_sword_not_taken',
@@ -1688,6 +1693,4 @@ while True:
             door_dict, state_dict, allowed_lang_dict, creature_dict,
             switch_dict, static_dict)
         if state_dict['active_timer'] != 'none':
-            timer(
-                state_dict['room'], room_dict, state_dict,
-                description_dict)
+            timer(room_dict, state_dict, description_dict)

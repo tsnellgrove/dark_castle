@@ -46,7 +46,8 @@ Updates for v 1.7
 			DONE: triger() - Improve local variable usage
 			DONE: trigger() - Full test post local variable update
 			DONE: trigger() - clean up variable passing
-			Timer() next
+			DONE: timer() - cleaned up variable passing, implemented local variables, tested
+			Helper Routines next
 		normalize each "if verb"
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
