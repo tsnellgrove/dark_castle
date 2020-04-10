@@ -114,6 +114,7 @@ def trigger(trigger_key, room_dict, description_dict,
             printtw(description_dict['read-illuminated_letters-no_crown'])
         else:
             printtw(description_dict['read-illuminated_letters-win'])
+            score(trigger_key, state_dict, static_dict)
             state_dict['game_ending'] = 'won'
             end(state_dict, static_dict)
             printtw(description_dict['credits'])
@@ -221,21 +222,25 @@ def unknown_word():
     response = random.randint(0, 4)
     print(static_dict['unknown_word_lst'][response])
     state_dict['move_counter'] -= 1
+    return
 
 
-def look(
-    room, room_dict, room_items, state_dict, description_dict, static_dict
-):
+def look(room_dict, state_dict, description_dict, static_dict):
 
+    room = state_dict['room']
+    features = room_dict[room]['features']
+    items = room_dict[room]['items']
     score_key = room
+
     printtw(description_dict[room])
-    if len(room_dict[room]['features']) > 0:
-        for feature in room_dict[room]['features']:
+    if len(features) > 0:
+        for feature in features:
             print("There is a " + feature + " here.\n")
-    if len(room_items) > 0:
-        printtw("The following items are here: " + ", ".join(room_items) + "\n")
-        if score_key in state_dict['score_dict']:
-            score(score_key, state_dict, static_dict)
+    if len(items) > 0:
+        printtw("The following items are here: " + ", ".join(items) + "\n")
+    if score_key in state_dict['score_dict']:
+        score(score_key, state_dict, static_dict)
+    return
 
 
 def str_to_lst(user_input):
@@ -297,10 +302,8 @@ def room_action(
         next_room = path_dict[room + "-" + word1]['next_room']
         if door_dict[door_name]['door_state'] == 'open':
             room = next_room
-            look(
-                room, room_dict, room_dict[room]['items'], state_dict,
-                description_dict, static_dict)
             state_dict['room'] = next_room
+            look(room_dict, state_dict, description_dict, static_dict)
         else:
             print("The " + door_name + " is closed.\n")
 
@@ -308,10 +311,8 @@ def room_action(
         door_name = path_dict[room + "-" + word1]['door']
         next_room = path_dict[room + "-" + word1]['next_room']
         room = next_room
-        look(
-            room, room_dict, room_dict[room]['items'], state_dict,
-            description_dict, static_dict)
         state_dict['room'] = next_room
+        look(room_dict, state_dict, description_dict, static_dict)
 
     return
 
@@ -375,9 +376,7 @@ def interpreter_text(
         printtw(description_dict['help'])
 
     elif word1 == "look":
-        look(
-            room, room_dict, room_items, state_dict, description_dict,
-            static_dict)
+        look(room_dict, state_dict, description_dict, static_dict)
 
     elif word1 == "score":
         print_score(state_dict, static_dict)
@@ -1673,9 +1672,7 @@ description_dict['messy_handwriting-read'] = "'..ode is " \
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])
 printtw(description_dict['help'])
-look(
-    state_dict['room'], room_dict, room_dict[state_dict['room']]['items'],
-    state_dict, description_dict, static_dict)
+look(room_dict, state_dict, description_dict, static_dict)
 
 # *** Get User Input ***
 while True:

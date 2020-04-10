@@ -47,6 +47,7 @@ Updates for v 1.7
 			DONE: trigger() - Full test post local variable update
 			DONE: trigger() - clean up variable passing
 			DONE: timer() - cleaned up variable passing, implemented local variables, tested
+			DONE: look() - cleaned up variable passing, local vars, testing (NEEDED IT!)
 			Helper Routines next
 		normalize each "if verb"
 		separate descriptions into text file and import at start of game
