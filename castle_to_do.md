@@ -50,6 +50,7 @@ Updates for v 1.7
 			DONE: look() - cleaned up variable passing, local vars, testing (NEEDED IT!)
 			Helper Routines next
 		normalize each "if verb"
+		map routines graphicaly
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
 
