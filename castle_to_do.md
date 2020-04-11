@@ -54,6 +54,7 @@ Updates for v 1.7
 		normalize each "if verb"
 		try switcher routine for end()
 		move print(credits) to end() and follow with exit() [allows removal of post end() exit() calls]
+		figure out a way to only print score once end end when game is won
 		map routines graphicaly
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
