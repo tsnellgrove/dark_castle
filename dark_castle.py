@@ -237,7 +237,7 @@ def look(room_dict, state_dict, description_dict, static_dict):
         for feature in features:
             print("There is a " + feature + " here.\n")
     if len(items) > 0:
-        printtw("The following items are here: " + ", ".join(items) + "\n")
+        printtw("The following items are here: " + ", ".join(items))
     if score_key in state_dict['score_dict']:
         score(score_key, state_dict, static_dict)
     return
@@ -300,7 +300,6 @@ def room_action(
         state_dict['game_ending'] = 'death'
         end(state_dict, static_dict)
         exit()
-
     elif action == "door":
         door_state = door_dict[door_name]['door_state']
         if door_state == 'open':
@@ -308,21 +307,25 @@ def room_action(
             look(room_dict, state_dict, description_dict, static_dict)
         else:
             print("The " + door_name + " is closed.\n")
-
     elif action == "passage":
         state_dict['room'] = next_room
         look(room_dict, state_dict, description_dict, static_dict)
-
     return
 
 
 # *** Score is called from look(), 'take', 'attack', and a few other spots ***
 def score(score_key, state_dict, static_dict):
-    if state_dict['score_dict'][score_key][0] == 0:
-        state_dict['current_score'] += state_dict['score_dict'][score_key][1]
+
+    score_event_count = state_dict['score_dict'][score_key][0]
+    score_event_value = state_dict['score_dict'][score_key][1]
+
+    if score_event_count == 0:
+        state_dict['current_score'] += score_event_value
         print_score(state_dict, static_dict)
-    state_dict['score_dict'][score_key][0] += 1
+    score_event_count += 1
+    state_dict['score_dict'][score_key][0] = score_event_count
     return
+
 
 # ********************
 # --- Text Interpreter

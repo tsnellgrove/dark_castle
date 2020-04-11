@@ -55,6 +55,9 @@ Updates for v 1.7
 		try switcher routine for end()
 		move print(credits) to end() and follow with exit() [allows removal of post end() exit() calls]
 		figure out a way to only print score once end end when game is won
+		standardize return on trigger()
+		consider "flattening" function calls
+			e.g. "interpreter() => score(), interpeter => print_score()" vs. "interpeter() => score() => print_score()"
 		map routines graphicaly
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
@@ -64,16 +67,17 @@ Updates for v 1.8
 
 
 Maintenance, clean-up, and features I should implement someday
-		docstrings for all functions [?]
-		"close" verb
-		5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
-			copper key opens cabinet which holds potion
-			potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
-			enter mouse hole
-			maybe fight mouse?
-			silver key in mouse trap; need to swap with copper key
-			find a use for close command?
-			would be fun to use every verb ;-D
+	verbs to functions with switcher?? (too much variable passing?)
+	docstrings for all functions [?]
+	"close" verb
+	5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
+		copper key opens cabinet which holds potion
+		potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
+		enter mouse hole
+		maybe fight mouse?
+		silver key in mouse trap; need to swap with copper key
+		find a use for close command?
+		would be fun to use every verb ;-D
 	provide printtw() options for double spacing (add print() to inner for) and also change column width 
 	more directions
 	use .strip() on input
