@@ -48,8 +48,10 @@ Updates for v 1.7
 			DONE: trigger() - clean up variable passing
 			DONE: timer() - cleaned up variable passing, implemented local variables, tested
 			DONE: look() - cleaned up variable passing, local vars, testing (NEEDED IT!)
+			DONE: end() - cleaned up local vars; tested
 			Helper Routines next
 		normalize each "if verb"
+		try switcher routine for end()
 		map routines graphicaly
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)

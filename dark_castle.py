@@ -1,4 +1,4 @@
-"""Castle Adventure 1.74
+"""Castle Adventure 1.75
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -265,26 +265,26 @@ def print_score(state_dict, static_dict):
 
 
 def end(state_dict, static_dict):
-    if state_dict['game_ending'] == 'death':
-        print("You have died.\n")
-    elif state_dict['game_ending'] == 'quit':
-        print("You have quit.\n")
-    elif state_dict['game_ending'] == 'won':
-        print("You have won!\n")
-    print(
-        "Your adventure ended after " + str(state_dict['move_counter'])
-        + " moves.\n")
-    print_score(state_dict, static_dict)
 
     score = state_dict['current_score']
+    moves = state_dict['move_counter']
     if score < 0:
         title_score = -10
     elif score == 0:
         title_score = 0
     else:
         title_score = math.ceil(score / 10) * 10
+    title = static_dict['titles_dict'][title_score]
 
-    print("Your title is: " + static_dict['titles_dict'][title_score] + "\n")
+    if state_dict['game_ending'] == 'death':
+        print("You have died.\n")
+    elif state_dict['game_ending'] == 'quit':
+        print("You have quit.\n")
+    elif state_dict['game_ending'] == 'won':
+        print("You have won!\n")
+    print("Your adventure ended after " + str(moves) + " moves.\n")
+    print_score(state_dict, static_dict)
+    print("Your title is: " + title + "\n")
     return
 
 
