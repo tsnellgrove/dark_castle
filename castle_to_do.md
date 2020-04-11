@@ -49,9 +49,11 @@ Updates for v 1.7
 			DONE: timer() - cleaned up variable passing, implemented local variables, tested
 			DONE: look() - cleaned up variable passing, local vars, testing (NEEDED IT!)
 			DONE: end() - cleaned up local vars; tested
+			DONE: room_action() - cleaned up variable passing & local vars; tested
 			Helper Routines next
 		normalize each "if verb"
 		try switcher routine for end()
+		move print(credits) to end() and follow with exit() [allows removal of post end() exit() calls]
 		map routines graphicaly
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)

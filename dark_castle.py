@@ -1,11 +1,11 @@
-"""Castle Adventure 1.75
+"""Castle Adventure 1.76
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 9, 2020
+Last update = Apr 10, 2020
 """
 
 # *** Imports ***
@@ -289,8 +289,12 @@ def end(state_dict, static_dict):
 
 
 def room_action(
-        action, word1, room, state_dict, path_dict, room_dict,
-        score_key, description_dict):
+        path_key, state_dict, static_dict, path_dict, room_dict,
+        description_dict):
+
+    action = path_dict[path_key]['action']
+    door_name = path_dict[path_key]['door']
+    next_room = path_dict[path_key]['next_room']
 
     if action == "death":
         state_dict['game_ending'] = 'death'
@@ -298,19 +302,14 @@ def room_action(
         exit()
 
     elif action == "door":
-        door_name = path_dict[room + "-" + word1]['door']
-        next_room = path_dict[room + "-" + word1]['next_room']
-        if door_dict[door_name]['door_state'] == 'open':
-            room = next_room
+        door_state = door_dict[door_name]['door_state']
+        if door_state == 'open':
             state_dict['room'] = next_room
             look(room_dict, state_dict, description_dict, static_dict)
         else:
             print("The " + door_name + " is closed.\n")
 
     elif action == "passage":
-        door_name = path_dict[room + "-" + word1]['door']
-        next_room = path_dict[room + "-" + word1]['next_room']
-        room = next_room
         state_dict['room'] = next_room
         look(room_dict, state_dict, description_dict, static_dict)
 
@@ -362,6 +361,7 @@ def interpreter_text(
     score_key = word1 + "-" + word2
     trigger_key = score_key
     switch_key = score_key
+    path_key = room + "-" + word1
 
     if trigger_key in static_dict['pre_action_trigger_lst']:
         if trigger(
@@ -393,12 +393,11 @@ def interpreter_text(
         printtw(description_dict['credits'])
 
     elif word1 in allowed_movement:
-        if (room + "-" + word1) in path_dict:
-            printtw(description_dict[room + "-" + word1])
-            action = path_dict[room + "-" + word1]['action']
+        if (path_key) in path_dict:
+            printtw(description_dict[path_key])
             room_action(
-                action, word1, room, state_dict, path_dict, room_dict,
-                score_key, description_dict)
+                path_key, state_dict, static_dict, path_dict, room_dict,
+                description_dict)
         else:
             response = random.randint(0, 4)
             print(static_dict['invalid_path_lst'][response])
