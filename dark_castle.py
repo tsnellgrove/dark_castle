@@ -1,11 +1,11 @@
-"""Castle Adventure 1.76
+"""Castle Adventure 1.77
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 10, 2020
+Last update = Apr 12, 2020
 """
 
 # *** Imports ***
@@ -283,7 +283,7 @@ def end(state_dict, static_dict):
     elif state_dict['game_ending'] == 'won':
         print("You have won!\n")
     print("Your adventure ended after " + str(moves) + " moves.\n")
-    print_score(state_dict, static_dict)
+#    print_score(state_dict, static_dict)
     print("Your title is: " + title + "\n")
     return
 
