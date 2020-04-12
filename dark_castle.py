@@ -1,4 +1,4 @@
-"""Castle Adventure 1.77
+"""Castle Adventure 1.78
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -117,8 +117,6 @@ def trigger(trigger_key, room_dict, description_dict,
             score(trigger_key, state_dict, static_dict)
             state_dict['game_ending'] = 'won'
             end(state_dict, static_dict)
-            printtw(description_dict['credits'])
-            exit()
 
     elif trigger_key in [
             'examine-control_panel', 'open-iron_portcullis',
@@ -131,7 +129,6 @@ def trigger(trigger_key, room_dict, description_dict,
                 and 'shiny_sword' 'shiny_sword' not in hand:
             printtw(description_dict['goblin_attacks-death'])
             end(state_dict, static_dict)
-            exit()
         else:
             return(False)
 
@@ -268,6 +265,8 @@ def end(state_dict, static_dict):
 
     score = state_dict['current_score']
     moves = state_dict['move_counter']
+    game_ending = state_dict['game_ending']
+
     if score < 0:
         title_score = -10
     elif score == 0:
@@ -276,16 +275,17 @@ def end(state_dict, static_dict):
         title_score = math.ceil(score / 10) * 10
     title = static_dict['titles_dict'][title_score]
 
-    if state_dict['game_ending'] == 'death':
+    if game_ending == 'death':
         print("You have died.\n")
-    elif state_dict['game_ending'] == 'quit':
+    elif game_ending == 'quit':
         print("You have quit.\n")
-    elif state_dict['game_ending'] == 'won':
+    elif game_ending == 'won':
         print("You have won!\n")
     print("Your adventure ended after " + str(moves) + " moves.\n")
-#    print_score(state_dict, static_dict)
     print("Your title is: " + title + "\n")
-    return
+    if game_ending == 'won':
+        printtw(description_dict['credits'])
+    exit()
 
 
 def room_action(
@@ -299,7 +299,6 @@ def room_action(
     if action == "death":
         state_dict['game_ending'] = 'death'
         end(state_dict, static_dict)
-        exit()
     elif action == "door":
         door_state = door_dict[door_name]['door_state']
         if door_state == 'open':
@@ -630,7 +629,6 @@ def interpreter_text(
             elif creature_dict[word2][attack_result] == 'player_death':
                 state_dict['game_ending'] = 'death'
                 end(state_dict, static_dict)
-                exit()
 
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
@@ -1684,7 +1682,6 @@ while True:
         print("Goodbye Burt!\n")
         state_dict['game_ending'] = 'quit'
         end(state_dict, static_dict)
-        break
     else:
         state_dict['move_counter'] += 1
         interpreter_text(

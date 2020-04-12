@@ -42,7 +42,7 @@ Updates for v 1.7
 			DONE: Extend to all other existing print() commands
 			DONE: Full test of game with examine all
 		DONE: sort out score printing - currently have score printed in 3 different locations: score(), end(), look()
-		INPROC: Code Revew - local variable usage, simplify code, clean up variable passing
+*		INPROC: Code Revew - local variable usage, simplify code, clean up variable passing
 			DONE: triger() - Improve local variable usage
 			DONE: trigger() - Full test post local variable update
 			DONE: trigger() - clean up variable passing
@@ -50,17 +50,17 @@ Updates for v 1.7
 			DONE: look() - cleaned up variable passing, local vars, testing (NEEDED IT!)
 			DONE: end() - cleaned up local vars; tested
 			DONE: room_action() - cleaned up variable passing & local vars; tested
-			Interpreter Routines next
-		optimize function calls
+*			Interpreter Routines next
+		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won
 			TRIED: "interpreter()=> score(), interpeter => print_score()" vs. "interpeter() => score() => print_score()"
 				(doesn't work - need score() to ensure only printing on first score_event)
-			move print(credits) to end() and follow with exit()
+			DONE: move print(credits) to end() and follow with exit()
 				allows removal of post end() exit() calls; Use "if" to ensure credits only on end = win
 		normalize each "if verb"
 		try switcher routine for end()
 		standardize return on trigger()
-		consider "flattening" function calls
+		consider "flattening" function calls (?)
 		map routines graphicaly
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
