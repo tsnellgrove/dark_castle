@@ -50,6 +50,7 @@ Updates for v 1.7
 			DONE: look() - cleaned up variable passing, local vars, testing (NEEDED IT!)
 			DONE: end() - cleaned up local vars; tested
 			DONE: room_action() - cleaned up variable passing & local vars; tested
+			DONE: One word commands & existing Interpreter local variables
 *			Interpreter Routines next
 		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won

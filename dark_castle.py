@@ -1,11 +1,11 @@
-"""Castle Adventure 1.78
+"""Castle Adventure 1.79
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 12, 2020
+Last update = Apr 13, 2020
 """
 
 # *** Imports ***
@@ -342,6 +342,7 @@ def interpreter_text(
     room = state_dict['room']
     room_items = room_dict[room]['items']
     room_features = room_dict[room]['features']
+    room_view_only = room_dict[room]['view_only']
     hand = state_dict['hand']
     backpack = state_dict['backpack']
     worn = state_dict['worn']
@@ -411,7 +412,7 @@ def interpreter_text(
     elif word1 == "examine":
 
         visible_items = (hand + backpack + room_items + room_features
-            + room_dict[room]['view_only'] + worn)
+            + room_view_only + worn)
         visible_items.append(room)
         visible_items.append("fist")
         visible_items.append("burt")
@@ -532,7 +533,7 @@ def interpreter_text(
     elif word1 == "open":
     
         if word2 in allowed_lang_dict['can_be_opened']:
-            if word2 not in room_dict[room]['features']:
+            if word2 not in room_features:
                 print("Burt, you can't see a " + word2 + " here!\n")
             elif door_dict[word2]['door_state'] == 'open':
                 print("Burt, the " + word2 + " is already open!\n")
@@ -557,7 +558,7 @@ def interpreter_text(
     elif word1 == "unlock":
     
         if word2 in allowed_lang_dict['can_be_opened']:
-            if word2 not in room_dict[room]['features']:
+            if word2 not in room_features:
                 print("Burt, you can't see a " + word2 + " here!\n")
             elif door_dict[word2]['door_state'] == 'open':
                 print("Burt, the " + word2 + " is already open!\n")
@@ -577,7 +578,7 @@ def interpreter_text(
     elif word1 == "read":
     
         visible_items = (hand + backpack + room_items + room_features
-            + room_dict[room]['view_only'])
+            + room_view_only)
         visible_items.append(room)
         visible_items.append("fist")
         visible_items.append("burt")
@@ -600,7 +601,7 @@ def interpreter_text(
     elif word1 == "attack":
     
         if word2 in allowed_lang_dict['can_be_attacked'] \
-                and word2 in room_dict[room]['features']:
+                and word2 in room_features:
 
             if hand[0] not in allowed_lang_dict['weapons']:
                 weapon = 'fist'
@@ -651,8 +652,7 @@ def interpreter_text(
     elif word1 == 'pull':
 
         if word2 in allowed_lang_dict['can_be_pulled_lst'] \
-                and (word2 in room_dict[room]['view_only']
-                or word2 in room_dict[room]['features']):
+                and (word2 in room_view_only or word2 in room_features):
             print("Pulled.\n")
 
             if word2 in switch_dict:
@@ -678,8 +678,7 @@ def interpreter_text(
     elif word1 == 'push':
 
         if word2 in allowed_lang_dict['can_be_pushed_lst'] \
-                and (word2 in room_dict[room]['view_only']
-                or word2 in room_dict[room]['features']):
+                and (word2 in room_view_only or word2 in room_features):
             print("Pushed.\n")
 
             if word2 in switch_dict:
