@@ -442,22 +442,17 @@ def interpreter_text(
 
         takeable_items = backpack + room_items + worn
 
-        # *** if item is takable && not "nothing" (inventory placeholder) ***
         if word2 in takeable_items and word2 != "nothing":
 
-            # *** swap variable ***
+            # *** new item=>hand; old hand item=>backpack (except 'nothing')***
             temp_swap = hand[0]
             del hand[0]
-
-            # *** add the taken item to player's hand' ***
             hand.append(word2)
             state_dict['hand'] = hand
-
-            # *** put contents of hand in backpack unless hand == "nothing" ***
             if temp_swap != "nothing":
                 backpack.append(temp_swap)
 
-            # *** remove taken item from its source list (backpack or room) ***
+            # *** remove taken item from source lst (backpack, room, worn) ***
             if word2 in backpack:
                 backpack.remove(word2)
             elif word2 in worn:
@@ -465,40 +460,37 @@ def interpreter_text(
             else:
                 room_items.remove(word2)
                 room_dict[room]['room_items'] = room_items
-
-                # *** Deal with Container Cases ***
+                # *** Container Cases (open containers dump into room_items)***
                 if word2 in state_dict['item_containers']:
                     container = state_dict['item_containers'][word2]
                     door_dict[container]['contains'].remove(word2)
                     if len(door_dict[container]['contains']) == 0:
                         door_dict[container]['contains'].append('nothing')
                     del state_dict['item_containers'][word2]
-
-            # *** confirm to the player that the item has been taken ***
-            print("Taken\n")
-
-# *** Clean up source containers ***
+            print("Taken\n") # confirm to play that item has been taken
 
             # *** if the backpack is now empty add placeholder "nothing" ***
             if len(backpack) == 0:
                 backpack.append("nothing")
-
             # *** ensure we don't get multiple "nothing" in backpack ***
             if len(backpack) > 1 and "nothing" in backpack:
                 backpack.remove("nothing")
-
             # *** if worn is now empty add the placeholder "nothing" to it ***
             if len(worn) == 0:
                 worn.append("nothing")
                 print(description_dict[score_key + '-worn']) # worn removal txt
-
-            # *** ensure we don't get multiple "nothing" in backpack ***
+            # *** ensure we don't get multiple "nothing" in worn ***
             if len(worn) > 1 and "nothing" in backpack:
                 worn.remove("nothing")
             
             state_dict['backpack'] = backpack
             state_dict['worn'] = worn
-            
+
+            if trigger_key in static_dict['post_action_trigger_lst']:
+                trigger(
+                    trigger_key, room_dict, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
+
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
 

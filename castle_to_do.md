@@ -51,6 +51,7 @@ Updates for v 1.7
 			DONE: end() - cleaned up local vars; tested
 			DONE: room_action() - cleaned up variable passing & local vars; tested
 			DONE: One word commands & existing Interpreter local variables
+			DONE: clean up examine() and take()
 *			Interpreter Routines next
 		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won
@@ -71,6 +72,7 @@ Updates for v 1.8
 
 
 Maintenance, clean-up, and features I should implement someday
+	create 'win' test routine with checksum
 	verbs to functions with switcher?? (too much variable passing?)
 	docstrings for all functions [?]
 	"close" verb
