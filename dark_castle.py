@@ -1,11 +1,11 @@
-"""Castle Adventure 1.79
+"""Castle Adventure 1.80
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 13, 2020
+Last update = Apr 14, 2020
 """
 
 # *** Imports ***
@@ -511,12 +511,15 @@ def interpreter_text(
             room_items.append(temp_swap)
             room_dict[room]['room_items'] = room_items
             print("Dropped\n")
-            
+
             if trigger_key in static_dict['post_action_trigger_lst']:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
-                           
+
+            if score_key in state_dict['score_dict']:
+                score(score_key, state_dict, static_dict)
+
         else:
             print("Burt you can't " + word1 + " that!\n")
 
@@ -525,23 +528,37 @@ def interpreter_text(
     elif word1 == "open":
     
         if word2 in allowed_lang_dict['can_be_opened']:
+
+            door_state = door_dict[word2]['door_state']
+            lock_state = door_dict[word2]['lock_state']
+
             if word2 not in room_features:
                 print("Burt, you can't see a " + word2 + " here!\n")
-            elif door_dict[word2]['door_state'] == 'open':
+            elif door_state == 'open':
                 print("Burt, the " + word2 + " is already open!\n")
-            elif door_dict[word2]['lock_state'] == 'locked':
+            elif lock_state == 'locked':
                 print("The " + word2 + " is locked.\n")
             else:
                 print("Opened\n")
-                door_dict[word2]['door_state'] = 'open'
+                door_state = 'open'
+                door_dict[word2]['door_state'] = door_state
                 description_dict[word2] = description_dict[word2 + '-base'] \
-                    + door_dict[word2]['door_state'] + ".\n"
+                    + door_state + ".\n"
                 if door_dict[word2]['is_container']:
                     contain_inv = ', '.join(door_dict[word2]['contains'])
                     print("The " + word2 + " contains a "
                         + contain_inv + ".\n")
                     room_dict[room]['items'].extend(
                         door_dict[word2]['contains'])
+
+            if trigger_key in static_dict['post_action_trigger_lst']:
+                trigger(
+                    trigger_key, room_dict, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
+
+            if score_key in state_dict['score_dict']:
+                score(score_key, state_dict, static_dict)
+
         else:
             print("Burt you can't " + word1 + " that!\n")
 

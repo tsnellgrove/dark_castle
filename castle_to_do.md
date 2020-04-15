@@ -52,6 +52,7 @@ Updates for v 1.7
 			DONE: room_action() - cleaned up variable passing & local vars; tested
 			DONE: One word commands & existing Interpreter local variables
 			DONE: clean up examine() and take()
+			DONE: clean up drop() and open()
 *			Interpreter Routines next
 		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won
