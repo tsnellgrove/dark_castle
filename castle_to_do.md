@@ -53,6 +53,7 @@ Updates for v 1.7
 			DONE: One word commands & existing Interpreter local variables
 			DONE: clean up examine() and take()
 			DONE: clean up drop() and open()
+			DONE: clean up unlock()
 *			Interpreter Routines next
 		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won

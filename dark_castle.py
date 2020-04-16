@@ -1,11 +1,11 @@
-"""Castle Adventure 1.80
+"""Castle Adventure 1.81
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 14, 2020
+Last update = Apr 16, 2020
 """
 
 # *** Imports ***
@@ -551,13 +551,13 @@ def interpreter_text(
                     room_dict[room]['items'].extend(
                         door_dict[word2]['contains'])
 
-            if trigger_key in static_dict['post_action_trigger_lst']:
-                trigger(
-                    trigger_key, room_dict, description_dict,
-                    state_dict, static_dict, door_dict, creature_dict)
+                if trigger_key in static_dict['post_action_trigger_lst']:
+                    trigger(
+                        trigger_key, room_dict, description_dict,
+                        state_dict, static_dict, door_dict, creature_dict)
 
-            if score_key in state_dict['score_dict']:
-                score(score_key, state_dict, static_dict)
+                if score_key in state_dict['score_dict']:
+                    score(score_key, state_dict, static_dict)
 
         else:
             print("Burt you can't " + word1 + " that!\n")
@@ -567,18 +567,30 @@ def interpreter_text(
     elif word1 == "unlock":
     
         if word2 in allowed_lang_dict['can_be_opened']:
+
+            door_state = door_dict[word2]['door_state']
+            lock_state = door_dict[word2]['lock_state']
+
             if word2 not in room_features:
                 print("Burt, you can't see a " + word2 + " here!\n")
-            elif door_dict[word2]['door_state'] == 'open':
+            elif door_state == 'open':
                 print("Burt, the " + word2 + " is already open!\n")
-            elif door_dict[word2]['lock_state'] == 'unlocked':
+            elif lock_state == 'unlocked':
                 print("The " + word2 + " is already unlocked.\n")
+            elif hand[0] != door_dict[word2]['key']:
+                print("Burt, you don't have the key in your hand!\n")
             else:
-                if hand[0] == door_dict[word2]['key']:
-                    print("Unlocked\n")
-                    door_dict[word2]['lock_state'] = 'unlocked'
-                else:
-                    print("Burt, you don't have the key in your hand!\n")
+                print("Unlocked\n")
+                door_dict[word2]['lock_state'] = 'unlocked'
+
+                if trigger_key in static_dict['post_action_trigger_lst']:
+                    trigger(
+                        trigger_key, room_dict, description_dict,
+                        state_dict, static_dict, door_dict, creature_dict)
+
+                if score_key in state_dict['score_dict']:
+                    score(score_key, state_dict, static_dict)
+
         else:
             print("Burt you can't " + word1 + " that!")
 
