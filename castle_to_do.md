@@ -54,18 +54,19 @@ Updates for v 1.7
 			DONE: clean up examine() and take()
 			DONE: clean up drop() and open()
 			DONE: clean up unlock()
+			DONE: clean up read(); introduce post_action_trigger local variable; re-arrange if-elif-else
+			re-arrange if-elif-else for examine(), take(), drop(), open(), and unlock()
 *			Interpreter Routines next
+			normalize each "if verb"
 		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won
 			TRIED: "interpreter()=> score(), interpeter => print_score()" vs. "interpeter() => score() => print_score()"
 				(doesn't work - need score() to ensure only printing on first score_event)
 			DONE: move print(credits) to end() and follow with exit()
 				allows removal of post end() exit() calls; Use "if" to ensure credits only on end = win
-		normalize each "if verb"
 		try switcher routine for end()
 		standardize return on trigger()
-		consider "flattening" function calls (?)
-		map routines graphicaly
+		map routines graphicaly; consider "flattening" function calls (?)
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
 

@@ -1,11 +1,11 @@
-"""Castle Adventure 1.81
+"""Castle Adventure 1.82
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 16, 2020
+Last update = Apr 17, 2020
 """
 
 # *** Imports ***
@@ -346,6 +346,7 @@ def interpreter_text(
     hand = state_dict['hand']
     backpack = state_dict['backpack']
     worn = state_dict['worn']
+    post_action_trigger = static_dict['post_action_trigger_lst']
 
 # *** Convert User Input to single word strings ***
 
@@ -425,7 +426,7 @@ def interpreter_text(
                     print("The " + word2 + " contains a "
                         + contain_inv + ".\n")
 
-            if trigger_key in static_dict['post_action_trigger_lst']:
+            if trigger_key in post_action_trigger:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
@@ -486,7 +487,7 @@ def interpreter_text(
             state_dict['backpack'] = backpack
             state_dict['worn'] = worn
 
-            if trigger_key in static_dict['post_action_trigger_lst']:
+            if trigger_key in post_action_trigger:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
@@ -512,7 +513,7 @@ def interpreter_text(
             room_dict[room]['room_items'] = room_items
             print("Dropped\n")
 
-            if trigger_key in static_dict['post_action_trigger_lst']:
+            if trigger_key in post_action_trigger:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
@@ -551,7 +552,7 @@ def interpreter_text(
                     room_dict[room]['items'].extend(
                         door_dict[word2]['contains'])
 
-                if trigger_key in static_dict['post_action_trigger_lst']:
+                if trigger_key in post_action_trigger:
                     trigger(
                         trigger_key, room_dict, description_dict,
                         state_dict, static_dict, door_dict, creature_dict)
@@ -583,7 +584,7 @@ def interpreter_text(
                 print("Unlocked\n")
                 door_dict[word2]['lock_state'] = 'unlocked'
 
-                if trigger_key in static_dict['post_action_trigger_lst']:
+                if trigger_key in post_action_trigger:
                     trigger(
                         trigger_key, room_dict, description_dict,
                         state_dict, static_dict, door_dict, creature_dict)
@@ -601,21 +602,21 @@ def interpreter_text(
         visible_items = (hand + backpack + room_items + room_features
             + room_view_only)
         visible_items.append(room)
-        visible_items.append("fist")
-        visible_items.append("burt")
 
-        if word2 in allowed_lang_dict['can_be_read']:
-            if static_dict['written_on_dict'][word2] in visible_items:
-                printtw(description_dict[word2 + "-read"])
-                if trigger_key in static_dict['post_action_trigger_lst']:
-                    trigger(
-                        trigger_key, room_dict, description_dict,
-                        state_dict, static_dict, door_dict, creature_dict)
-            else:
-                print("Burt, you can't read what you can't see!\n")
-
-        else:
+        if word2 not in allowed_lang_dict['can_be_read']:
             print("Burt you can't " + word1 + " that!\n")
+        elif static_dict['written_on_dict'][word2] not in visible_items:
+            print("Burt, you can't read what you can't see!\n")
+        else:
+            printtw(description_dict[word2 + "-read"])
+
+            if trigger_key in post_action_trigger:
+                trigger(
+                    trigger_key, room_dict, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
+
+            if score_key in state_dict['score_dict']:
+                score(score_key, state_dict, static_dict)
 
 # --- attack verb
 
@@ -652,7 +653,7 @@ def interpreter_text(
                 state_dict['game_ending'] = 'death'
                 end(state_dict, static_dict)
 
-            if trigger_key in static_dict['post_action_trigger_lst']:
+            if trigger_key in post_action_trigger:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
@@ -686,7 +687,7 @@ def interpreter_text(
                     description_dict[word2] = "The " + word2 + " is " \
                         + switch_dict[word2]['state'] + ".\n"
 
-            if trigger_key in static_dict['post_action_trigger_lst']:
+            if trigger_key in post_action_trigger:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
