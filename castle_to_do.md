@@ -56,7 +56,9 @@ Updates for v 1.7 & 1.8
 			DONE: clean up unlock()
 			DONE: clean up read(); introduce post_action_trigger local variable; re-arrange if-elif-else
 			DONE: re-arrange if-elif-else for examine(), take(), drop(), open(), and unlock()
+			DONE: clean up attack(); add print_score() to end() [back to dual score print on win]
 *			Interpreter Routines next
+			if-else alteration
 			normalize each "if verb"
 		DONE: optimize function calls
 			DONE: figure out a way to only print score once end end when game is won

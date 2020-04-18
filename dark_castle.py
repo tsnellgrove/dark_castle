@@ -1,4 +1,4 @@
-"""Castle Adventure 1.84
+"""Castle Adventure 1.85
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -282,6 +282,7 @@ def end(state_dict, static_dict):
     elif game_ending == 'won':
         print("You have won!\n")
     print("Your adventure ended after " + str(moves) + " moves.\n")
+    print_score(state_dict, static_dict)
     print("Your title is: " + title + "\n")
     if game_ending == 'won':
         printtw(description_dict['credits'])
@@ -614,9 +615,10 @@ def interpreter_text(
 
     elif word1 == "attack":
     
-        if word2 in allowed_lang_dict['can_be_attacked'] \
-                and word2 in room_features:
-
+        if word2 not in allowed_lang_dict['can_be_attacked'] \
+                or word2 not in room_features:
+            print("Burt you can't " + word1 + " that!\n")
+        else:
             if hand[0] not in allowed_lang_dict['weapons']:
                 weapon = 'fist'
             else:
@@ -643,15 +645,12 @@ def interpreter_text(
 
             elif creature_dict[word2][attack_result] == 'player_death':
                 state_dict['game_ending'] = 'death'
-                end(state_dict, static_dict)
+                end(state_dict, static_dict)  # print_score() called by end()
 
             if trigger_key in post_action_trigger:
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
-
-        else:
-            print("Burt you can't " + word1 + " that!\n")
 
 # --- eat verb
 
