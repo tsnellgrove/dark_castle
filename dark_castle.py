@@ -1,11 +1,11 @@
-"""Castle Adventure 1.82
+"""Castle Adventure 1.83
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 17, 2020
+Last update = Apr 18, 2020
 """
 
 # *** Imports ***
@@ -504,7 +504,9 @@ def interpreter_text(
 
         droppable_items = hand
         
-        if word2 in droppable_items and word2 != "nothing":
+        if word2 not in droppable_items or word2 == "nothing":
+            print("Burt you can't " + word1 + " that!\n")
+        else:
             temp_swap = hand[0]
             del hand[0]
             hand.append("nothing")
@@ -521,15 +523,13 @@ def interpreter_text(
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
 
-        else:
-            print("Burt you can't " + word1 + " that!\n")
-
 # --- Open verb
 
     elif word1 == "open":
     
-        if word2 in allowed_lang_dict['can_be_opened']:
-
+        if word2 not in allowed_lang_dict['can_be_opened']:
+            print("Burt you can't " + word1 + " that!\n")
+        else:
             door_state = door_dict[word2]['door_state']
             lock_state = door_dict[word2]['lock_state']
 
@@ -559,9 +559,6 @@ def interpreter_text(
 
                 if score_key in state_dict['score_dict']:
                     score(score_key, state_dict, static_dict)
-
-        else:
-            print("Burt you can't " + word1 + " that!\n")
 
 # --- Unlock verb
 
