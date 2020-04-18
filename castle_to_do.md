@@ -19,8 +19,8 @@ Updates for v1.6
 		DONE: use '-base' to isolate logic from text descriptions (switch descriptions => door descriptions)
 		DONE: move broach_found => generalized max_count dict
 
-Updates for v 1.7
-		##More testing - Offer the boys $1.00 to finish the game and report bugs
+Updates for v 1.7 & 1.8
+		DONE: More testing - Offer the boys $1.00 to finish the game and report bugs
 		DONE: reduce path_dict to only valid paths and create random text for banging into wall
 		DONE: intro => description_dict
 		DONE: move 'invalid_path' to static_dict
@@ -55,7 +55,7 @@ Updates for v 1.7
 			DONE: clean up drop() and open()
 			DONE: clean up unlock()
 			DONE: clean up read(); introduce post_action_trigger local variable; re-arrange if-elif-else
-			re-arrange if-elif-else for examine(), take(), drop(), open(), and unlock()
+			DONE: re-arrange if-elif-else for examine(), take(), drop(), open(), and unlock()
 *			Interpreter Routines next
 			normalize each "if verb"
 		DONE: optimize function calls

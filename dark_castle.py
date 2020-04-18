@@ -1,4 +1,4 @@
-"""Castle Adventure 1.83
+"""Castle Adventure 1.84
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -418,7 +418,9 @@ def interpreter_text(
         visible_items.append("fist")
         visible_items.append("burt")
 
-        if word2 in visible_items:
+        if word2 not in visible_items:
+            print("Burt you can't " + word1 + " that!\n")
+        else:
             printtw(description_dict[word2])
             if word2 in allowed_lang_dict['is_container']:
                 if door_dict[word2]['door_state'] == 'open':
@@ -434,17 +436,15 @@ def interpreter_text(
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
 
-        else:
-            print("Burt you can't " + word1 + " that!\n")
-
 # --- Take verb
 
     elif word1 == "take":
 
         takeable_items = backpack + room_items + worn
 
-        if word2 in takeable_items and word2 != "nothing":
-
+        if word2 not in takeable_items or word2 == "nothing":
+            print("Burt you can't " + word1 + " that!\n")
+        else:
             # *** new item=>hand; old hand item=>backpack (except 'nothing')***
             temp_swap = hand[0]
             del hand[0]
@@ -494,9 +494,6 @@ def interpreter_text(
 
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
-
-        else:
-            print("Burt you can't " + word1 + " that!\n")
 
 # --- Drop verb
 
@@ -564,8 +561,9 @@ def interpreter_text(
 
     elif word1 == "unlock":
     
-        if word2 in allowed_lang_dict['can_be_opened']:
-
+        if word2 not in allowed_lang_dict['can_be_opened']:
+            print("Burt you can't " + word1 + " that!")
+        else:
             door_state = door_dict[word2]['door_state']
             lock_state = door_dict[word2]['lock_state']
 
@@ -588,9 +586,6 @@ def interpreter_text(
 
                 if score_key in state_dict['score_dict']:
                     score(score_key, state_dict, static_dict)
-
-        else:
-            print("Burt you can't " + word1 + " that!")
 
 # --- read verb
 
