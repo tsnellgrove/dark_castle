@@ -60,7 +60,10 @@ Updates for v 1.7 & 1.8
 			DONE: clean up eat()
 			DONE: clean up pull() and push()
 *			add guiding error message for unseen verb
+			create view_special containing 'fist', 'burt', 'concious'
+			create "availability" categories - (i.e. viewable, interactable, hand)
 			apply local variables to push in switch case
+			standardize attack trigger / score
 			clean up wear()
 			if-else alteration
 			normalize each "if verb"
@@ -72,6 +75,7 @@ Updates for v 1.7 & 1.8
 				DONE: allows removal of post end() exit() calls; Use "if" to ensure credits only on end = win
 		DECIDED AGAINST: try switcher routine for end()
 		standardize return on trigger()
+		consider normalizing pre - and post checks for verbs (??)
 		map routines graphicaly; consider "flattening" function calls (?)
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
