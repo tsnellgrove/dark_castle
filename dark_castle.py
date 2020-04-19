@@ -1,4 +1,4 @@
-"""Castle Adventure 1.86
+"""Castle Adventure 1.87
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -412,7 +412,6 @@ def interpreter_text(
 # --- Examine verb
 
     elif word1 == "examine":
-
         visible_items = (hand + backpack + room_items + room_features
             + room_view_only + worn)
         visible_items.append(room)
@@ -440,7 +439,6 @@ def interpreter_text(
 # --- Take verb
 
     elif word1 == "take":
-
         takeable_items = backpack + room_items + worn
 
         if word2 not in takeable_items or word2 == "nothing":
@@ -499,7 +497,6 @@ def interpreter_text(
 # --- Drop verb
 
     elif word1 == "drop":
-
         droppable_items = hand
         
         if word2 not in droppable_items or word2 == "nothing":
@@ -524,7 +521,6 @@ def interpreter_text(
 # --- Open verb
 
     elif word1 == "open":
-    
         if word2 not in allowed_lang_dict['can_be_opened']:
             print("Burt you can't " + word1 + " that!\n")
         else:
@@ -561,7 +557,6 @@ def interpreter_text(
 # --- Unlock verb
 
     elif word1 == "unlock":
-    
         if word2 not in allowed_lang_dict['can_be_opened']:
             print("Burt you can't " + word1 + " that!")
         else:
@@ -591,7 +586,6 @@ def interpreter_text(
 # --- read verb
 
     elif word1 == "read":
-    
         visible_items = (hand + backpack + room_items + room_features
             + room_view_only)
         visible_items.append(room)
@@ -614,7 +608,6 @@ def interpreter_text(
 # --- attack verb
 
     elif word1 == "attack":
-    
         if word2 not in allowed_lang_dict['can_be_attacked'] \
                 or word2 not in room_features:
             print("Burt you can't " + word1 + " that!\n")
@@ -673,9 +666,11 @@ def interpreter_text(
 # --- Pull verb
 
     elif word1 == 'pull':
-
-        if word2 in allowed_lang_dict['can_be_pulled_lst'] \
-                and (word2 in room_view_only or word2 in room_features):
+        if word2 not in allowed_lang_dict['can_be_pulled_lst']:
+            print("Burt you can't " + word1 + " that!\n")
+        elif (word2 not in room_view_only) and (word2 not in room_features):
+            print("Burt, you can't pull what you can't see!")
+        else:
             print("Pulled.\n")
 
             if word2 in switch_dict:
@@ -693,34 +688,36 @@ def interpreter_text(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
 
-        else:
-            print("Burt you can't " + word1 + " that!\n")
+            if score_key in state_dict['score_dict']:
+                score(score_key, state_dict, static_dict)
 
 # --- Push verb
 
     elif word1 == 'push':
-
-        if word2 in allowed_lang_dict['can_be_pushed_lst'] \
-                and (word2 in room_view_only or word2 in room_features):
+        if word2 not in allowed_lang_dict['can_be_pushed_lst']:
+            print("Burt you can't " + word1 + " that!\n")
+        elif (word2 not in room_view_only) and (word2 not in room_features):
+            print("Burt, you can't push what you can't see!")
+        else:
             print("Pushed.\n")
 
             if word2 in switch_dict:
+                success_num = switch_dict[word2]['success_value']
+                switch_num = switch_value(switch_key, switch_dict)
                 switch_dict[word2]['press_count'] += 1
-
-                if switch_dict[word2]['success_value'] \
-                        == switch_value(switch_key, switch_dict):
-                        trigger_key = trigger_key + '-success'
+                if success_num == switch_num:
+                    trigger_key = trigger_key + '-success'
+                    score_key = trigger_key
                 else:
-                    print(description_dict[word1 + "-" + word2 + '-fail'])
+                    printtw(description_dict[word1 + "-" + word2 + '-fail'])
 
-            trigger(
-                trigger_key, room_dict, description_dict,
-                state_dict, static_dict, door_dict, creature_dict)
+            if trigger_key in post_action_trigger:
+                trigger(
+                    trigger_key, room_dict, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
+
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
-
-        else:
-            print("Burt you can't " + word1 + " that!\n")
 
 # --- Wear verb
 
@@ -1585,7 +1582,7 @@ state_dict = {
         'take-shiny_sword': [0, 10],
         'attack-hedgehog': [0, -20],
         'attack-goblin': [0, 5],
-        'push-big_red_button': [0, 10],
+        'push-big_red_button-success': [0, 10],
         'take-silver_key': [0, 5],
         'take-scroll_of_the_king': [0, 5],
         'examine-hedgehog_broach': [0, 5],
@@ -1624,6 +1621,7 @@ static_dict = {
         'drop-stale_biscuits',
         'attack-goblin',
         'drop-shiny_sword',
+        'push-big_red_button-success',
         'pull-throne',
         'push-throne',
         'read-illuminated_letters'
