@@ -1,11 +1,11 @@
-"""Castle Adventure 1.85
+"""Castle Adventure 1.86
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 18, 2020
+Last update = Apr 19, 2020
 """
 
 # *** Imports ***
@@ -655,10 +655,20 @@ def interpreter_text(
 # --- eat verb
 
     elif word1 == "eat":
-        if word2 in allowed_lang_dict['can_be_eaten_lst'] and word2 in hand:
-            printtw(description_dict[word2 + "-eat"])
-        else:
+        if word2 not in allowed_lang_dict['can_be_eaten_lst']:
             print("Burt you can't " + word1 + " that!\n")
+        elif word2 not in hand:
+            print("Burt you can't eat something that's not in your hand!")
+        else:
+            printtw(description_dict[word2 + "-eat"])
+
+            if trigger_key in post_action_trigger:
+                trigger(
+                    trigger_key, room_dict, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
+
+            if score_key in state_dict['score_dict']:
+                score(score_key, state_dict, static_dict)
 
 # --- Pull verb
 
