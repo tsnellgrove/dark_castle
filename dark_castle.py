@@ -1,4 +1,4 @@
-"""Castle Adventure 1.88
+"""Castle Adventure 1.89
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -674,14 +674,14 @@ def interpreter_text(
             print("Pulled.\n")
 
             if word2 in switch_dict:
-                if switch_dict[word2]['state'] == 'down':
-                    switch_dict[word2]['state'] = 'up'
-                    description_dict[word2] = "The " + word2 + " is " \
-                        + switch_dict[word2]['state'] + ".\n"
-                elif switch_dict[word2]['state'] == 'up':
-                    switch_dict[word2]['state'] = 'down'
-                    description_dict[word2] = "The " + word2 + " is " \
-                        + switch_dict[word2]['state'] + ".\n"
+                switch_state = switch_dict[word2]['state']
+                if switch_state == 'down':
+                    switch_state = 'up'
+                else:
+                    switch_state = 'down'
+                description_dict[word2] = "The " + word2 + " is " \
+                    + switch_state + ".\n"
+                switch_dict[word2]['state'] = switch_state
 
             if trigger_key in post_action_trigger:
                 trigger(
