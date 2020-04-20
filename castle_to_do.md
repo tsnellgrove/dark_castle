@@ -59,12 +59,12 @@ Updates for v 1.7 & 1.8
 			DONE: clean up attack(); add print_score() to end() [back to dual score print on win]
 			DONE: clean up eat()
 			DONE: clean up pull() and push()
+			DONE: clean up wear()
 *			add guiding error message for unseen verb
 			create view_special containing 'fist', 'burt', 'concious'
 			create "availability" categories - (i.e. viewable, interactable, hand)
 			apply local variables to push in switch case
 			standardize attack trigger / score
-			clean up wear()
 			if-else alteration
 			normalize each "if verb"
 		DONE: optimize function calls

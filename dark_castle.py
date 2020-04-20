@@ -1,11 +1,11 @@
-"""Castle Adventure 1.87
+"""Castle Adventure 1.88
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 19, 2020
+Last update = Apr 20, 2020
 """
 
 # *** Imports ***
@@ -722,43 +722,35 @@ def interpreter_text(
 # --- Wear verb
 
     elif word1 == "wear":
-
-        if word2 != "nothing" and word2 in allowed_lang_dict['can_be_worn']:
-
-            if word2 not in hand:
-                print("Burt, you're not holding the " + word2 + "!\n")
-                return
-
-# *** wear the taken item ***
+        if word2 == "nothing" or word2 not in allowed_lang_dict['can_be_worn']:
+            print("Burt you can't " + word1 + " that!\n")
+        elif word2 not in hand:
+            print("Burt, you're not holding the " + word2 + "!\n")
+        else:
+            # *** wear the taken item ***
             worn.append(word2)
-            state_dict['worn'] = worn
-
-# *** remove the taken item from its source list (hand) ***
-            if word2 in hand:
-                hand.remove(word2)
-
-# *** if the hand is now empty add the placeholder "nothing" to it ***
-            if len(hand) == 0:
-                hand.append("nothing")
-
-# *** remove 'nothing' once something is worn ***
             if len(worn) > 1 and "nothing" in worn:
                 worn.remove("nothing")
-                state_dict['worn'] = worn
+            state_dict['worn'] = worn
 
-# *** confirm to the player that the item has been worn ***
+            # *** clean up hand ***
+            if word2 in hand:
+                hand.remove(word2)
+            if len(hand) == 0:
+                hand.append("nothing")
+            state_dict['hand'] = hand
+
+            # *** confirm worn and print effect ***
             print("Worn\n")
-
-# *** print worn update text ***
             printtw(description_dict[score_key])
 
-# *** update global 'hand' and score ***
-            state_dict['hand'] = hand
+            if trigger_key in post_action_trigger:
+                trigger(
+                    trigger_key, room_dict, description_dict,
+                    state_dict, static_dict, door_dict, creature_dict)
+
             if score_key in state_dict['score_dict']:
                 score(score_key, state_dict, static_dict)
-
-        else:
-            print("Burt you can't " + word1 + " that!\n")
 
     else:
         unknown_word()
