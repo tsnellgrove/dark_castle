@@ -1,11 +1,11 @@
-"""Castle Adventure 1.89
+"""Castle Adventure 1.90
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 20, 2020
+Last update = Apr 21, 2020
 """
 
 # *** Imports ***
@@ -344,6 +344,7 @@ def interpreter_text(
     room_items = room_dict[room]['items']
     room_features = room_dict[room]['features']
     room_view_only = room_dict[room]['view_only']
+    view_special = state_dict['view_special']
     hand = state_dict['hand']
     backpack = state_dict['backpack']
     worn = state_dict['worn']
@@ -413,10 +414,8 @@ def interpreter_text(
 
     elif word1 == "examine":
         visible_items = (hand + backpack + room_items + room_features
-            + room_view_only + worn)
+            + room_view_only + worn + view_special)
         visible_items.append(room)
-        visible_items.append("fist")
-        visible_items.append("burt")
 
         if word2 not in visible_items:
             print("Burt you can't " + word1 + " that!\n")
@@ -1020,7 +1019,10 @@ description_dict = {
     
     "burt": "That's you. A fine specimen of a man. If not for the drooling "
             "and the farting I don't know how you'd fend off the ladies",
-    
+
+    'conscious': "Burt, Dark Castle is quite murky enough without pondering "
+                 "your prodigal and Hal-esque misspent youth!",
+
     "nothing": "Burt, nothing is nothing. Nada. Zilch. Empty. Like that "
                "noggin of yours..",
 
@@ -1562,6 +1564,7 @@ state_dict = {
     'hand': ["nothing"],
     'worn': ['nothing'],
     'backpack': ['rusty_key', 'stale_biscuits'],
+    'view_special': ['fist', 'burt', 'conscious'],
     'item_containers': {'scroll_of_the_king': 'crystal_box'},
     'max_count': {'broach_found': 1,},
     'move_counter': 0,

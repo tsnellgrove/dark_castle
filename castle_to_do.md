@@ -72,26 +72,27 @@ Updates for v 1.7 & 1.8
 			DONE: move print(credits) to end() and follow with exit()
 				DONE: allows removal of post end() exit() calls; Use "if" to ensure credits only on end = win
 		DECIDED AGAINST: try switcher routine for end()
-		create view_special containing 'fist', 'burt', 'concious'
-		add guiding error message for unseen verb
-		create "availability" categories - (i.e. viewable, interactable, hand) [??]
-		standardize return on trigger()
-		consider normalizing pre - and post checks for verbs (??)
 		
 Updates for v 1.9
+		DONE: create view_special containing 'fist', 'burt', 'concious'
+		standardize return on trigger()
 		map routines graphicaly; consider "flattening" function calls (?)
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
 
 
-
 Maintenance, clean-up, and features I should implement someday
+	add guiding error message for unseen verb
+	create "availability" categories - (i.e. viewable, interactable, hand) [??]
+	consider normalizing pre - and post checks for verbs (??)
 	create 'win' test routine with checksum
 	verbs to functions with switcher?? (too much variable passing?)
 	docstrings for all functions [?]
 	"close" verb
 	5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
 		copper key opens cabinet which holds potion
+		find a use for 'close' verb; maybe potion refill
+		possibly create 'return' verb to put things back
 		potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
 		enter mouse hole
 		maybe fight mouse?
