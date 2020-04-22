@@ -1,11 +1,11 @@
-"""Castle Adventure 1.90
+"""Castle Adventure 1.91
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 21, 2020
+Last update = Apr 22, 2020
 """
 
 # *** Imports ***
@@ -73,8 +73,7 @@ def trigger(trigger_key, room_dict, description_dict,
             creature_dict['hedgehog']['state'] = 'hedgehog_eating'
             description_update(
                 'hedgehog', 'hedgehog_eating', description_dict)
-            return
-    
+
     elif trigger_key == 'drop-shiny_sword':
         if room == 'main_hall' and 'hedgehog' in features \
                 and state_dict['active_timer'] != 'drop-stale_biscuits':
@@ -83,27 +82,23 @@ def trigger(trigger_key, room_dict, description_dict,
                 'hedgehog', 'hedgehog_fed_sword_returned', description_dict)
             printtw(trigger_descript)
             room_dict[room]['items'].append('silver_key')
-            return
-    
+
     elif trigger_key == 'attack-goblin':
         if room == 'antechamber' \
                 and 'dead_goblin' in features:
             room_dict[room]['view_only'].extend(
                 ['left_lever', 'middle_lever', 'right_lever', 'big_red_button']
                 )
-            return
 
     elif trigger_key == 'pull-throne':
         if state_dict['max_count']['broach_found'] > 0:
             printtw(trigger_descript)
             room_dict[room]['items'].append('hedgehog_broach')
             state_dict['max_count']['broach_found'] -= 1
-        return
 
     elif trigger_key == 'push-throne':
         if state_dict['max_count']['broach_found'] > 0:
             printtw(trigger_descript)
-        return
 
     elif trigger_key == 'read-illuminated_letters':
         if room != 'throne_room':

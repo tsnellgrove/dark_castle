@@ -75,7 +75,7 @@ Updates for v 1.7 & 1.8
 		
 Updates for v 1.9
 		DONE: create view_special containing 'fist', 'burt', 'concious'
-		standardize return on trigger()
+		IN-PROC: standardize return on trigger()
 		map routines graphicaly; consider "flattening" function calls (?)
 		separate descriptions into text file and import at start of game
 		document the terms of art (e.g. items vs. features vs. view_only)
