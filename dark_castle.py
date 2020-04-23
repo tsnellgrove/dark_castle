@@ -1,4 +1,4 @@
-"""Castle Adventure 1.91
+"""Castle Adventure 1.92
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -45,12 +45,15 @@ def trigger(trigger_key, room_dict, description_dict,
     if trigger_key in description_dict:
         trigger_descript = description_dict[trigger_key]
 
+    # *** pre-action triggers - return value used ***
     if trigger_key == 'take-shiny_sword':
         if room == 'main_hall' and ('hedgehog' in features) \
                 and ('stale_biscuits' not in view_only) \
                 and ('shiny_sword' in items):
             printtw(trigger_descript)
             return(True)
+        else:
+            return(False)
 
     elif (trigger_key == 'east-blank') or (trigger_key == 'west-blank'):
         if room == 'entrance' and ('grimy_axe' in hand
@@ -63,7 +66,24 @@ def trigger(trigger_key, room_dict, description_dict,
             else:
                 printtw(description_dict['east-blank-no_crown'])
                 return(True)
+        else:
+            return(False)
 
+    elif trigger_key in [
+            'examine-control_panel', 'open-iron_portcullis',
+            'examine-iron_portcullis', 'examine-grimy_axe', 'north-blank']:
+        if room == 'antechamber' and 'goblin' in features \
+                and 'shiny_sword' in state_dict['hand']:
+            printtw(description_dict['goblin_attacks-parry'])
+            return(True)
+        elif room == 'antechamber' and 'goblin' in features \
+                and 'shiny_sword' 'shiny_sword' not in hand:
+            printtw(description_dict['goblin_attacks-death'])
+            end(state_dict, static_dict)
+        else:
+            return(False)
+
+    # *** post-action triggers - return value discarded ***
     elif trigger_key == 'drop-stale_biscuits':
         if room == 'main_hall' and 'hedgehog' in features:
             room_dict[room]['items'].remove('stale_biscuits')
@@ -113,19 +133,6 @@ def trigger(trigger_key, room_dict, description_dict,
             state_dict['game_ending'] = 'won'
             end(state_dict, static_dict)
 
-    elif trigger_key in [
-            'examine-control_panel', 'open-iron_portcullis',
-            'examine-iron_portcullis', 'examine-grimy_axe', 'north-blank']:
-        if room == 'antechamber' and 'goblin' in features \
-                and 'shiny_sword' in state_dict['hand']:
-            printtw(description_dict['goblin_attacks-parry'])
-            return(True)
-        elif room == 'antechamber' and 'goblin' in features \
-                and 'shiny_sword' 'shiny_sword' not in hand:
-            printtw(description_dict['goblin_attacks-death'])
-            end(state_dict, static_dict)
-        else:
-            return(False)
 
     elif trigger_key == 'push-big_red_button-success':
         if door_dict['iron_portcullis']['door_state'] == 'closed':
@@ -139,7 +146,7 @@ def trigger(trigger_key, room_dict, description_dict,
             description_dict['iron_portcullis'] = \
                 description_dict['iron_portcullis-base'] + "closed.\n"
 
-    return
+    return(False)
 
 
 def timer(room_dict, state_dict, description_dict):
