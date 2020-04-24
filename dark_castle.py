@@ -1686,6 +1686,18 @@ description_dict['messy_handwriting-read'] = "'..ode is " \
     + str(switch_dict['big_red_button']['success_value']) \
     + ". Don't tell anyo..'"
 
+# *** Load Description Dictionary ***
+#description_dict_new = {}
+#with open("description.txt") as file:
+#    for line in file:
+#        print(line)
+##        line = line.strip()
+##        print(line)
+#        print(description_dict_new)
+#        (key, val) = line.split(" ",1)
+#        description_dict_new[key] = val.strip()
+#print (description_dict_new)
+
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])
 printtw(description_dict['help'])
