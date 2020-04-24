@@ -1,3 +1,10 @@
+CSV:
+
+"front_gate","The front_gate is just north of the Dark Castle's drawbridge. It is 10 feet tall and reenforced with steel bands. Imposing indeed! There is rusty_lettering across the top of the gate and a rusty keyhole next to a handle. The front_gate is closed."
+"iron_portcullis","Beyond the iron_portcullis you can dimly make out the next room. The iron_portcullis is closed."
+
+
+
     'front_gate': "The front_gate is just north of the Dark Castle's "
     
     'iron_portcullis': "Beyond the iron_portcullis you can dimly make out the "
