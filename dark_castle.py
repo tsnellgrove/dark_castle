@@ -1,11 +1,11 @@
-"""Castle Adventure 1.93
+"""Castle Adventure 1.94
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 24, 2020
+Last update = Apr 25, 2020
 """
 
 # *** Imports ***
@@ -1687,34 +1687,16 @@ description_dict['messy_handwriting-read'] = "'..ode is " \
     + ". Don't tell anyo..'"
 
 # *** Load Description Dictionary ***
-file = open('description.csv', 'r')
+file = open('description.csv', 'r', newline='')
 description_dict_new = {}
 with file:
     reader = csv.reader(file)
     for row in reader:
         key = row[0]
-        val = row[1]
+        val = row[1].replace('\\n', '\n')
         description_dict_new[key] = val
-
 #print(description_dict_new)
-# 4/24/2020 Status: Done & Tested = Doors, Non-Door Features
-
-# *** Old Stuff ***
-
-#        for e in row:
-#            print(e)
-
-#description_dict_new = {}
-#with open("description.txt") as file:
-#    for line in file:
-#        print(line)
-##        line = line.strip()
-##        print(line)
-#        print(description_dict_new)
-#        (key, val) = line.split(" ",1)
-#        description_dict_new[key] = val.strip()
-#print (description_dict_new)
-
+# 4/24/2020 Status: Done & Tested = Doors, Non-Door Features, Items (with newline fix)
 
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])
