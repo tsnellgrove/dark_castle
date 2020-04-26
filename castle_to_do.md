@@ -77,8 +77,9 @@ Updates for v 1.9
 		DONE: create view_special containing 'fist', 'burt', 'concious'
 		DONE: standardize return on trigger()
 		IN PROC: separate descriptions into text file and import at start of game
-			DONE: doors, non-door, items
+			DONE: doors, non-door features, items
 			DONE: newline issue solved
+			DONE: special
 			remaining dictionary elements
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
