@@ -80,6 +80,7 @@ Updates for v 1.9
 			DONE: doors, non-door features, items
 			DONE: newline issue solved
 			DONE: special
+			DONE: creatures, rooms, all keys in double quotes
 			remaining dictionary elements
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
