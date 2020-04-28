@@ -81,6 +81,7 @@ Updates for v 1.9
 			DONE: newline issue solved
 			DONE: special
 			DONE: creatures, rooms, all keys in double quotes
+			DONE: Triggers
 			remaining dictionary elements
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
