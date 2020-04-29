@@ -1,11 +1,11 @@
-"""Castle Adventure 1.963
+"""Castle Adventure 1.965
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 28, 2020
+Last update = Apr 29, 2020
 """
 
 # *** Imports ***
@@ -1695,10 +1695,11 @@ with file:
         key = row[0]
         val = row[1].replace('\\n', '\n')
         description_dict_new[key] = val
-# print(description_dict_new)
-# 4/27/2020 DONE: Done & Tested = Doors, Non-Door Features, Items,
+#print(description_dict_new)
+# 4/29/2020 DONE: Done & Tested = Doors, Non-Door Features, Items,
 #                 newline fix, Special, Creatures, Rooms
-#                 double quote keys only, Tirggers
+#                 double quote keys only, Tirggers,
+#                 Worn, Paths, Read
 
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])
