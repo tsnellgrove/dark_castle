@@ -83,6 +83,7 @@ Updates for v 1.9
 			DONE: creatures, rooms, all keys in double quotes
 			DONE: triggers
 			DONE: worn, paths, read
+			DONE: attack results, stateful updates
 			remaining dictionary elements
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
