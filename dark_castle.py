@@ -1,4 +1,4 @@
-"""Castle Adventure 1.968
+"""Castle Adventure 1.97
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
@@ -805,7 +805,8 @@ switch_dict = {
 }
 
 # --- Description Dictionary [Programmatically Updated]
-description_dict = {
+description_dict_old = {
+#description_dict = {
 
     # --- Doors ---
 
@@ -1680,21 +1681,17 @@ allowed_lang_dict = {
 # --- Main Routine
 # ****************
 
-# *** Variable Assignment ***
-switch_dict['big_red_button']['success_value'] = random.randint(0, 7)
-description_dict['messy_handwriting-read'] = "'..ode is " \
-    + str(switch_dict['big_red_button']['success_value']) \
-    + ". Don't tell anyo..'"
-
 # *** Load Description Dictionary ***
 file = open('description.csv', 'r', newline='')
-description_dict_new = {}
+#description_dict_new = {}
+description_dict = {}
 with file:
     reader = csv.reader(file)
     for row in reader:
         key = row[0]
         val = row[1].replace('\\n', '\n')
-        description_dict_new[key] = val
+        description_dict[key] = val
+#        description_dict_new[key] = val
 #print(description_dict_new)
 # 4/30/2020 DONE: Done & Tested = Doors, Non-Door Features, Items,
 #                 newline fix, Special, Creatures, Rooms
@@ -1702,6 +1699,12 @@ with file:
 #                 Worn, Paths, Read
 #                 Attack results, Stateful updates
 #                 Eat, Timer
+
+# *** Variable Assignment ***
+switch_dict['big_red_button']['success_value'] = random.randint(0, 7)
+description_dict['messy_handwriting-read'] = "'..ode is " \
+    + str(switch_dict['big_red_button']['success_value']) \
+    + ". Don't tell anyo..'"
 
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])

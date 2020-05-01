@@ -85,7 +85,9 @@ Updates for v 1.9
 			DONE: worn, paths, read
 			DONE: attack results, stateful updates
 			DONE: eat, timer
-			remaining dictionary elements
+			DONE: dictionary cut-over with win-path test
+			full walk-through test
+			remove description_dict_old and all unneeded comments
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
 
