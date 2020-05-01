@@ -84,6 +84,7 @@ Updates for v 1.9
 			DONE: triggers
 			DONE: worn, paths, read
 			DONE: attack results, stateful updates
+			DONE: eat, timer
 			remaining dictionary elements
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)

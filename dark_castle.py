@@ -1,11 +1,11 @@
-"""Castle Adventure 1.967
+"""Castle Adventure 1.968
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = Apr 30, 2020
+Last update = May 1, 2020
 """
 
 # *** Imports ***
@@ -1700,7 +1700,8 @@ with file:
 #                 newline fix, Special, Creatures, Rooms
 #                 double quote keys only, Tirggers,
 #                 Worn, Paths, Read
-#.                Attack results, Stateful updates
+#                 Attack results, Stateful updates
+#                 Eat, Timer
 
 # *** Start of Game Welcome Text ***
 printtw(description_dict['intro'])
