@@ -1,11 +1,11 @@
-"""Castle Adventure 1.97
+"""Castle Adventure 1.973
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = May 1, 2020
+Last update = May 2, 2020
 """
 
 # *** Imports ***
@@ -602,9 +602,6 @@ def interpreter_text(
                 trigger(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
-
-            if score_key in state_dict['score_dict']:
-                score(score_key, state_dict, static_dict)
 
 # --- attack verb
 
@@ -1653,7 +1650,7 @@ static_dict = {
         50: 'Burt the Benevolent',
         60: 'Burt the Breathtaking',
         70: 'Burt the Bodacious',
-        80: 'Burt the Bold, Baron of Bright Castle'
+        80: 'Burt the Bold, Barron of Bright Castle'
     }
 }
 
@@ -1683,7 +1680,6 @@ allowed_lang_dict = {
 
 # *** Load Description Dictionary ***
 file = open('description.csv', 'r', newline='')
-#description_dict_new = {}
 description_dict = {}
 with file:
     reader = csv.reader(file)
@@ -1691,14 +1687,7 @@ with file:
         key = row[0]
         val = row[1].replace('\\n', '\n')
         description_dict[key] = val
-#        description_dict_new[key] = val
 #print(description_dict_new)
-# 4/30/2020 DONE: Done & Tested = Doors, Non-Door Features, Items,
-#                 newline fix, Special, Creatures, Rooms
-#                 double quote keys only, Tirggers,
-#                 Worn, Paths, Read
-#                 Attack results, Stateful updates
-#                 Eat, Timer
 
 # *** Variable Assignment ***
 switch_dict['big_red_button']['success_value'] = random.randint(0, 7)

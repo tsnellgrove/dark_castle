@@ -86,7 +86,7 @@ Updates for v 1.9
 			DONE: attack results, stateful updates
 			DONE: eat, timer
 			DONE: dictionary cut-over with win-path test
-			full walk-through test
+			DONE: full walk-through test with text edits (and read illuminated_letters score fix)
 			remove description_dict_old and all unneeded comments
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
