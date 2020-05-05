@@ -88,7 +88,7 @@ Updates for v 1.9
 			DONE: dictionary cut-over with win-path test
 			DONE: full walk-through test with text edits (and read illuminated_letters score fix)
 			DONE: remove description_dict_old and all unneeded comments
-		fix for read verb scoring... in trigger append "-win" to score key; update score dict
+		DONE: fix for read verb scoring... in trigger append "-win" to score key; update score dict
 		map routines graphicaly; consider "flattening" function calls (?)
 		document the terms of art (e.g. items vs. features vs. view_only)
 

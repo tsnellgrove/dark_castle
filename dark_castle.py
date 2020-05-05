@@ -1,11 +1,11 @@
-"""Castle Adventure 1.975
+"""Castle Adventure 1.977
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = May 3, 2020
+Last update = May 5, 2020
 """
 
 # *** Imports ***
@@ -15,7 +15,7 @@ import textwrap
 import csv
 
 # *********************
-# --- Situational Logic
+# --- SITUATIONAL LOGIC
 # *********************
 
 
@@ -128,6 +128,7 @@ def trigger(trigger_key, room_dict, description_dict,
         elif 'royal_crown' not in state_dict['worn']:
             printtw(description_dict['read-illuminated_letters-no_crown'])
         else:
+            trigger_key = trigger_key + "-win"
             printtw(description_dict['read-illuminated_letters-win'])
             score(trigger_key, state_dict, static_dict)
             state_dict['game_ending'] = 'won'
@@ -198,7 +199,7 @@ def timer(room_dict, state_dict, description_dict):
         return
 
 # *******************
-# --- Helper Routines
+# --- HELPER ROUTINES
 # *******************
 
 def printtw(txt_str):
@@ -330,7 +331,7 @@ def score(score_key, state_dict, static_dict):
 
 
 # ********************
-# --- Text Interpreter
+# --- TEXT INTERPRETER
 # ********************
 
 
@@ -603,6 +604,9 @@ def interpreter_text(
                     trigger_key, room_dict, description_dict,
                     state_dict, static_dict, door_dict, creature_dict)
 
+            if score_key in state_dict['score_dict']:
+                score(score_key, state_dict, static_dict)
+
 # --- attack verb
 
     elif word1 == "attack":
@@ -754,7 +758,7 @@ def interpreter_text(
         unknown_word()
 
 # ************************
-# --- Dictionaries & Lists
+# --- DICTIONARIES & LISTS
 # ************************
 
 # --- Door Dictionary [Variable]
@@ -916,7 +920,7 @@ state_dict = {
         'examine-hedgehog_broach': [0, 5],
         'gator-crown': [0, 5],
         'wear-royal_crown': [0, 5],
-        'read-illuminated_letters': [0, 15]
+        'read-illuminated_letters-win': [0, 15]
     },
     'timer_dict': {
         'drop-stale_biscuits': 0
