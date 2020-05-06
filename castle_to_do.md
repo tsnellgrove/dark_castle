@@ -76,7 +76,7 @@ Updates for v 1.7 & 1.8
 Updates for v 1.9
 		DONE: create view_special containing 'fist', 'burt', 'concious'
 		DONE: standardize return on trigger()
-		IN PROC: separate descriptions into text file and import at start of game
+		DONE: separate descriptions into text file and import at start of game
 			DONE: doors, non-door features, items
 			DONE: newline issue solved
 			DONE: special
@@ -89,8 +89,10 @@ Updates for v 1.9
 			DONE: full walk-through test with text edits (and read illuminated_letters score fix)
 			DONE: remove description_dict_old and all unneeded comments
 		DONE: fix for read verb scoring... in trigger append "-win" to score key; update score dict
+		IN PROC: document the terms of art (e.g. items vs. features vs. view_only)
+			DONE: Update existing doc
+			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
-		document the terms of art (e.g. items vs. features vs. view_only)
 
 
 Maintenance, clean-up, and features I should implement someday
@@ -104,14 +106,16 @@ Maintenance, clean-up, and features I should implement someday
 	5th room - mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
 		copper key opens cabinet which holds potion
 		find a use for 'close' verb; maybe potion refill
-		possibly create 'return' verb to put things back
+		possibly create 'return' verb to put things back (or maybe 'swap')
 		potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
 		enter mouse hole
 		maybe fight mouse?
 		silver key in mouse trap; need to swap with copper key
 		find a use for close command?
 		would be fun to use every verb ;-D
-	provide printtw() options for double spacing (add print() to inner for) and also change column width 
+		maybe a guard mouse that only lets you past if you're wearing the hedgehog_broach
+		Indiana Jones reference for mouse trap and ball chasing you out ;-D
+	provide printtw() options for double spacing (add print() to inner for) and also change column width
 	more directions
 	use .strip() on input
 	landscape / path changes
