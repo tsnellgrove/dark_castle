@@ -1,17 +1,42 @@
 +++ Documentation +++
 
 Version 1.0 Known Limitations
-	- Only 2 word sentences... adjectives are connected to nouns using "_"
-	- No prepositions
-	- Only one timer active at a time (is this still true??)
-	- If you attack the hedgehog while it's eating the stale_biscuts simply vanish
+- Only 2 word sentences... adjectives are connected to nouns using "_"
+- No prepositions
+- Only one timer active at a time (is this still true??)
+- If you attack the hedgehog while it's eating the stale_biscuts simply vanish
 
-# 	Future Notes Topics:
-#		Linguistics (such as they are)
-#		Mechanics
-#		Program layout and approach [list driven]
-#		Story
-#		Puzzles
+Program approach:
+- The coding style (for better or worse) is nearly 'anti-object-oriented'
+- Verbs are the central construct of the code
+- Everything else is a series of loosely connected (at best) dictionaries and lists
+- This is not something I set out to do.. the style arose naturally from beginner programming techniques and a 'figure it out as I go' approach to writing the text adventure
+- The result is code that is challenging to maintain and extend because you need to update so many diseparate lists anytime you want to change anything
+- Although not ideal from a coding standpoint I don't really have any regrets. This has given me a lot of practice with lists and dictionaries and a deep appreciation for object-oriented coding
+
+Program layout
+- A Main Routine that first imports modules and loads description.csv into description_dict
+- The Main Routine then takes user input and calls interpeter_text() until user input = 'quit'
+- The interpeter_text() function is an if - elif chain of all existing one-word commands and verbs
+- Each verb elif performs a standard action on allowed verbs (e.g. 'take' and item into the players 'hand')
+- Helper Routines assist with common tasks (e.g. print_score)
+- Situational_Logic routines address special puzzle cases where standard actions cause non-standard results (e.g. 'take shiny_sword' in the main_hall is blocked by a hungry hedgehog)
+- There are a collection of smaller static and stateful dictionaries and lists that hold game variables (e.g. room_dict)
+
+Linguistics (such as they are)
+
+Noun types
+#	   Rooms contain items, doors, containers, switches, and creatures
+#   	Inventory = backpack + hand + worn
+#   	Examine scope = inventory + room_items + room_features + room_name + "burt" + "fist" + view_only + worn
+
+Mechanics
+
+Dictionaries and Lists
+
+Puzzles
+
+Story
 
 +++ Steps for Story Expansion +++
 
@@ -45,7 +70,9 @@ New item creation:
 	- Add the item to room_dict or container_dict
 	- Add the item's description to description.txt
 
-Version 2.0 Goals
++++ Version 2.0 Goals +++
+
+Version 2.0 Features
 	- articles, adjectives, and prepositions
 	- Save Game capability
 	- Object oriented code
@@ -53,9 +80,3 @@ Version 2.0 Goals
 	- Classes
 	- switcher
 
-# +++ Notes +++ 
-
-#	Misc:
-#	   Rooms contain items, doors, containers, switches, and creatures
-#   	Inventory = backpack + hand + worn
-#   	Examine scope = inventory + room_items + room_features + room_name + "burt" + "fist" + view_only + worn
