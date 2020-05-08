@@ -90,7 +90,9 @@ Updates for v 1.9
 			DONE: remove description_dict_old and all unneeded comments
 		DONE: fix for read verb scoring... in trigger append "-win" to score key; update score dict
 		IN PROC: document the terms of art (e.g. items vs. features vs. view_only)
-			DONE: Update existing doc
+			DONE: update existing doc
+			DONE: outline documentation section, document program approach and layout
+			DONE: document linguistics
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 

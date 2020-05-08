@@ -23,7 +23,13 @@ Program layout
 - Situational_Logic routines address special puzzle cases where standard actions cause non-standard results (e.g. 'take shiny_sword' in the main_hall is blocked by a hungry hedgehog)
 - There are a collection of smaller static and stateful dictionaries and lists that hold game variables (e.g. room_dict)
 
-Linguistics (such as they are)
+Linguistics (such as they are):
+- The linguistics are extremely primitive
+- All sentences are either one word or 2-word noun-verb pairs
+- There are no articles, adjectives, adverbs, prepositions, or direct objects
+- This means you can 'take' the scroll_of_the_king out of the container but you litterally can't put it back
+- ('put' is essentially impossible in a noun-verb pair)
+- One of my main user experience goals for version 2.0 is to enrich the interpreter
 
 Noun types
 #	   Rooms contain items, doors, containers, switches, and creatures
