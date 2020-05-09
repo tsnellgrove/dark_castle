@@ -117,6 +117,12 @@ Maintenance, clean-up, and features I should implement someday
 		would be fun to use every verb ;-D
 		maybe a guard mouse that only lets you past if you're wearing the hedgehog_broach
 		Indiana Jones reference for mouse trap and ball chasing you out ;-D
+		add 'close' and 'lock'
+		consider adding 'put' for containers
+		consider implementing 'give' for creatures
+		implement 'stow' for backpack
+		implement container capacity limits
+		make hedgehog_broach wearable
 	provide printtw() options for double spacing (add print() to inner for) and also change column width
 	more directions
 	use .strip() on input

@@ -1,11 +1,5 @@
 +++ Documentation +++
 
-Version 1.0 Known Limitations
-- Only 2 word sentences... adjectives are connected to nouns using "_"
-- No prepositions
-- Only one timer active at a time (is this still true??)
-- If you attack the hedgehog while it's eating the stale_biscuts simply vanish
-
 Program approach:
 - The coding style (for better or worse) is nearly 'anti-object-oriented'
 - Verbs are the central construct of the code
@@ -31,10 +25,43 @@ Linguistics (such as they are):
 - ('put' is essentially impossible in a noun-verb pair)
 - One of my main user experience goals for version 2.0 is to enrich the interpreter
 
-Noun types
-#	   Rooms contain items, doors, containers, switches, and creatures
-#   	Inventory = backpack + hand + worn
-#   	Examine scope = inventory + room_items + room_features + room_name + "burt" + "fist" + view_only + worn
+Noun types:
+- Items: Nouns that can be taken
+- Features: Nouns that can be interacted with but not taken. Includes doors, containers, creatures, and switches.
+- Vew_only: Nounds that can be examined but not taken or interacted with.
+- Doors: May be locked or unlocked (with the right key). If unlocked a door can be opened. Finding a way to open a door is one of the most basic puzzle elements in the game.
+- Containers: Like doors, containers can be locked or unlocked and open or closed. Also, they can contain things. Once a container i open it's contents are added to the room 'items' and may be taken. Due to linguistic limitations (i.e. only noun verb pairs) items cannot be put back into a container. No concept of container capaicty has been coded yet.
+	- Note on Doors and Containers: At present only 'unlock' and 'open' are implemented. I plan to implement 'close' and 'lock' when I write a puzzle that utilizes these. It does irk me that Burt wanders through the Dark Castle like a random murder hobo leaving a swath of unclosed doors behind him. I picture his Nana yelling "Burty Baker, for goodness sake, close the door behind you!". I'm also considering implementing 'put' <item> to place something in a container... this would limit the game to one container per room - but that seems like a reasonable tradeoff.
+- Switches: Set values and trigger effects. At present 'levers' are implemented to set values and 'buttons' trigger effects but the reverse is also possible. Also other switch types are possible - e.g. dials, knobs, switches, etc.
+- Creatures: Living entities that Burt can interact with. These may be helpul (like the 'hedgehog' when treated well) or hazardous (like the 'goblin' and 'crocodile'). Finding the right gift or weapon needed to interact with a creature is a common puzzle element in the game.
+
+Inventory types:
+- Hand: Can hold exactly one item. Anything taken goes into your hand. Anything dropped is dropped from your hand. Something must be in your hand in order to wear or eat it.
+- Backpack: Items can be taken from your backpack. There is no mechanic to intentionally place something in your backpak but any overflow from your hand (i.e. if you are holding the 'rusty_key' and take the 'shiny_sword', the 'rusty_key' is automatically placed in your backpack). There is no capacity limit to your backpack.
+- Worn: In theory, multiple items can be worn but at paresent only the 'royal_crown' is wearable. Wearing an item may have an effect (e.g. the 'royal_crown' enables the magic of the 'scroll_of_the_king').
+
+Scopes:
+- Room scope = items + features + view_only + the contents of open containers
+- Inventory scope = hand + backpack + worn
+- Examine scope = room scope + inventory scope + view_special
+
+Verbs-Noun Interactions:
+- examine:
+- take:
+- drop:
+- open:
+- unlock:
+- read:
+- attack:
+- eat:
+- pull:
+- push:
+- wear:
+- close: [future]
+- lock: [future]
+- put: [future]
+- give: [future]
+- stow: [future]
 
 Mechanics
 
@@ -44,7 +71,7 @@ Puzzles
 
 Story
 
-+++ Steps for Story Expansion +++
++++ Steps for Game Expansion +++
 
 New room creation
 	- Outline contents and actions in the room
@@ -76,13 +103,19 @@ New item creation:
 	- Add the item to room_dict or container_dict
 	- Add the item's description to description.txt
 
-+++ Version 2.0 Goals +++
++++ Limitations & Goals +++
+
+Version 1.0 Major Limitations
+- Only 2 word sentences... adjectives are connected to nouns using "_"
+- No prepositions
+- Only one timer active at a time (is this still true??)
+- If you attack the hedgehog while it's eating the stale_biscuts simply vanish
 
 Version 2.0 Features
-	- articles, adjectives, and prepositions
-	- Save Game capability
-	- Object oriented code
-	- Base on examples of efficient code.. focus on pythonic implementation
-	- Classes
-	- switcher
+- articles, adjectives, and prepositions
+- Save Game capability
+- Object oriented code
+- Base on examples of efficient code.. focus on pythonic implementation
+- Classes
+- switcher
 
