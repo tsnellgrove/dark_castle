@@ -93,6 +93,8 @@ Updates for v 1.9
 			DONE: update existing doc
 			DONE: outline documentation section, document program approach and layout
 			DONE: document linguistics
+			DONE: document nouns
+			IN PROC: document verbs
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 

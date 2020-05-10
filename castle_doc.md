@@ -40,15 +40,20 @@ Inventory types:
 - Backpack: Items can be taken from your backpack. There is no mechanic to intentionally place something in your backpak but any overflow from your hand (i.e. if you are holding the 'rusty_key' and take the 'shiny_sword', the 'rusty_key' is automatically placed in your backpack). There is no capacity limit to your backpack.
 - Worn: In theory, multiple items can be worn but at paresent only the 'royal_crown' is wearable. Wearing an item may have an effect (e.g. the 'royal_crown' enables the magic of the 'scroll_of_the_king').
 
-Scopes:
+Noun scopes:
 - Room scope = items + features + view_only + the contents of open containers
 - Inventory scope = hand + backpack + worn
-- Examine scope = room scope + inventory scope + view_special
+
+Verb overview:
+- Before the verb ifel statements, check for a pre-action tirgger; Escape if one exists
+- At the start of each verb ifel, check for scope to ensure that the command is possible (i.e. the item is 'takeable' or 'wearable' or such).
+- At the end of each verb ifel statement check for post-action triggers
+- At the end of each verb ifel statment check score_key for score changes.
 
 Verbs-Noun Interactions:
-- examine:
-- take:
-- drop:
+- examine: Scope = room scope + inventory scope + view_special. Probably the most frequently used verb in the game. Check's specially for open containers and lists their contents.
+- take: Scope = room items + backpack + worn. Possibly the most complicated verb. Upon confirming scope, adds the taken item to 'hand'. Adds the current contents of 'hand' to 'backpack'. Updates the 'backpack' or 'worn' lists or the room or container dictionaries to remove the taken item from its source.  Adds a 'nothing' placeholder to 'backpack' or 'worn' if 'take' leaves them empty.
+- drop: Scope = 'hand'. Dropped items are added to the room dictionary. If 'hand' contains 'nothing' then don't allow 'drop'.
 - open:
 - unlock:
 - read:
