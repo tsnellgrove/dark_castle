@@ -45,16 +45,18 @@ Noun scopes:
 - Inventory scope = hand + backpack + worn
 
 Verb overview:
+- For better or worse, as I've written it, verbs are the heart of the program; its primary organizing structure. Nouns come and go from list to list but verbs drive the app and the story forward.
 - Before the verb ifel statements, check for a pre-action tirgger; Escape if one exists
 - At the start of each verb ifel, check for scope to ensure that the command is possible (i.e. the item is 'takeable' or 'wearable' or such).
+- Upon confirming scope and performing action each verb ifel confirms success to the player (e.g. 'Taken', 'Openned', etc)
 - At the end of each verb ifel statement check for post-action triggers
 - At the end of each verb ifel statment check score_key for score changes.
 
 Verbs-Noun Interactions:
-- examine: Scope = room scope + inventory scope + view_special. Probably the most frequently used verb in the game. Check's specially for open containers and lists their contents.
-- take: Scope = room items + backpack + worn. Possibly the most complicated verb. Upon confirming scope, adds the taken item to 'hand'. Adds the current contents of 'hand' to 'backpack'. Updates the 'backpack' or 'worn' lists or the room or container dictionaries to remove the taken item from its source.  Adds a 'nothing' placeholder to 'backpack' or 'worn' if 'take' leaves them empty.
-- drop: Scope = 'hand'. Dropped items are added to the room dictionary. If 'hand' contains 'nothing' then don't allow 'drop'.
-- open:
+- examine: Many things can be examined. Scope = room scope + inventory scope + view_special. Probably the most frequently used verb in the game. Check's specially for open containers and lists their contents.
+- take: Items can be taken. Scope = room items + backpack + worn. Possibly the most complicated verb. Upon confirming scope, adds the taken item to 'hand'. Adds the current contents of 'hand' to 'backpack'. Updates the 'backpack' or 'worn' lists or the room or container dictionaries to remove the taken item from its source.  Adds a 'nothing' placeholder to 'backpack' or 'worn' if 'take' leaves them empty.
+- drop: Items in your hand can be dropped. Scope = 'hand'. Dropped items are added to the room dictionary. If 'hand' contains 'nothing' then don't allow 'drop'.
+- open: Doors and container features can be opened. Scope = allowed_language['can_be_openned'] and (feature in room) and (not open) and (not locked). There is code to update the door / container description as "open". If the feature is a container and opening reveals contents then the contents are revealed and added to the rooms inventory.
 - unlock:
 - read:
 - attack:
@@ -67,6 +69,7 @@ Verbs-Noun Interactions:
 - put: [future]
 - give: [future]
 - stow: [future]
+- swap: [future]
 
 Mechanics
 
