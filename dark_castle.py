@@ -588,9 +588,8 @@ def interpreter_text(
 # --- read verb
 
     elif word1 == "read":
-        visible_items = (hand + backpack + room_items + room_features
+        visible_items = (hand + backpack + worn + room_items + room_features
             + room_view_only)
-        visible_items.append(room)
 
         if word2 not in allowed_lang_dict['can_be_read']:
             print("Burt you can't " + word1 + " that!\n")
