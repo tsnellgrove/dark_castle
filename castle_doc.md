@@ -45,13 +45,15 @@ Noun scopes:
 - Inventory scope = hand + backpack + worn
 
 Verb overview:
-- For better or worse, as I've written it, verbs are the heart of the program; its primary organizing structure. Nouns come and go from list to list but verbs drive the app and the story forward.
-- Before the verb ifel statements, check for a pre-action tirgger; Escape if one exists
-- At the start of each verb ifel, check for scope to ensure that the command is possible (i.e. the item is 'takeable' or 'wearable' or such).
-- Asign local variables to make dictionary calls shorter and clearer
-- Upon confirming scope and performing action each verb ifel confirms success to the player (e.g. 'Taken', 'Openned', etc)
-- At the end of each verb ifel statement check for post-action triggers
-- At the end of each verb ifel statment check score_key for score changes.
+- For better or worse, verbs are the heart of the program; its primary organizing structure. Nouns come and go from list to list but verbs drive the program and the story forward.
+- Each noun-verb pair verb is an ifel in the interpreter_text loop
+- Each verb ifel has some common features: 
+	- Before the verb ifel statements, check for a pre-action tirgger; Escape if one exists
+	- At the start of each verb ifel, check for scope to ensure that the command is possible (i.e. the item is 'takeable' or 'wearable' or such).
+	- Asign local variables to make dictionary calls shorter and clearer
+	- Upon confirming scope and performing action each verb ifel confirms success to the player (e.g. 'Taken', 'Openned', etc)
+	- At the end of each verb ifel statement check for post-action triggers
+	- At the end of each verb ifel statment check score_key for score changes.
 
 Verbs-Noun Interactions:
 - examine: Many things can be examined. Scope = room scope + inventory scope + view_special + room name. Probably the most frequently used verb in the game. Check's specially for open containers and lists their contents.
@@ -60,7 +62,7 @@ Verbs-Noun Interactions:
 - open: Doors and container features can be opened. Scope = allowed_language['can_be_openned'] and (feature in room) and (not open) and (not locked). There is code to update the door / container description as "open". If the feature is a container and opening reveals contents then the contents are revealed and added to the rooms inventory.
 - unlock: Doors and container features can be unlocked. Scope = allowed_language['can_be_openned'] and (feature in room) and (not open) and (is locked). Upon confirming scope, test to ensure that the player has the correct key in 'hand'. If so, set door state to 'unlocked'.
 - read: Some items or features have text on them. Text can be read. Scope = allowed_language[can_be_read] and (room scope + inventory scope). Check to ensure that the text referenced is written on an item or feature that is in scope. If so, print the text message.
-- attack:
+- attack: Creature features can be attacked. The results of the attack may vary based on whether the player has a weapon (e.g. the shiny_sword or the grimy_axe) or just their fists. Attack results are deterministic based on creature and attack weapon (i.e. there are no die rolls). Ultimately, creatures are more puzzles to solve than they are RPG enemies to defeat. Scope = allowed_language[can_be_attacked] and (creature is in room_features). If attack is in scope, 'hand' is checked to determine attack_weapon (if no weapon in hand, attack_weapon = 'fist'). Based on creature and attack_weapon an attack description is printed. Then, based on attack_weapon, an attack result is looked up in creature_dict. The three possilbe results are 'creature_death', 'creature_runs', and 'player_death'. player_death prints a result description and calls end(). creature_runs prints a result description, removes the creature from room_features, and updates score. creature_death removes creature from room_features and replaces it with dead_creature, prints a result description, updates score, and then adds any 'drops' items (stored in creature_dict) to room_items. Because score is dependent on attack_result, attack is the only verb that does not genericaly check score at the end of the verb ifel.
 - eat:
 - pull:
 - push:
@@ -72,7 +74,7 @@ Verbs-Noun Interactions:
 - stow: [future]
 - swap: [future]
 
-Mechanics
+Mechanics (include scoring & titles)
 
 Dictionaries and Lists
 
