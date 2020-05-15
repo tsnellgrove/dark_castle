@@ -1,5 +1,16 @@
 +++ Documentation +++
 
+What is Interactive Fiction?
+- IF / Text Adv
+- Zork
+- TADS
+- Frotz on iPad
+- Learn more at
+
+
+
+
+
 Program approach:
 - The coding style (for better or worse) is nearly 'anti-object-oriented'
 - Verbs are the central construct of the code
@@ -56,23 +67,35 @@ Verb overview:
 	- At the end of each verb ifel statment check score_key for score changes.
 
 Verbs-Noun Interactions:
+
 - examine: Many things can be examined. Scope = room scope + inventory scope + view_special + room name. Probably the most frequently used verb in the game. Check's specially for open containers and lists their contents.
+
 - take: Items can be taken. Scope = room items + backpack + worn. Possibly the most complicated verb. Upon confirming scope, adds the taken item to 'hand'. Adds the current contents of 'hand' to 'backpack'. Updates the 'backpack' or 'worn' lists or the room or container dictionaries to remove the taken item from its source.  Adds a 'nothing' placeholder to 'backpack' or 'worn' if 'take' leaves them empty.
+
 - drop: Items in your hand can be dropped. Scope = 'hand'. Dropped items are added to the room dictionary. If 'hand' contains 'nothing' then don't allow 'drop'.
+
 - open: Doors and container features can be opened. Scope = allowed_language['can_be_openned'] and (feature in room) and (not open) and (not locked). There is code to update the door / container description as "open". If the feature is a container and opening reveals contents then the contents are revealed and added to the rooms inventory.
+
 - unlock: Doors and container features can be unlocked. Scope = allowed_language['can_be_openned'] and (feature in room) and (not open) and (is locked). Upon confirming scope, test to ensure that the player has the correct key in 'hand'. If so, set door state to 'unlocked'.
+
 - read: Some items or features have text on them. Text can be read. Scope = allowed_language[can_be_read] and (room scope + inventory scope). Check to ensure that the text referenced is written on an item or feature that is in scope. If so, print the text message.
+
 - attack: Creature features can be attacked. The results of the attack may vary based on whether the player has a weapon (e.g. the shiny_sword or the grimy_axe) or just their fists. Attack results are deterministic based on creature and attack weapon (i.e. there are no die rolls). Ultimately, creatures are more puzzles to solve than they are RPG enemies to defeat. Scope = allowed_language[can_be_attacked] and (creature is in room_features). If attack is in scope, 'hand' is checked to determine attack_weapon (if no weapon in hand, attack_weapon = 'fist'). Based on creature and attack_weapon an attack description is printed. Then, based on attack_weapon, an attack result is looked up in creature_dict. The three possilbe results are 'creature_death', 'creature_runs', and 'player_death'. player_death prints a result description and calls end(). creature_runs prints a result description, removes the creature from room_features, and updates score. creature_death removes creature from room_features and replaces it with dead_creature, prints a result description, updates score, and then adds any 'drops' items (stored in creature_dict) to room_items. Because score is dependent on attack_result, attack is the only verb that does not genericaly check score at the end of the verb ifel.
+
 - eat: Food can be eaten. This is probably my least implemented verb. You can't actually eat anything in the game but I thought it was only fair to let the player attempt to eat the stale_biscuits. Scope = allowed_language[can_be_eaten] and (in 'hand'). If scope is met, print eat description. There is a food_dict sub-dictionary in static_dict meant to track eating results but this is not currently implemented.
+
 - pull: Levers can be pulled to change a state as a standard action. Other features may be pulled via trigger. Scope = allowed_lang_dict[can_be_pulled] and in (room_view_only or room_features). If in scope and word2 is in switch_dict, swap switch_state from up to down or vice versa and update switch description. For cases other than levers controlling state, trigger can be used to initiate an action (e.g. 'pull throne').
+
 - push: Buttons can be pushed to trigger an action as a standard action. Other features may be pushed via trigger. Scope = allowed_lang_dict[can_be_pushed] and in (room_view_only or room_features). If in scope and word2 is in switch_dict check to see is switch success value == current switch value. If it does update trigger_key and score_key (the actual action will be handled via the tirgger routine). If switch success value != current switch value print failure description. I also track button pushes. Non-button push cases (e.g. push throne) can be handeled via trigger.
-- wear:
-- close: [future]
-- lock: [future]
-- put: [future]
-- give: [future]
-- stow: [future]
-- swap: [future]
+
+- wear: Garments can be worn. Scope = allowed_lang_lst['can_be_worn'] and (item in 'hand'). If scope conditions are met, append garment to 'worn' and clean up "nothing" placeholder if needed ('worn' is tracked in state_dict[worn] so that it can be printed during inventory). Remove garment from 'hand' and add "nothing" placeholder if needed. Print confirmation of command to player along with any effects of donning the garment. At present the only wearable item is the royal_crown. It feels like the hedgehog_broach should also be wearable but I feared that this would be a red herring for the scroll_of_the_king puzzle. I'd like to add one more room that provides a puzzle that is solved by wearing the hedgehog_broach.
+
+- close: [future] "For the love of God Burt, close the door!". Would like a puzzle that requires 'cloes'
+- lock: [future] Feels like if you can unlock something you should be able to lock it. Again, puzzle needed.
+- put: [future] Place contents of 'hand' in container. Syntax = "put <item>". Assumes one container per room.
+- give: [future] Give contents of 'hand' to a creature. Syntax = "give <item>". Assumes one creature per room.
+- stow: [future] Explicitly put something into your backpack. Syntax = "stow <item>".
+- swap: [future] Swap the contents of 'hand' with a takeable item. Syntax = "swap <takeable item>". Puzzle needed.
 
 Mechanics (include scoring & titles)
 

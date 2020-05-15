@@ -94,13 +94,13 @@ Updates for v 1.9
 			DONE: outline documentation section, document program approach and layout
 			DONE: document linguistics
 			DONE: document nouns
-			IN PROC: document verbs
+			DONE: document verbs
+			doc IF, Zork, TADS, IF sites, Frotz app
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 
 
 Maintenance, clean-up, and features I should implement someday
-	write if_doc.md - topics include Zork, TADS, IF sites, Frotz app
 	add guiding error message for unseen verb
 	create "availability" categories - (i.e. viewable, interactable, hand) [??]
 	consider normalizing pre - and post checks for verbs (??)
