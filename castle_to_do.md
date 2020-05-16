@@ -95,7 +95,7 @@ Updates for v 1.9
 			DONE: document linguistics
 			DONE: document nouns
 			DONE: document verbs
-			doc IF, Zork, TADS, IF sites, Frotz app
+			DONE: doc IF, Zork, TADS, IF sites, Frotz app
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 

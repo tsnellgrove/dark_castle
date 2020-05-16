@@ -1,14 +1,8 @@
 +++ Documentation +++
 
-What is Interactive Fiction?
-- IF / Text Adv
-- Zork
-- TADS
-- Frotz on iPad
-- Learn more at
-
-
-
+Program Summary:
+- A simple Zork-like Text Adventure / Interactive Fiction.
+- My primary goal in writing the game is to learn Python. This is my first "written from scratch" Python program.
 
 
 Program approach:
@@ -19,6 +13,7 @@ Program approach:
 - The result is code that is challenging to maintain and extend because you need to update so many diseparate lists anytime you want to change anything
 - Although not ideal from a coding standpoint I don't really have any regrets. This has given me a lot of practice with lists and dictionaries and a deep appreciation for object-oriented coding
 
+
 Program layout
 - A Main Routine that first imports modules and loads description.csv into description_dict
 - The Main Routine then takes user input and calls interpeter_text() until user input = 'quit'
@@ -28,6 +23,7 @@ Program layout
 - Situational_Logic routines address special puzzle cases where standard actions cause non-standard results (e.g. 'take shiny_sword' in the main_hall is blocked by a hungry hedgehog)
 - There are a collection of smaller static and stateful dictionaries and lists that hold game variables (e.g. room_dict)
 
+
 Linguistics (such as they are):
 - The linguistics are extremely primitive
 - All sentences are either one word or 2-word noun-verb pairs
@@ -35,6 +31,7 @@ Linguistics (such as they are):
 - This means you can 'take' the scroll_of_the_king out of the container but you litterally can't put it back
 - ('put' is essentially impossible in a noun-verb pair)
 - One of my main user experience goals for version 2.0 is to enrich the interpreter
+
 
 Noun types:
 - Items: Nouns that can be taken
@@ -46,14 +43,17 @@ Noun types:
 - Switches: Set values and trigger effects. At present 'levers' are implemented to set values and 'buttons' trigger effects but the reverse is also possible. Also other switch types are possible - e.g. dials, knobs, switches, etc.
 - Creatures: Living entities that Burt can interact with. These may be helpul (like the 'hedgehog' when treated well) or hazardous (like the 'goblin' and 'crocodile'). Finding the right gift or weapon needed to interact with a creature is a common puzzle element in the game.
 
+
 Inventory types:
 - Hand: Can hold exactly one item. Anything taken goes into your hand. Anything dropped is dropped from your hand. Something must be in your hand in order to wear or eat it.
 - Backpack: Items can be taken from your backpack. There is no mechanic to intentionally place something in your backpak but any overflow from your hand (i.e. if you are holding the 'rusty_key' and take the 'shiny_sword', the 'rusty_key' is automatically placed in your backpack). There is no capacity limit to your backpack.
 - Worn: In theory, multiple items can be worn but at paresent only the 'royal_crown' is wearable. Wearing an item may have an effect (e.g. the 'royal_crown' enables the magic of the 'scroll_of_the_king').
 
+
 Noun scopes:
 - Room scope = items + features + view_only + the contents of open containers
 - Inventory scope = hand + backpack + worn
+
 
 Verb overview:
 - For better or worse, verbs are the heart of the program; its primary organizing structure. Nouns come and go from list to list but verbs drive the program and the story forward.
@@ -65,6 +65,7 @@ Verb overview:
 	- Upon confirming scope and performing action each verb ifel confirms success to the player (e.g. 'Taken', 'Openned', etc)
 	- At the end of each verb ifel statement check for post-action triggers
 	- At the end of each verb ifel statment check score_key for score changes.
+
 
 Verbs-Noun Interactions:
 
@@ -153,3 +154,18 @@ Version 2.0 Features
 - Classes
 - switcher
 
+
+And last but now least - What are exactly are Text Adventures / Interactive Fiction:
+
+- Wikipedia: "Interactive fiction, often abbreviated IF, is software simulating environments in which players use text commands to control characters and influence the environment."
+
+- I grew up calling IF "Text Adventures". I was 12 when Infocom released Zork I for the Commodore 64 and it blew my mind. At the time computer graphics were very primative. Fine if you wanted an arcade "twitch" experience like Pac Man or Galaga... but not something that could pull you into a story. Zork changed all that... suddenly there was a detailed fantasy setting where I could be the main character. It was the computer version of reading a "Choose Your Own Adventure" book - but with infinitely more freedome. It was like being set down in Middle Earth or Narnia and asked simply "Where do you want to go next?". I was overjoyed.
+
+- I came to IF for the stories but I stayed for the puzzles. Games like Zork did not rely primarily on roling dice, collecting gear, and gaining levels in the fashion of my other favorite childhood hobby, D&D (though Zork combat does have a minor element of chance to it). Instead, IF was all about solving a series of interlinked logic puzzles. And man could those puzzles be madening! This was back before Google. Back before the World Wide Web. If you got stuck you either had to mail order the Invisclues hint book - which cost about a third the price of the game and took weeks to arrive - or find someone who had solved it already and beg for answers. In my case I had one friend who had solved nearly every Infocom Text Adventure released - but at the time I only saw him in gym class. So I might get stuck on a puzzle over the weekend and not have gym till Tuesday... and then my friend (yes, Im talking about you Geoff!) might well say "That's a really easy puzzle - you don't need a hint - you just need to think about it a bit more". Argh!!
+
+- When I first started learning Python (as part of an AI Coursera course) I marvelled at how well it managed text and lists. When I decided to start a Python project to really learn the language, a Text Adventure seemed like a natural fit. That said, it's important to be aware, while writing IF is a great way to *learn* Pyhton (Disclaimer: this is just my opinion as a raw beginner in the language), it's certainly not the best way to *write* IF. That would be TADS - which is a purpose built language specifically created for IF and supported by a rich community of amerature IF game writers: https://www.tads.org
+
+- I also heartily recommend that you try out "real" IF if you haven't already.
+	- Here is a link to play Zork I on the web: https://playclassic.games/games/adventure-dos-games-online/play-zork-great-underground-empire-online/
+	- Here's a link to IFDB - one of the most widest and most active repositories of IF content: https://ifdb.tads.org
+	- Lastly, if your an Apple iOS user, I recommend the "Frotz" app. It's an older compiler but it still has a rich collection of works for free.
