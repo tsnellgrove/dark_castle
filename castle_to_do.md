@@ -96,6 +96,7 @@ Updates for v 1.9
 			DONE: document nouns
 			DONE: document verbs
 			DONE: doc IF, Zork, TADS, IF sites, Frotz app
+			DONE: triggers and timers doc
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 
@@ -126,6 +127,7 @@ Maintenance, clean-up, and features I should implement someday
 		implement 'stow' for backpack
 		implement container capacity limits
 		make hedgehog_broach wearable
+		link puzzle to total number of moves? Or to score?
 	provide printtw() options for double spacing (add print() to inner for) and also change column width
 	more directions
 	use .strip() on input

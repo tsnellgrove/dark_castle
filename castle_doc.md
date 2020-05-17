@@ -35,12 +35,19 @@ Linguistics (such as they are):
 
 Noun types:
 - Items: Nouns that can be taken
+
 - Features: Nouns that can be interacted with but not taken. Includes doors, containers, creatures, and switches.
+
 - Vew_only: Nounds that can be examined but not taken or interacted with.
+
 - Doors: May be locked or unlocked (with the right key). If unlocked a door can be opened. Finding a way to open a door is one of the most basic puzzle elements in the game.
+
 - Containers: Like doors, containers can be locked or unlocked and open or closed. Also, they can contain things. Once a container i open it's contents are added to the room 'items' and may be taken. Due to linguistic limitations (i.e. only noun verb pairs) items cannot be put back into a container. No concept of container capaicty has been coded yet.
+
 	- Note on Doors and Containers: At present only 'unlock' and 'open' are implemented. I plan to implement 'close' and 'lock' when I write a puzzle that utilizes these. It does irk me that Burt wanders through the Dark Castle like a random murder hobo leaving a swath of unclosed doors behind him. I picture his Nana yelling "Burty Baker, for goodness sake, close the door behind you!". I'm also considering implementing 'put' <item> to place something in a container... this would limit the game to one container per room - but that seems like a reasonable tradeoff.
+
 - Switches: Set values and trigger effects. At present 'levers' are implemented to set values and 'buttons' trigger effects but the reverse is also possible. Also other switch types are possible - e.g. dials, knobs, switches, etc.
+
 - Creatures: Living entities that Burt can interact with. These may be helpul (like the 'hedgehog' when treated well) or hazardous (like the 'goblin' and 'crocodile'). Finding the right gift or weapon needed to interact with a creature is a common puzzle element in the game.
 
 
@@ -98,7 +105,26 @@ Verbs-Noun Interactions:
 - stow: [future] Explicitly put something into your backpack. Syntax = "stow <item>".
 - swap: [future] Swap the contents of 'hand' with a takeable item. Syntax = "swap <takeable item>". Puzzle needed.
 
-Mechanics (include scoring & titles)
+Mechanics:
+- Triggers: 
+	- Each verb has a 'standard action' - e.g. if you 'take' an item the standard action is to add it to your 'hand'. 
+	- Standard actions are carried out by verb code. However, in some cases, an action has situation-specific results (e.g. if you attempt to take the shiny_sword in the Great Hall the hedgehog will bar your path). This is where triggers come in. 
+	- Triggers come in two flavors: 1) pre-action triggers and 2) post-action triggers. As implied by their name, pre-action triggers execute *before* a verb action (e.g. the hedgehog bars your way before you are able to take the shiny_sword). By contrast, post-action triggers execute *after* you have taken an action (e.g. after you successfully drop the shiny_sword in the Great Hall the hedgehog offers up the silver_key). 
+	- Each user input checks for pre-action triggers before invoking any trigger logic and post-action triggers after the standard action code in each verb ifel. Triggers are identified by the 'trigger key' - which by default is 'word1-word2'.
+	- Standard actions are generic in nature. Triggers are typically story / situation-specific. Most of the game puzzles depend on triggers because puzzles themselves tend to be situation-specific.
+- Timers:
+	- Time in the game is measured in 'moves'. The move counter is incremented by one with each user input (with a subsequent decrement by one for "unknown word' cases).
+	- Move count is tracked in state_dict and can be incorporated into puzzles.
+	- Some situations or opportunities only prevail for a limited number of moves.
+	- There is currently only one timer in use in the game - it is linked to the shiny_sword puzzle. When a player drops the stale_biscuits the hedgehog will spend the next 5 moves eating them. If the player does not take the shiny_sword within that time window the hedgehog will return to his vigilant guarding state and the player will never be able to get the shiny_sword or win the game.
+	- The existence of an active timer is tracked in state_dict['active_timer'] and the count on a given timer is tracked in state_dict[timer_dict]. The timer duration itself is set outside of the timer rountine (in the case of the shiny_sword puzzile it is set in the drop-stale_biscuits trigger).
+	- The main routine check's for an active_timer on each loop and calls the timer() routine if one exists. The code for a specific timer is referenced via its 'timer key' (typically 'word1_word2'). Within the code for a specific timer timer_num is decremented each move and a timer description is printed to the user. The idea behind the timer description is that the player needs some awareness that the situation is changing with passage of time. In the case of the shiny_sword puzzle this is provided by tracking how much of the stale_biscuits the hedgehog has finished eating.
+	- Special cases are also handled in the specific timer code. For example, it is possible for the player to grab the shiny_sword on the first timer move and then attack the hedgehog with it on the very next move (which scares the hedgehog away). The timer needs to halt if the hedgehog is not in the room. Likewise, the timer has to keep functioning but the descriptions of the hedgehog eating need to halt if if the player walks out of the Main Hall.
+	- Frankly, the timer code is limited and a bit kludgey. Because active_timer takes a single value you can only have one timer running at a time. And many of the functions managed in the timer-specific code could be generalized across multiple timers (e.g. decrementing the timer). Someday if I add more timers to the game I will clean this up a bit. 
+- Switches: 
+- Movement
+- Description Updates:
+- Scoring:
 
 Dictionaries and Lists
 
