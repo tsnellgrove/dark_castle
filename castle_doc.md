@@ -106,6 +106,12 @@ Verbs-Noun Interactions:
 - swap: [future] Swap the contents of 'hand' with a takeable item. Syntax = "swap <takeable item>". Puzzle needed.
 
 Mechanics:
+- Most of the game is simply invoking verbs to move nouns from one list to another and printing the results to the player. But some of the interactions are a bit more involved. I call these "mechanics".
+
+TO DO:
+- Inventory (incorporate text from above)
+- Movement
+
 - Triggers: 
 	- Each verb has a 'standard action' - e.g. if you 'take' an item the standard action is to add it to your 'hand'. 
 	- Standard actions are carried out by verb code. However, in some cases, an action has situation-specific results (e.g. if you attempt to take the shiny_sword in the Great Hall the hedgehog will bar your path). This is where triggers come in. 
@@ -122,13 +128,16 @@ Mechanics:
 	- Special cases are also handled in the specific timer code. For example, it is possible for the player to grab the shiny_sword on the first timer move and then attack the hedgehog with it on the very next move (which scares the hedgehog away). The timer needs to halt if the hedgehog is not in the room. Likewise, the timer has to keep functioning but the descriptions of the hedgehog eating need to halt if if the player walks out of the Main Hall.
 	- Frankly, the timer code is limited and a bit kludgey. Because active_timer takes a single value you can only have one timer running at a time. And many of the functions managed in the timer-specific code could be generalized across multiple timers (e.g. decrementing the timer). Someday if I add more timers to the game I will clean this up a bit. 
 - Switches: 
-- Movement
 - Description Updates:
 - Scoring:
 
 Dictionaries and Lists
 
 Puzzles
+- Room 1:
+- Room 2:
+- Room 3:
+- Room 4:
 
 Story
 
