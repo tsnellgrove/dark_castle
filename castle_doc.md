@@ -138,7 +138,7 @@
 
 *** Program Mechanics ****
 
-- Most of the game is simply the player interacting with the game world by invoking verbs to move nouns from one list to another and then printing the results. But some of the behind the scenes interactions are a bit more involved. I call these "mechanics".
+- Most of the game is simply the player interacting with the game world by invoking verbs to move nouns from one list to another and then printing the results. But some of the behind the scenes interactions are a bit more involved. I call these "mechanics". Mecahnics are ultimately an act of "slight of hand" - in the ideal game the there would be no explicit mechanics - all of the interactions would be accounted for already by the nouns, verbs, and game world - but in this case that's a very lofty ideal.
 
 - Triggers: 
 	- Each verb has a 'standard action' - e.g. if you 'take' an item the standard action is to add it to your 'hand'. 
