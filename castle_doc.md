@@ -3,7 +3,7 @@
 
 *** Preamble ***
 
-- What are exactly are Text Adventures / Interactive Fiction:
+- What exactly are Text Adventures / Interactive Fiction:
 
 	- Wikipedia: "Interactive fiction, often abbreviated IF, is software simulating environments in which players use text commands to control characters and influence the environment."
 
@@ -51,6 +51,7 @@
 	- There are no articles, adjectives, adverbs, prepositions, or direct objects
 	- This means you can 'take' the scroll_of_the_king out of the container but you litterally can't put it back (i.e. a full implementation of 'put' is impossible in a noun-verb pair)
 	- One of my main user experience goals for version 2.0 is to enrich the interpreter
+	- From a writing standpoint Dark Castle is intentionally a bit "purple prose". This is partly in immitation of Zork. And partly because any game that depends entirely on words should embrace language with sumptuous exuberence.
 
 
 *** Nouns ***
@@ -129,7 +130,12 @@
 	- Your inventory is tracked in state_dict and printed to the player by invoking the 'inventory' command.
 
 - Rooms: 
-(- Room scope = items + features + view_only + the contents of open containers)
+	- Everything in the game happens in a 'room' (the 'room where it happens'). In IF 'room' does not imply "four walls". Here 'room' is defined as any specific setting you can move to. 
+	- Every room has: A title (e.g. "*** Main Hall ***"), a description, a collection of nouns (items, features, and view_only), and some available exits.
+	- From a noun perspective, room scope = items + features (including creatures) + view_only + the contents of open containers. Each room has its own scope - if a noun is in the scope of one room it is generally not available in another room unless it is an item and the player caries it there.
+	- The room layout in Dark Castle is extremely simple - there are only four rooms and each one is north of the next. An innate objective of the game is to gain access to the next unexplored room.
+	- The room structure itself is stored in room_dict which tracks the items, features, and view_only that exist in each room. The dictionary is updated as items are picked up and moved around.
+	- It's a measure of the list-centric and disjointed nature of my programming strucuture that no information about exits resides in room_dict. Instead, exits live in their own separate dictionary. You would never know that you could travel north from the main_hall just by inspecting room_dict. What can I say... code and learn ;-D
 
 - Movement:
 
@@ -175,6 +181,7 @@ Puzzles
 - Room 2:
 - Room 3:
 - Room 4:
+- Room 5: [future]
 
 Story
 

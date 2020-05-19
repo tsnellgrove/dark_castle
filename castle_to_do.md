@@ -97,6 +97,7 @@ Updates for v 1.9
 			DONE: document verbs
 			DONE: doc IF, Zork, TADS, IF sites, Frotz app
 			DONE: triggers and timers doc
+			DONE: game world doc inventory & rooms
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 
