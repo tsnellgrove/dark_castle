@@ -129,6 +129,7 @@ Maintenance, clean-up, and features I should implement someday
 		implement container capacity limits
 		make hedgehog_broach wearable
 		link puzzle to total number of moves? Or to score?
+	fun idea - small creature - like a mouse - as an item
 	provide printtw() options for double spacing (add print() to inner for) and also change column width
 	more directions
 	use .strip() on input
