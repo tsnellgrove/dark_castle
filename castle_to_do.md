@@ -98,6 +98,7 @@ Updates for v 1.9
 			DONE: doc IF, Zork, TADS, IF sites, Frotz app
 			DONE: triggers and timers doc
 			DONE: game world doc inventory & rooms
+			DONE: game world movement
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 
@@ -129,6 +130,8 @@ Maintenance, clean-up, and features I should implement someday
 		implement container capacity limits
 		make hedgehog_broach wearable
 		link puzzle to total number of moves? Or to score?
+	idea: need a more elegant way to handle 'untakable' path (e.g. e, w, s @ entrance) descriptions 
+	idea: brief vs. verbose modes
 	fun idea - small creature - like a mouse - as an item
 	provide printtw() options for double spacing (add print() to inner for) and also change column width
 	more directions

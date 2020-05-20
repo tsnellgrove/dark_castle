@@ -119,7 +119,7 @@
 
 *** The Game World ***
 
-- The world and the "laws of physics" within which - and according to which - the game takes place. 
+- The world and the "laws of physics" within which, and according to which, the game takes place. 
 	
 - Inventory:
 	- Your inventory scope includes the contents of your hand, backpack, and what you are wearing.
@@ -138,6 +138,16 @@
 	- It's a measure of the list-centric and disjointed nature of my programming strucuture that no information about exits resides in room_dict. Instead, exits live in their own separate dictionary. You would never know that you could travel north from the main_hall just by inspecting room_dict. What can I say... code and learn ;-D
 
 - Movement:
+	- After taking and examining, movement is propably the most basic function in IF. Many puzzles are solved in order to be able to move into an unexplored area.
+	- I decided to treat rooms and the paths between them as separate entities. In retrospect I think embeding path options into rooms would have been simpler but I was working it out as I went.
+	- The four allowed movement directions in the game are north, south, east, and west. These are tracked in allowed_movement
+	- If the player inputs a direction in allowed_movement, interpreter_text sets path_key = <current room>_<direction> and checks to see if the path_key exists in path_dict. If it does, an "approaching path" description is printed to the player and room_action() is called. If it doesn't, an error message from invalid_path_lst is printed.
+	- [I'm considering geting rid of the "approaching room" description.. I implemented it in the spirit of "always confirm action success - then provide action results" (e.g. 'push button' => 'pushed' followed by <result>). However, in the case of paths this seems like overkill. And the text is quite vague since I can't yet know if they will actually be able to enter the next room (if there's a door).]
+	- room_action() checks path_dict for one of three possible actions: 'death', 'door', or 'passage'.
+		- 'passage': Means there is no barier to entering the next room. 'room' is updated in state_dict and look() is executed on the next room.
+		- 'door': Means there is a door between the current room and the next door. If door_state = 'open' the player proceeds as if the action were 'passage'. If door_state != 'open' a "door closed" message is printed to the player.
+		- 'death': game_ending is updated to 'death' and end() is called. This action is intended for cases where the player has moved in a direction that is fatal (e.g. walking off the drawbridge without a weapon). In this case the "you chose poorly" message is in the path_description and then they go straight to the end() routine. In hindsight this is not a very elegant approach to this case... but this was one of the very first outcomes I was coding so I was still sorting out the basic structure of the game.
+	- For each path, path_dict stores 'action', 'door' (i.e. "door name", 'none' for no door), and 'next_room' ('none' if no next room exists)
 
 - Switches: 
 
