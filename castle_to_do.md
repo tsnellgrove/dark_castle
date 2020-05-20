@@ -130,6 +130,7 @@ Maintenance, clean-up, and features I should implement someday
 		implement container capacity limits
 		make hedgehog_broach wearable
 		link puzzle to total number of moves? Or to score?
+	idea: embed paths into rooms
 	idea: need a more elegant way to handle 'untakable' path (e.g. e, w, s @ entrance) descriptions 
 	idea: brief vs. verbose modes
 	fun idea - small creature - like a mouse - as an item
