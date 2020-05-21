@@ -149,7 +149,18 @@
 		- 'death': game_ending is updated to 'death' and end() is called. This action is intended for cases where the player has moved in a direction that is fatal (e.g. walking off the drawbridge without a weapon). In this case the "you chose poorly" message is in the path_description and then they go straight to the end() routine. In hindsight this is not a very elegant approach to this case... but this was one of the very first outcomes I was coding so I was still sorting out the basic structure of the game.
 	- For each path, path_dict stores 'action', 'door' (i.e. "door name", 'none' for no door), and 'next_room' ('none' if no next room exists)
 
-- Switches: 
+- Switches:
+	- Switches are the generic name I give to the levers and button that make up the Antechamber iron_portcullis puzzle. A random value between 0 and 7 is set for the big_red_button['success_value'] in the main routine at the very start of the game. This value is written (somewhat crypticaly) in messy_handwriting on the torn_note that the goblin drops when it dies. The player then needs to set the 3 levers (left, middle, and right) to the same value using binary notation. If the levers match success_value then when you push the big_red_button the iron_portcullis   will open.
+	- There are six code components used to enable switching:
+		- The switch_dict dictionary holds the state of each lever (they all start 'down'; down = 0) and the success_value, current_value, and press_count of the big red button.
+		- The verb 'pull' allows the player to swap the state of the levers from 'down' to 'up' (0 to 1) or vice versa. The descriptions for each lever are updated as well.
+		- The verb 'push' enables the player to push the big_red_button. Push calls switch_value() to esatblish the current_value the levers are set to, compares it to success_value, and if they match updates trigger_key and score_key to indicate success. If current_value and success value don't match then a failure message is printed. At the end of 'push' trigger() and score() are called.
+		- switch_value calculates the current_value (in binary notation) of the lever settings and returns it to push()
+		- trigger() is called at the end of the 'push' verb elif. If the trigger_key has been updated to indicate success, then the door state is toggled (i.e. if currently 'down' now 'up'), a result is printed to the user, and the description is updated.
+		- score() is called at the end of the 'push' verb elif. Upon the first successful press of the big_red_button the score is incremented.
+	- Although the switch components are implemented in a very puzzle specific way, they are all written to be extensible for additional switches. A core problem here is that there is no "generic" switch capability in the game... each switch scenario has to be hand coded and added to the routines listed above as a special case. In a tiny game like mine this is fine. In a larger game with more switches this would rapidly become cumbersome.
+	- It could be argued that the puzzle to get the hedgehog_broach is essentially a switch puzzle and so perhaps it should be implemented as such. Since the results of both are handled by trigger() in some way they are handled the same.
+	- Switch is another fine example of the listy nature of my coding. Instead of baking the behavior of the levers and button into the nouns I spread them across a dictionary and three functions. Stepping back and reviewing this from affar it is clearly not ideal - tracking and maintaining switch state would be a nightmare for a game with many switches.
 
 
 *** Program Mechanics ****
@@ -186,14 +197,14 @@
 
 Dictionaries and Lists
 
-Puzzles
+Puzzles:
 - Room 1:
 - Room 2:
 - Room 3:
 - Room 4:
 - Room 5: [future]
 
-Story
+Story:
 
 
 +++ Steps for Game Expansion +++

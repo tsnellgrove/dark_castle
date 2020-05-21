@@ -99,11 +99,13 @@ Updates for v 1.9
 			DONE: triggers and timers doc
 			DONE: game world doc inventory & rooms
 			DONE: game world movement
+			DONE: game world switches
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 
 
 Maintenance, clean-up, and features I should implement someday
+	maybe put the throne attop a 'dias' (just to be more purple prose ;-D)
 	add guiding error message for unseen verb
 	create "availability" categories - (i.e. viewable, interactable, hand) [??]
 	consider normalizing pre - and post checks for verbs (??)
@@ -130,6 +132,7 @@ Maintenance, clean-up, and features I should implement someday
 		implement container capacity limits
 		make hedgehog_broach wearable
 		link puzzle to total number of moves? Or to score?
+	embed smarts / behavior into switches; create a generic switch model
 	idea: embed paths into rooms
 	idea: need a more elegant way to handle 'untakable' path (e.g. e, w, s @ entrance) descriptions 
 	idea: brief vs. verbose modes
