@@ -102,7 +102,8 @@ Updates for v 1.9
 			DONE: game world switches
 			DONE: mechanics - description updates
 			DONE: mechanics - scoring
-			create new doc
+			DONE: dictionaries and puzzles
+			story
 		map routines graphicaly; consider "flattening" function calls (?)
 
 
