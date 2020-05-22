@@ -100,6 +100,7 @@ Updates for v 1.9
 			DONE: game world doc inventory & rooms
 			DONE: game world movement
 			DONE: game world switches
+			DONE: mechanics - description updates
 			create new doc
 		map routines graphicaly; consider "flattening" function calls (?)
 

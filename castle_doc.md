@@ -193,7 +193,14 @@
 	- Frankly, the timer code is limited and a bit kludgey. Because active_timer takes a single value you can only have one timer running at a time. And many of the functions managed in the timer-specific code could be generalized across multiple timers (e.g. decrementing the timer). Someday if I add more timers to the game I will clean this up a bit. 
 
 - Description Updates:
+	- Most noun descriptions are static but some do change over time.
+	- Simple cases like doors ('open' or 'closed') or levers ('down' or 'up') are updated in the elif of the verb that changes their state.
+	- But some cases are more complex. In particular, the hedgehog's appearance changes depending on the circumstances and that appearance (famished, focussed on eating, looking expectantly) is often an important puzzle clue.
+	- Complex description updates are handled by the description_update() function. The function takes the current description_key (e.g. 'hedgehog') and sets it equal t the update_key (e.g. 'hedgehog_eating').
+	- This is another aspect of the listy nature of my coding choices. The hedgehog's responses to attacks live in creature_dict, his multiple descriptions live in desctiption_dict, and the logic that determines his current appearnace lives in triggers. It works, and the dictionary key naming is pretty clear, but it's still mighty hard to follow!
+
 - Scoring:
+	- 
 
 Dictionaries and Lists
 
