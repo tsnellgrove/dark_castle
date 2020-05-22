@@ -200,9 +200,22 @@
 	- This is another aspect of the listy nature of my coding choices. The hedgehog's responses to attacks live in creature_dict, his multiple descriptions live in desctiption_dict, and the logic that determines his current appearnace lives in triggers. It works, and the dictionary key naming is pretty clear, but it's still mighty hard to follow!
 
 - Scoring:
-	- 
+	- Scoring gives the player a feeling of accomplishment and re-enforces when they have made a right choice.
+	- As with many other aspects of Dark Casle I am modeling the scoring off of Zork. One departure is that I provide negative scoring for bad choices (e.g. scaring off the hedgehog).
+	- When the game ends the player gets a title based on their score.
+	- current_score is stored in state_dict and starts at zero. state_dict also contains score_dict which keys off the score_key for scorable events and holds values for the number of times an event has occurred and the score value of the event.
+	- At the start of interpeter_text score_key is set to <word1>-<word2>. Than at the end of each verb elif, if score_key is in score_dict score() is called.
+	- score() checks the score_event_count and, if it is 0, increments current_score by score_event_value and calls print_score(). Lastly, score() increments score_event_count.
+	- print_score() print's the curent_score out of the max_score possible (which is stored in static_dict). print_score() is separate from score() since it is also called in end().
+	- end() calculates title_score from current score. title_score = -10 if current_score is negative or title_score = current_score rounded to the nearest 10 if current_score is positive. Then based on title_score, end() looks up and prints the apropriate title from static_dict[titles_dict].
+	- In a couple cases the player must not only accomplish an objective in order to score but must accomplish it successfully (e.g. 'push-big_red_button', 'read-scroll_of_the_king'). In these cases, the score_dict key has 'success' or 'win' appended to the end of it and this text is added to score_key in trigger(). In the special cases of the crocodile royal_crown puzzle, score_key is arbitrarily assigned in trigger() (as 'gator_crown' - demonstrating my poor grasp of reptile matters).  
+	- As with so many other aspects of the game, score is distributed across multiple lists. In the case of score I'm not sure this is avoidable. Scoring is innately dependent on achieving a very specific result - I can't yet visualize how I would embed this in a given object (of course I haven't learned object-oriented programing yet so I'm certainly not saying it can't be done!)
 
-Dictionaries and Lists
+
+*** Dictionaries and Lists ***
+
+
+
 
 Puzzles:
 - Room 1:
