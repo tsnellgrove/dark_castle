@@ -105,7 +105,8 @@ Updates for v 1.9
 			DONE: mechanics - description updates
 			DONE: mechanics - scoring
 			DONE: dictionaries and puzzles
-			story
+			DONE: story
+			dark_castle description
 
 
 *** Future Maintenance and Features ***
@@ -134,7 +135,7 @@ Post Website Ideas
 		- create a "generalized" verb block with trigger & score for every verb
 
 5th room
-	 mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
+	mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
 	copper key opens cabinet which holds potion
 	find a use for 'close' verb; maybe potion refill
 	possibly create 'return' verb to put things back (or maybe 'swap')
@@ -149,6 +150,7 @@ Post Website Ideas
 	make hedgehog_broach wearable
 	link puzzle to total number of moves? Or to score?
 	repeat option like 'again' / 'g' in Zork (JE request)
+	Possibly add a room 6 with time travel??
 
 Object Oriented Ideas:
 	Text Adventure Link: https://inventwithpython.com/blog/2014/12/11/making-a-text-adventure-game-with-the-cmd-and textwrap-python-modules/

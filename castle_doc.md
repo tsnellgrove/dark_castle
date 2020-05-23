@@ -249,8 +249,20 @@
 	
 - Room 5: [future]. Hard puzzles. I have plans to come up with one grand final room that has multiple puzzles and some fun references. The strategy would be to make the silver_key harder to reach - with the hedgehog handing over some intermediate puzzle solving object instead.
 
-Story:
 
+*** Story ***
+
+- Like everything elese in the game the story just sort of happened as I went along. Burt did not start off as a Henry IVth wastrel with a destiny, a career as a baker, and a great-grandmother with little-known connections to royalty -  but here is the tale of how he eventually got there. I rewrote very little of the description text during final editing (the main exception being an update to the hedgehog description to discourage players from attacking it) so you can track the story evolution from room to room.
+
+- Room 1: In the tradition of Zork I introduce Burt as a rough and ready sort not known for his feats of intelect or his sophistication. At this point I had a vague idea of Burt's pub bragging motivations but that was about all. Although the story had little refinement even at this point I was planning for the game to have four rooms with the winning condition being in Room 4.
+
+ - Room 2: This was still early days story-wise. Why a hedgehog? Why not!? That's the unique beauty of the puzzle-centric easthetic of IF - on day you're whomping draggons - the next day you're held at bay by hungry hedgehogs. The stale_biscuits were inspired by my wife's love of British McVitties biscuits. At this point Burt was still a random bloke living in his Mom's basement without any kind of baking career and the game victory vaguely involved him finding a big chest of gold in Room 4.
+
+- Room 3: Making the switches work and fixing some timer bugs took me a while so this is when a lot of the story thinking happened. Also around this time I had a conversation with my young friend Gideon who told me to end the game with a magic scroll that you read to win. Having no better plan I agreed heartily so now the end plan was in sight. The goblin was planned from Room 2 and is still entirely arbitrary but I was starting to think more about the writing and you can begin to see small signs of the eventual narrative. The description of the Antechamber is longer than that of past rooms and hints at a cursed condition. And the description of Burt's shiny_sword attack on the goblin hints at a hitherto unanticipated destiny. It was somewhere around this time that the castle went from just being a random spooky place to "Dark Castle".
+
+- Room 4: The puzzles here are a lot more intricate so I had a lot more time to ponder the story. Also, endings tend to make one think of beginnings. And lastly I didn't have good puzzle ideas / props. My original idea was just that Burt would just get to Room 4 and find a pile of gold. But now that I'd committed to the scroll ending I had to have Burt return to earlier rooms to find the necessary puzzle mcguffins - which led me to want to explain elements which had previously been arbitrary. Why exactly was Burt destined to be king / barron of the castle. What was the castle called before it was Dark Castle? How come Burt is carying biscuits in his backpack? And what on earth is the deal with the hedgehog in the Main Hall? All of these ideas came together in Room 4. Which perhaps explains why nearly all the story elements get pulled together in the description of one item - which I proudly believe the be the most exposition-heavy broach in IF history. 
+
+- Room 5: [future] We'll see if this ever happens but story-wise I do have some loose ends to tie together. Why is there a guard golin in Room 3? I usually picture him as a sour old servent who went dark with the castle but time will tell. And what about Burt's love life. In fantasy tales, (un)promsing lads like Burt usually have some sweetheart they are pining for. In Burt's case I picture it being a no nonsense laday of superior intelect and competence who's attention Burt is desperately trying to gain. Her story has been wholy absent from the tale so far and would be fun to weave in.
 
 +++ Steps for Game Expansion +++
 
