@@ -3,7 +3,7 @@
 
 *** Preamble ***
 
-- What exactly are Text Adventures / Interactive Fiction:
+- What Exactly is a Text Adventure / Interactive Fiction Game:
 
 	- Wikipedia: "Interactive fiction, often abbreviated IF, is software simulating environments in which players use text commands to control characters and influence the environment."
 
@@ -302,7 +302,7 @@ New item creation:
 Version 1.0 Major Limitations
 - Only 2 word sentences... adjectives are connected to nouns using "_"
 - No prepositions
-- Only one timer active at a time (is this still true??)
+- Only one timer active at a time
 - If you attack the hedgehog while it's eating the stale_biscuts simply vanish
 
 Version 2.0 Features

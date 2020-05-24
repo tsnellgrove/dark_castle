@@ -6,6 +6,6 @@ There are only four rooms and the puzzle difficulty progresses from trivial to m
 
 I'm very much a beginner at both Python and text adventure writing so I welcome your feedback and suggestions! Also, feel free to clone and extend my code with new or different rooms, features, and verbs. Let me know if you do - I would love to play whatever game you create! I do ask that you credit my initial work and that you clearly state in the intro if the game is no longer appropriate for kids.
 
-Lastly, after a bit more clean up of this version I plan to create an object-oriented version 2.0 that supports better linguistics so advice on object oriented techniques is much appreciated as well.
+Lastly, after a bit more clean up of this version I plan to create an object-oriented version that supports better linguistics so advice on object oriented techniques is much appreciated as well.
 
 - Tom
