@@ -1,10 +1,5 @@
 +++ To Dos +++
 
-2.0 Final Updates for Version
-	DONE: Organize castle_done notes
-	DONE: Organize castle_to_do notes
-	DONE: Organize Flask Notes
-	Create dark_castle description for entrance view_only
 
 *** Future Maintenance and Features ***
 

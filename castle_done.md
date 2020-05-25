@@ -1,4 +1,4 @@
-*** Original Game Outline ***
+*** Early Game Outline ***
 
 Simple Castle Adventure Overview
 	1. Entrance (front_gate): unlock front_gate with rusty_key and open front_gate to go north; has door
@@ -6,6 +6,16 @@ Simple Castle Adventure Overview
 	3. Antechamber (goblin; defeat goblin with sword and pull lever to open portculus to next room); 
 	4. Throne Room (treasure chest; open chest to get gold); scroll in chest to open (Gideon)
 	5. Upon victory Burt becomes known as 'Burt the Bold'
+
+
+*** Version History ***
+v 1.0: Base functionality for all four rooms
+v 1.1: PEP-8 Styel Compliance
+v 1.2 - 1.4: Spell checking, re-writing, puzzle tuning, centralize trigger text => description_dict
+v 1.5: Migrate files to Working Copy git client
+v 1.6 - 1.8: Tune Git workflow, consolidate dictionaries, code review
+v 1.9: Consolidate text => description.csv and import file to dict, Document application
+v 2.0: Final tweaks, updates, and documentation 
 
 
 *** Program Change Log / Relese Notes ***
@@ -482,3 +492,12 @@ Updates for v 1.9
 			DONE: mechanics - scoring
 			DONE: dictionaries and puzzles
 			DONE: story
+			
+Final Updates for Version 2.0
+	DONE: Organize castle_done notes
+	DONE: Organize castle_to_do notes
+	DONE: Organize Flask Notes
+	DONE: Create dark_castle description for entrance view_only
+		Dark_castle looms over you. Its facade of blackened turrets and cracked walls dour and singlularly univiting. It's hard to imagine but your great grandma Nana used to tell wonderous stories of the old days when the castle gleamed brightly on its hill and brought order and goodness to the land. Maybe it's because of the stories but you've always had a bit of an itch to venture inside - and now that a round of beer and your alehouse repuation as a fearless ruffian are on the line you certainly don't intend to back down now! 
+
+

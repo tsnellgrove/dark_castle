@@ -1,11 +1,11 @@
-"""Castle Adventure 1.977
+"""Castle Adventure 2.0
 
 This is a simple Zork-like text adventure game.
 I am creating it in order to learn how to program in Python.
 
 Written and programmed by Tom Snellgrove
 
-Last update = May 5, 2020
+Last update = May 25, 2020
 """
 
 # *** Imports ***
@@ -858,7 +858,7 @@ room_dict = {
     'entrance': {
         'features': ["front_gate"],
         'items': [],
-        'view_only': [],
+        'view_only': ['dark_castle']
     },
     'main_hall': {
         'features': ['hedgehog', 'front_gate'],
