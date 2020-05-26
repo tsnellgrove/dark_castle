@@ -4,6 +4,11 @@
 *** Future Maintenance and Features ***
 
 2.x Website Ideas
+First
+	- Learn Flask basics: 
+		- https://realpython.com/introduction-to-flask-part-1-setting-up-a-static-site/
+
+Next
 	- Change version naming to x.y.z notation
 	- Figure out Git branching
 	- Future deployment options: Cloud web, instance, container, Lambda / serverless, mobile, text, echo
