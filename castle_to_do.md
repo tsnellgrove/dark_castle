@@ -5,25 +5,24 @@
 
 2.x Website Ideas
 First
-	- Learn Flask basics: 
+	- 2.0.1 Learn Flask basics: 
 		- https://realpython.com/introduction-to-flask-part-1-setting-up-a-static-site/
+	- 2.0.2 Basic test local site with input
+	- Figure out output
 
 Next
-	- Change version naming to x.y.z notation
-	- Figure out Git branching
+	- DONE: Change version naming to x.y.z notation
+	- DONE: Read about Flask functions
+	- DONE: re-read number input / output example
+	- Sort out Git Branching
+	- convert interpreter_text to function using print to buffer approach (redirect stdio)
+	- flaskify main routine
+	- get it working on local host website
+	- get working on python anywhere
+	- figure out sessions
+	- Git integration
+	- Investigate AWS implemenations
 	- Future deployment options: Cloud web, instance, container, Lambda / serverless, mobile, text, echo
-	- Start with pythonanywhere
-	- Next Steps
-		- Sort out Git Branching
-		- Read about Flask functions
-		- re-read number input / output example
-		- convert interpreter_text to function using print to buffer approach (redirect stdio)
-		- flaskify main routine
-		- get it working on local host website
-		- get working on python anywhere
-		- figure out sessions
-		- Git integration
-		- Investigate AWS implemenations
 	- Initial function thinking:
 		- dark_castle includes:
 			- fask code, dictionaries, imports, while != end_state (input, interpreter_text(), print buffer)
