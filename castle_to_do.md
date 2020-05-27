@@ -113,6 +113,7 @@ Next
 		link puzzle to total number of moves? Or to score?
 		repeat option like 'again' / 'g' in Zork (JE request)
 	Possibly add a room 6 with time travel??
+		find a use for the word "griffonage" (illegible handwriting)
 
 5.x Future Ideas:
 	fun idea - small creature - like a mouse - as an item
