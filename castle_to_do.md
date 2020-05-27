@@ -34,6 +34,7 @@ Next
 		- What is the value of functionalizing? Maybe just convert output to buffer??
 
 3.x Minor Edits:
+	Joshua idea: give the player an option to be a boy (Burt) or a girl (Rose); or maybe let them choose their own name
 	make synthetic score_keys more consistent (e.g. always '-success'; 'gator-crown' => 'croc-crown-success')
 	provide printtw() options for double spacing (add print() to inner for) and also change column width
 	use .strip() on input
