@@ -3,12 +3,17 @@
 
 *** Future Maintenance and Features ***
 
-2.x Website Ideas
-First
+2.x Website To Do
+
+Flask Testing
 	- 2.0.1 Learn Flask basics: 
 		- https://realpython.com/introduction-to-flask-part-1-setting-up-a-static-site/
 	- 2.0.2 Basic test local site with input
-	- Figure out output
+	- 2.0.3 Basic test local site with input box; prints a locally asigned variable
+	- 2.0.4 Created a very basic processing.py script to enable input / output testing
+
+	test 3-phase input / processing / outut flask script
+	get falsk test into git
 
 Next
 	- DONE: Change version naming to x.y.z notation
