@@ -11,8 +11,10 @@ Flask Testing
 	- 2.0.2 Basic test local site with input
 	- 2.0.3 Basic test local site with input box; prints a locally asigned variable
 	- 2.0.4 Created a very basic processing.py script to enable input / output testing
+	- 2.0.5 Good updates - have input and output linked to web site & sub function calling working
 
-	test 3-phase input / processing / outut flask script
+	get test_lst updates working
+	sessions
 	get falsk test into git
 
 Next
