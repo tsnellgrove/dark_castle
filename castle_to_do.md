@@ -18,6 +18,7 @@ Flask Testing
 	clear session on "quit"
 	decide on how to store data... maybe first pass is client-side cookies, then server-side JSON then Redis
 		Need to re-apply description updates on load.. or maybe just JSON?? Or maybe special dict just for those?
+		Create dynamic description dict and update descript_dict on load (for update in update_dict descript_dict[update] = update_dict[update])
 	Need to buckle down and take some flask courses independent of my project (just do it)
 	get falsk test into git
 
