@@ -13,9 +13,12 @@ Flask Testing
 	- 2.0.4 Created a very basic processing.py script to enable input / output testing
 	- 2.0.5 Good updates - have input and output linked to web site & sub function calling working
 	- 2.0.6 Sessions working (?) but still can't retain text_lst values
-
-	get test_lst updates working
-	sessions
+	- 2.0.7 Finally got session variable to be persistent!!
+	
+	clear session on "quit"
+	decide on how to store data... maybe first pass is client-side cookies, then server-side JSON then Redis
+		Need to re-apply description updates on load.. or maybe just JSON?? Or maybe special dict just for those?
+	Need to buckle down and take some flask courses independent of my project (just do it)
 	get falsk test into git
 
 Next
