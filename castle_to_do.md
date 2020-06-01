@@ -15,6 +15,7 @@ Flask Testing
 	- 2.0.6 Sessions working (?) but still can't retain text_lst values
 	- 2.0.7 Finally got session variable to be persistent!!
 	
+	Fix KeyError on session.pop
 	clear session on "quit"
 	decide on how to store data... maybe first pass is client-side cookies, then server-side JSON then Redis
 		Need to re-apply description updates on load.. or maybe just JSON?? Or maybe special dict just for those?
