@@ -18,13 +18,15 @@ Flask Testing
 	- 2.0.6 Sessions working (?) but still can't retain text_lst values
 	- 2.0.7 Finally got session variable to be persistent!!
 	- 2.0.8 Sorted out the KeyError issue and got session.pop() working (well, most of the time)
+	- 2.0.9 Wrote pseudo code for how flask wrapper would work if all stateful data was stored in session dictionaries 	
 
-	Write some pseudo code to figure out how the flask wrapper would work if all stateful data was stored in session dictionaries 	
-	decide on how to store data... maybe first pass is client-side cookies, then server-side JSON then Redis
+	get falsk test into git
+	update test to match pseudo code
+	branch dark_castle.py for flask version
+		decide on how to store data... maybe first pass is client-side cookies, then server-side JSON then Redis
 		Need to re-apply description updates on load.. or maybe just JSON?? Or maybe special dict just for those?
 		Create dynamic description dict and update descript_dict on load (for update in update_dict descript_dict[update] = update_dict[update])
 	Need to buckle down and take some flask courses independent of my project (just do it)
-	get falsk test into git
 
 Next
 	- Sort out Git Branching
