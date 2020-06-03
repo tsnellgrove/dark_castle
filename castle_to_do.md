@@ -20,6 +20,7 @@ Flask Testing
 	- 2.0.8 Sorted out the KeyError issue and got session.pop() working (well, most of the time)
 	- 2.0.9 Wrote pseudo code for how flask wrapper would work if all stateful data was stored in session dictionaries 	
 	- 2.0.10 get flask test into git
+	- 2.0.11 got git branching working (I think)
 
 	branch flask test
 	update test to match pseudo code
