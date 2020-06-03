@@ -19,8 +19,9 @@ Flask Testing
 	- 2.0.7 Finally got session variable to be persistent!!
 	- 2.0.8 Sorted out the KeyError issue and got session.pop() working (well, most of the time)
 	- 2.0.9 Wrote pseudo code for how flask wrapper would work if all stateful data was stored in session dictionaries 	
+	- 2.0.10 get flask test into git
 
-	get falsk test into git
+	branch flask test
 	update test to match pseudo code
 	branch dark_castle.py for flask version
 		decide on how to store data... maybe first pass is client-side cookies, then server-side JSON then Redis
