@@ -22,6 +22,7 @@ Flask Testing
 	- 2.0.10 get flask test into git
 	- 2.0.11 got git branching working (I think)
 
+	struggling with very basic import issues... not sure what's going on
 	branch flask test
 	update test to match pseudo code
 	branch dark_castle.py for flask version
