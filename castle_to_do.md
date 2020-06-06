@@ -21,6 +21,7 @@ Flask Testing
 	- 2.0.9 Wrote pseudo code for how flask wrapper would work if all stateful data was stored in session dictionaries 	
 	- 2.0.10 get flask test into git
 	- 2.0.11 got git branching working (I think)
+	- 2.0.12 working through a really frustrating working copy / pythonista remote file call bug :(
 
 	struggling with very basic import issues... not sure what's going on
 	branch flask test
