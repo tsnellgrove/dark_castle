@@ -37,7 +37,7 @@ Next
 	- convert interpreter_text to function using print to buffer approach (redirect stdio)
 	- flaskify main routine
 	- get it working on local host website
-	- get working on python anywhere
+	- get working on python anywhere or Heroku
 	- figure out sessions
 	- Git integration
 	- Investigate AWS implemenations
