@@ -22,6 +22,10 @@ Flask Testing
 	- 2.0.10 get flask test into git
 	- 2.0.11 got git branching working (I think)
 	- 2.0.12 working through a really frustrating working copy / pythonista remote file call bug :(
+	- 2.0.13 After much adventure got flask_test3.py running smoothly on pythonanywhere with git integration
+	- 2.1.0 NEXT TO DO - REALLY FIGURE OUT HOW TO USE GIT BRANCHING / FORKS
+
+
 
 	struggling with very basic import issues... not sure what's going on
 	branch flask test
