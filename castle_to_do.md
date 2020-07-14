@@ -25,6 +25,15 @@ Flask Testing
 	- 2.0.13 After much adventure got flask_test3.py running smoothly on pythonanywhere with git integration
 	- 2.1.0 NEXT TO DO - REALLY FIGURE OUT HOW TO USE GIT BRANCHING / FORKS
 		- July 13: Reading up on Git branching - sounds like tags will be helpful - more research to do
+		- July 14: Read up on app versioning - I need to get more consistent about this
+			- Less clear is coding across platforms... it's beginning to look like there's no one simple solution to this
+			- I will need to roll my own
+			- Maybe start by functionalizing Dark Castle and make that version work at the command line
+
+
+To Dos:
+- set a versioning scheme (x.y.z) and official version notes; also create a version command in Dark Castle 
+	- Link: https://medium.com/@GabEarnsh/versioning-mobile-app-releases-like-a-pro-25137766150a
 
 
 
